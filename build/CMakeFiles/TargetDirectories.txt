@@ -1,3 +1,5 @@
 E:/金介然/大三下/编译课设/CODE/build/CMakeFiles/pascc.dir
+E:/金介然/大三下/编译课设/CODE/build/CMakeFiles/lexer_tests.dir
+E:/金介然/大三下/编译课设/CODE/build/CMakeFiles/RUN_TESTS.dir
 E:/金介然/大三下/编译课设/CODE/build/CMakeFiles/ALL_BUILD.dir
 E:/金介然/大三下/编译课设/CODE/build/CMakeFiles/ZERO_CHECK.dir

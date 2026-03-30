@@ -33,7 +33,15 @@ int CompilerDriver::run(const std::string& inputPath) {
     const std::string sourceCode = buffer.str();
 
     Lexer lexer;
-    const auto tokens = lexer.tokenize(sourceCode);
+    const LexerResult lexResult = lexer.tokenizeDetailed(sourceCode);
+
+    if (!lexResult.errors.empty()) {
+        for (const auto& err : lexResult.errors) {
+            logutil::error(err.code, "(" + std::to_string(err.pos.line) + ":" + std::to_string(err.pos.column) + ") " + err.message);
+        }
+        logutil::error("E199", "Lexical analysis failed with " + std::to_string(lexResult.errors.size()) + " error(s).");
+        return toExitCode(ErrorCode::LexicalError);
+    }
 
     const std::string outputPath = deriveOutputPath(inputPath);
     std::ofstream out(outputPath, std::ios::trunc);
@@ -51,7 +59,7 @@ int CompilerDriver::run(const std::string& inputPath) {
 
     logutil::info("Input:  " + source.string());
     logutil::info("Output: " + outputPath);
-    logutil::info("Tokenized items (skeleton): " + std::to_string(tokens.size()));
+    logutil::info("Tokenized items (skeleton): " + std::to_string(lexResult.tokens.size()));
     return toExitCode(ErrorCode::Ok);
 }
 

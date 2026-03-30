@@ -1,0 +1,23 @@
+Start testing: Mar 30 23:50 ÖÐ¹ú±ê×¼Ê±¼ä
+----------------------------------------------------------
+1/1 Testing: lexer_tests
+1/1 Test: lexer_tests
+Command: "E:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build/Debug/lexer_tests.exe"
+Directory: E:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build
+"lexer_tests" start time: Mar 30 23:50 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] valid_program_no_lex_errors
+[PASS] keyword_boundary_error_detected
+[PASS] identifier_length_error_detected
+[PASS] nested_comment_error_detected
+[PASS] invalid_char_literal_detected
+<end of output>
+Test time =   0.28 sec
+----------------------------------------------------------
+Test Passed.
+"lexer_tests" end time: Mar 30 23:50 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Mar 30 23:50 ÖÐ¹ú±ê×¼Ê±¼ä
