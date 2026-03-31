@@ -2,16 +2,16 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>E:\金介然\大三下\编译课设\CODE\build\x64\Debug\ZERO_CHECK</FullPath>
+      <FullPath>C:\Users\16978\Desktop\大三下\编译原理课设\BUPT-PASCC2026\build\x64\Debug\ZERO_CHECK</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>E:\金介然\大三下\编译课设\CODE\build\Debug\lexer_tests.exe</FullPath>
+      <FullPath>C:\Users\16978\Desktop\大三下\编译原理课设\BUPT-PASCC2026\build\Debug\lexer_tests.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>E:\金介然\大三下\编译课设\CODE\build\Debug\pascc.exe</FullPath>
+      <FullPath>C:\Users\16978\Desktop\大三下\编译原理课设\BUPT-PASCC2026\build\Debug\pascc.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
-      <FullPath>E:\金介然\大三下\编译课设\CODE\build\x64\Debug\ALL_BUILD</FullPath>
+      <FullPath>C:\Users\16978\Desktop\大三下\编译原理课设\BUPT-PASCC2026\build\x64\Debug\ALL_BUILD</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

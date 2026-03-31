@@ -1,4 +1,4 @@
-# Install script for directory: E:/金介然/大三下/编译课设/CODE
+# Install script for directory: C:/Users/16978/Desktop/大三下/编译原理课设/BUPT-PASCC2026
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -35,7 +35,7 @@ endif()
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
 if(CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "E:/金介然/大三下/编译课设/CODE/build/install_local_manifest.txt"
+  file(WRITE "C:/Users/16978/Desktop/大三下/编译原理课设/BUPT-PASCC2026/build/install_local_manifest.txt"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()
 if(CMAKE_INSTALL_COMPONENT)
@@ -51,6 +51,6 @@ else()
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
-  file(WRITE "E:/金介然/大三下/编译课设/CODE/build/${CMAKE_INSTALL_MANIFEST}"
+  file(WRITE "C:/Users/16978/Desktop/大三下/编译原理课设/BUPT-PASCC2026/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
 endif()

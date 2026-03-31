@@ -1,6 +1,6 @@
-^E:\金介然\大三下\编译课设\CODE\CMAKELISTS.TXT
+^C:\USERS\16978\DESKTOP\大三下\编译原理课设\BUPT-PASCC2026\CMAKELISTS.TXT
 setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SE:/金介然/大三下/编译课设/CODE -BE:/金介然/大三下/编译课设/CODE/build --check-stamp-file E:/金介然/大三下/编译课设/CODE/build/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/16978/Desktop/大三下/编译原理课设/BUPT-PASCC2026 -BC:/Users/16978/Desktop/大三下/编译原理课设/BUPT-PASCC2026/build --check-stamp-file C:/Users/16978/Desktop/大三下/编译原理课设/BUPT-PASCC2026/build/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone

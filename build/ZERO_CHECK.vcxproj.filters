@@ -1,13 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <CustomBuild Include="E:\金介然\大三下\编译课设\CODE\build\CMakeFiles\3f0a3fd1ac546e6f7b753c0b97cf3cfd\generate.stamp.rule">
+    <CustomBuild Include="C:\Users\16978\Desktop\大三下\编译原理课设\BUPT-PASCC2026\build\CMakeFiles\03f17f9d1cacb6e3ea4d475d924af7c6\generate.stamp.rule">
       <Filter>CMake Rules</Filter>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="CMake Rules">
-      <UniqueIdentifier>{EE018A35-A0DD-3537-A856-C16471C8AC6F}</UniqueIdentifier>
+      <UniqueIdentifier>{0E53FCF9-868A-321D-BED5-563ADD67BA06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
