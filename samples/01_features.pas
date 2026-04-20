@@ -1,11 +1,7 @@
-program demo
-const a = 1;
-var x, y: integer ;
+program demo;
+var a1, b2: integer;
 begin
-    { cross-line
-      comment }
-    x := 10;
-    y := x + a;
-    if x > 0 then
-  write ( y )
+  a1 := 12;
+  b2 := 34;
+  write(a1);
 end.

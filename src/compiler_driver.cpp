@@ -59,7 +59,7 @@ int CompilerDriver::run(const std::string& inputPath) {
 
     logutil::info("Input:  " + source.string());
     logutil::info("Output: " + outputPath);
-    logutil::info("Tokenized items (skeleton): " + std::to_string(lexResult.tokens.size()));
+    logutil::info("Tokenized items: " + std::to_string(lexResult.tokens.size()));
     return toExitCode(ErrorCode::Ok);
 }
 

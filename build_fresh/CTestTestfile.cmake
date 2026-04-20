@@ -1,0 +1,36 @@
+# CMake generated Testfile for 
+# Source directory: D:/金介然/大三下/编译课设/CODE
+# Build directory: D:/金介然/大三下/编译课设/CODE/build_fresh
+# 
+# This file includes the relevant testing commands required for 
+# testing this directory and lists subdirectories to be tested as well.
+if(CTEST_CONFIGURATION_TYPE MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
+  add_test(lexer_smoke_tests "D:/金介然/大三下/编译课设/CODE/build_fresh/Debug/lexer_smoke_tests.exe")
+  set_tests_properties(lexer_smoke_tests PROPERTIES  _BACKTRACE_TRIPLES "D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;25;add_test;D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+  add_test(lexer_smoke_tests "D:/金介然/大三下/编译课设/CODE/build_fresh/Release/lexer_smoke_tests.exe")
+  set_tests_properties(lexer_smoke_tests PROPERTIES  _BACKTRACE_TRIPLES "D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;25;add_test;D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Mm][Ii][Nn][Ss][Ii][Zz][Ee][Rr][Ee][Ll])$")
+  add_test(lexer_smoke_tests "D:/金介然/大三下/编译课设/CODE/build_fresh/MinSizeRel/lexer_smoke_tests.exe")
+  set_tests_properties(lexer_smoke_tests PROPERTIES  _BACKTRACE_TRIPLES "D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;25;add_test;D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
+  add_test(lexer_smoke_tests "D:/金介然/大三下/编译课设/CODE/build_fresh/RelWithDebInfo/lexer_smoke_tests.exe")
+  set_tests_properties(lexer_smoke_tests PROPERTIES  _BACKTRACE_TRIPLES "D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;25;add_test;D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;0;")
+else()
+  add_test(lexer_smoke_tests NOT_AVAILABLE)
+endif()
+if(CTEST_CONFIGURATION_TYPE MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
+  add_test(lexer_tests "D:/金介然/大三下/编译课设/CODE/build_fresh/Debug/lexer_tests.exe")
+  set_tests_properties(lexer_tests PROPERTIES  _BACKTRACE_TRIPLES "D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;34;add_test;D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
+  add_test(lexer_tests "D:/金介然/大三下/编译课设/CODE/build_fresh/Release/lexer_tests.exe")
+  set_tests_properties(lexer_tests PROPERTIES  _BACKTRACE_TRIPLES "D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;34;add_test;D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Mm][Ii][Nn][Ss][Ii][Zz][Ee][Rr][Ee][Ll])$")
+  add_test(lexer_tests "D:/金介然/大三下/编译课设/CODE/build_fresh/MinSizeRel/lexer_tests.exe")
+  set_tests_properties(lexer_tests PROPERTIES  _BACKTRACE_TRIPLES "D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;34;add_test;D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;0;")
+elseif(CTEST_CONFIGURATION_TYPE MATCHES "^([Rr][Ee][Ll][Ww][Ii][Tt][Hh][Dd][Ee][Bb][Ii][Nn][Ff][Oo])$")
+  add_test(lexer_tests "D:/金介然/大三下/编译课设/CODE/build_fresh/RelWithDebInfo/lexer_tests.exe")
+  set_tests_properties(lexer_tests PROPERTIES  _BACKTRACE_TRIPLES "D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;34;add_test;D:/金介然/大三下/编译课设/CODE/CMakeLists.txt;0;")
+else()
+  add_test(lexer_tests NOT_AVAILABLE)
+endif()

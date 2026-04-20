@@ -19,10 +19,7 @@ struct LexerResult {
 
 class Lexer {
 public:
-    // Stage-1 compatibility API.
     std::vector<Token> tokenize(const std::string& source);
-
-    // Preferred API with lexical diagnostics.
     LexerResult tokenizeDetailed(const std::string& source);
 };
 

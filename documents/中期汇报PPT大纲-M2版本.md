@@ -196,9 +196,10 @@
 ### 核心要点
 
 1. 数据结构：Token、SourcePosition、LexError、LexerResult。
-2. 关键接口：`tokenizeDetailed(source)` 返回 tokens+errors。
-3. 驱动对接：词法失败返回退出码 7 并终止后续阶段。
-4. 识别支持：
+2. 实现方式：Flex 规则文件 `src/lexer.l` + C++ 接口封装。
+3. 关键接口：`tokenizeDetailed(source)` 返回 tokens+errors。
+4. 驱动对接：词法失败返回退出码 7 并终止后续阶段。
+5. 识别支持：
 - 不区分大小写关键字/标识符。
 - 整数、实数、字符常量。
 - 复合符号 `:=`、`..`、`<=`、`>=`、`<>`。

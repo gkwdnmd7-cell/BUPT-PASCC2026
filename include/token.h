@@ -3,20 +3,16 @@
 
 #include <string>
 
-// Core token set for Pascal-S lexical analysis.
 enum class TokenType {
-    // Special
     EndOfFile,
     Unknown,
 
-    // Identifiers and literals
     Identifier,
     IntegerLiteral,
     RealLiteral,
     CharLiteral,
     BooleanLiteral,
 
-    // Keywords
     KwProgram,
     KwConst,
     KwVar,
@@ -39,7 +35,6 @@ enum class TokenType {
     KwBoolean,
     KwChar,
 
-    // Operators
     Plus,
     Minus,
     Multiply,
@@ -57,7 +52,6 @@ enum class TokenType {
     Greater,
     GreaterEqual,
 
-    // Delimiters and punctuation
     LParen,
     RParen,
     LBracket,

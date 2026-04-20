@@ -5,15 +5,6 @@
 #include "lexer.h"
 
 namespace {
-bool hasErrorCode(const std::vector<LexError>& errors, const std::string& code) {
-    for (const auto& err : errors) {
-        if (err.code == code) {
-            return true;
-        }
-    }
-    return false;
-}
-
 bool expect(bool cond, const std::string& name) {
     if (!cond) {
         std::cerr << "[FAIL] " << name << std::endl;
@@ -21,6 +12,24 @@ bool expect(bool cond, const std::string& name) {
     }
     std::cout << "[PASS] " << name << std::endl;
     return true;
+}
+
+bool hasToken(const std::vector<Token>& tokens, TokenType type, const std::string& lexeme) {
+    for (const auto& t : tokens) {
+        if (t.type == type && t.lexeme == lexeme) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool hasError(const std::vector<LexError>& errors, const std::string& code) {
+    for (const auto& e : errors) {
+        if (e.code == code) {
+            return true;
+        }
+    }
+    return false;
 }
 }  // namespace
 
@@ -30,40 +39,48 @@ int main() {
 
     {
         const std::string src =
-            "program demo\n"
-            "var x, y: integer ;\n"
+            "PROGRAM demo\n"
+            "var a1, b2 : integer;\n"
             "begin\n"
-            "  { ok comment }\n"
-            "  x := 12;\n"
-            "  if x >= 1 then\n"
-            "    write ( x )\n"
+            "  a1 := 12;\n"
+            "  b2 := 12.34;\n"
+            "  write(a1);\n"
             "end.\n";
         const auto result = lexer.tokenizeDetailed(src);
         ok &= expect(result.errors.empty(), "valid_program_no_lex_errors");
+        ok &= expect(hasToken(result.tokens, TokenType::KwProgram, "program"), "program_keyword_detected");
+        ok &= expect(hasToken(result.tokens, TokenType::Identifier, "a1"), "identifier_detected");
+        ok &= expect(hasToken(result.tokens, TokenType::RealLiteral, "12.34"), "real_literal_detected");
     }
 
     {
-        const std::string src = "program demo\nbegin\nwrite(x)\nend.\n";
+        const std::string src = "abcdefgh9";
         const auto result = lexer.tokenizeDetailed(src);
-        ok &= expect(hasErrorCode(result.errors, "E108"), "keyword_boundary_error_detected");
+        ok &= expect(hasError(result.errors, "E105"), "identifier_length_limit_8");
     }
 
     {
-        const std::string src = "program demo\nvar thisIdentifierNameTooLong: integer ;\nbegin\nend.\n";
+        const std::string src = "begin { nested { comment } still } end";
         const auto result = lexer.tokenizeDetailed(src);
-        ok &= expect(hasErrorCode(result.errors, "E105"), "identifier_length_error_detected");
+        ok &= expect(hasError(result.errors, "E106"), "nested_comment_error");
     }
 
     {
-        const std::string src = "program demo\nbegin\n  { nested { comment } still invalid }\nend.\n";
+        const std::string src = "begin { unterminated";
         const auto result = lexer.tokenizeDetailed(src);
-        ok &= expect(hasErrorCode(result.errors, "E106"), "nested_comment_error_detected");
+        ok &= expect(hasError(result.errors, "E107"), "unterminated_comment_error");
     }
 
     {
-        const std::string src = "program demo\nbegin\n  x := 'ab';\nend.\n";
+        const std::string src = "x := 'ab'";
         const auto result = lexer.tokenizeDetailed(src);
-        ok &= expect(hasErrorCode(result.errors, "E109"), "invalid_char_literal_detected");
+        ok &= expect(hasError(result.errors, "E109"), "invalid_char_literal_error");
+    }
+
+    {
+        const std::string src = "_bad";
+        const auto result = lexer.tokenizeDetailed(src);
+        ok &= expect(hasError(result.errors, "E110"), "unknown_character_error");
     }
 
     return ok ? 0 : 1;

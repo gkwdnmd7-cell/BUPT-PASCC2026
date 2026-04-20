@@ -15,6 +15,15 @@ add_executable(pascc
 
 target_include_directories(pascc PRIVATE include)
 
+add_executable(lexer_smoke_tests
+    tests/lexer_smoke_tests.cpp
+    src/lexer.cpp
+)
+
+target_include_directories(lexer_smoke_tests PRIVATE include)
+
+add_test(NAME lexer_smoke_tests COMMAND lexer_smoke_tests)
+
 add_executable(lexer_tests
     tests/lexer_tests.cpp
     src/lexer.cpp

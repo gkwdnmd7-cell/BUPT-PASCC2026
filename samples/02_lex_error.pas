@@ -1,7 +1,7 @@
-program demo
-var thisIdentifierNameTooLong: integer;
+program demo;
+var abcdefgh9: integer;
 begin
-    x:=1;
-    { nested { comment } still invalid }
-    y := 'ab';
+  { nested { bad } }
+  write('ab');
+  _bad := 1;
 end.

@@ -1,0 +1,3 @@
+lexer_smoke_tests 2 0.436313
+lexer_tests 2 0.321586
+---

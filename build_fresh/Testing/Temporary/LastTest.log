@@ -1,0 +1,59 @@
+Start testing: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
+----------------------------------------------------------
+1/2 Testing: lexer_smoke_tests
+1/2 Test: lexer_smoke_tests
+Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/lexer_smoke_tests.exe"
+Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
+"lexer_smoke_tests" start time: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] keyword_and_identifier_no_error
+[PASS] program_keyword_case_insensitive
+[PASS] identifier_letter_digit_pattern
+[PASS] identifier_length_limit_8
+[PASS] operators_and_delimiters_no_error
+[PASS] assign_detected
+[PASS] dotdot_detected
+[PASS] le_detected
+[PASS] ge_detected
+[PASS] ne_detected
+[PASS] underscore_start_rejected
+[PASS] comment_skipped
+[PASS] nested_comment_error
+[PASS] unterminated_comment_error
+[PASS] real_literal_detected
+[PASS] char_literal_detected
+[PASS] invalid_char_literal_error
+<end of output>
+Test time =   0.87 sec
+----------------------------------------------------------
+Test Passed.
+"lexer_smoke_tests" end time: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_smoke_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+2/2 Testing: lexer_tests
+2/2 Test: lexer_tests
+Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/lexer_tests.exe"
+Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
+"lexer_tests" start time: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] valid_program_no_lex_errors
+[PASS] program_keyword_detected
+[PASS] identifier_detected
+[PASS] real_literal_detected
+[PASS] identifier_length_limit_8
+[PASS] nested_comment_error
+[PASS] unterminated_comment_error
+[PASS] invalid_char_literal_error
+[PASS] unknown_character_error
+<end of output>
+Test time =   0.64 sec
+----------------------------------------------------------
+Test Passed.
+"lexer_tests" end time: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
