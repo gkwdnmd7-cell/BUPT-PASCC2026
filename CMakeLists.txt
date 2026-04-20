@@ -11,6 +11,7 @@ add_executable(pascc
     src/main.cpp
     src/compiler_driver.cpp
     src/lexer.cpp
+    src/parser.cpp
 )
 
 target_include_directories(pascc PRIVATE include)
@@ -18,6 +19,7 @@ target_include_directories(pascc PRIVATE include)
 add_executable(lexer_smoke_tests
     tests/lexer_smoke_tests.cpp
     src/lexer.cpp
+    src/parser.cpp
 )
 
 target_include_directories(lexer_smoke_tests PRIVATE include)
@@ -27,8 +29,19 @@ add_test(NAME lexer_smoke_tests COMMAND lexer_smoke_tests)
 add_executable(lexer_tests
     tests/lexer_tests.cpp
     src/lexer.cpp
+    src/parser.cpp
 )
 
 target_include_directories(lexer_tests PRIVATE include)
 
 add_test(NAME lexer_tests COMMAND lexer_tests)
+
+add_executable(parser_tests
+    tests/parser_tests.cpp
+    src/lexer.cpp
+    src/parser.cpp
+)
+
+target_include_directories(parser_tests PRIVATE include)
+
+add_test(NAME parser_tests COMMAND parser_tests)

@@ -1,10 +1,10 @@
-Start testing: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
+Start testing: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
 ----------------------------------------------------------
-1/2 Testing: lexer_smoke_tests
-1/2 Test: lexer_smoke_tests
+1/3 Testing: lexer_smoke_tests
+1/3 Test: lexer_smoke_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/lexer_smoke_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"lexer_smoke_tests" start time: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_smoke_tests" start time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] keyword_and_identifier_no_error
@@ -25,18 +25,18 @@ Output:
 [PASS] char_literal_detected
 [PASS] invalid_char_literal_error
 <end of output>
-Test time =   0.87 sec
+Test time =   0.65 sec
 ----------------------------------------------------------
 Test Passed.
-"lexer_smoke_tests" end time: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_smoke_tests" end time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
 "lexer_smoke_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/2 Testing: lexer_tests
-2/2 Test: lexer_tests
+2/3 Testing: lexer_tests
+2/3 Test: lexer_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/lexer_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"lexer_tests" start time: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_tests" start time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] valid_program_no_lex_errors
@@ -49,11 +49,34 @@ Output:
 [PASS] invalid_char_literal_error
 [PASS] unknown_character_error
 <end of output>
-Test time =   0.64 sec
+Test time =   0.63 sec
 ----------------------------------------------------------
 Test Passed.
-"lexer_tests" end time: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_tests" end time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
 "lexer_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Apr 21 00:52 ÖÐ¹ú±ê×¼Ê±¼ä
+3/3 Testing: parser_tests
+3/3 Test: parser_tests
+Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/parser_tests.exe"
+Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
+"parser_tests" start time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] parser_valid_program_lex_ok
+[PASS] parser_valid_program_no_syntax_error
+[PASS] parser_missing_semicolon_header_lex_ok
+[PASS] parser_missing_semicolon_header_error
+[PASS] parser_e201_present
+[PASS] parser_invalid_expr_lex_ok
+[PASS] parser_invalid_expr_error
+[PASS] parser_e206_present
+<end of output>
+Test time =   0.52 sec
+----------------------------------------------------------
+Test Passed.
+"parser_tests" end time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
+"parser_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä

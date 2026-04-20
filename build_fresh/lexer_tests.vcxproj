@@ -370,6 +370,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   <ItemGroup>
     <ClCompile Include="D:\金介然\大三下\编译课设\CODE\tests\lexer_tests.cpp" />
     <ClCompile Include="D:\金介然\大三下\编译课设\CODE\src\lexer.cpp" />
+    <ClCompile Include="D:\金介然\大三下\编译课设\CODE\src\parser.cpp" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

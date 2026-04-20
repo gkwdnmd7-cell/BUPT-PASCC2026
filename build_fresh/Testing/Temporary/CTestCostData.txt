@@ -1,3 +1,4 @@
-lexer_smoke_tests 2 0.436313
-lexer_tests 2 0.321586
+lexer_smoke_tests 3 0.216873
+lexer_tests 3 0.211308
+parser_tests 1 0.518323
 ---

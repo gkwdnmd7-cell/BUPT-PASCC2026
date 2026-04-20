@@ -182,6 +182,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{2DA31966-20C1-3E27-BF2B-BD6BD9646065}</Project>
       <Name>lexer_tests</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\parser_tests.vcxproj">
+      <Project>{8CF30E90-DFB9-3631-8792-8E0C47FC75F0}</Project>
+      <Name>parser_tests</Name>
+    </ProjectReference>
     <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\pascc.vcxproj">
       <Project>{C7E83F24-CED4-3104-922C-990A488B6D05}</Project>
       <Name>pascc</Name>

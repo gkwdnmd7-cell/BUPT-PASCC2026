@@ -7,6 +7,7 @@
 #include "error_codes.h"
 #include "lexer.h"
 #include "log.h"
+#include "parser.h"
 
 namespace fs = std::filesystem;
 
@@ -43,6 +44,16 @@ int CompilerDriver::run(const std::string& inputPath) {
         return toExitCode(ErrorCode::LexicalError);
     }
 
+    Parser parser;
+    const ParserResult parserResult = parser.parse(lexResult.tokens);
+    if (!parserResult.errors.empty()) {
+        for (const auto& err : parserResult.errors) {
+            logutil::error(err.code, "(" + std::to_string(err.pos.line) + ":" + std::to_string(err.pos.column) + ") " + err.message);
+        }
+        logutil::error("E299", "Syntax analysis failed with " + std::to_string(parserResult.errors.size()) + " error(s).");
+        return toExitCode(ErrorCode::SyntaxError);
+    }
+
     const std::string outputPath = deriveOutputPath(inputPath);
     std::ofstream out(outputPath, std::ios::trunc);
     if (!out.good()) {
@@ -60,6 +71,7 @@ int CompilerDriver::run(const std::string& inputPath) {
     logutil::info("Input:  " + source.string());
     logutil::info("Output: " + outputPath);
     logutil::info("Tokenized items: " + std::to_string(lexResult.tokens.size()));
+    logutil::info("Syntax stage: passed");
     return toExitCode(ErrorCode::Ok);
 }
 
