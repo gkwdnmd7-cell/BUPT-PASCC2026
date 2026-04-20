@@ -1,5 +1,8 @@
-lexer_smoke_tests 16 0.0452526
-lexer_tests 16 0.0346898
-parser_tests 13 0.0389053
-bison_parser_tests 10 0.059985
+lexer_smoke_tests 19 0.000579516
+lexer_tests 19 0.000552363
+parser_tests 16 0.0529935
+bison_parser_tests 13 0.000756846
+semantic_tableset_tests 3 0.00305473
+semantic_typepool_tests 2 0.00451705
+semantic_declaration_tests 1 0.540746
 ---

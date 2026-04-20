@@ -198,6 +198,18 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{C7E83F24-CED4-3104-922C-990A488B6D05}</Project>
       <Name>pascc</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\semantic_declaration_tests.vcxproj">
+      <Project>{915CDB1D-4CAF-3660-AC34-EDD78D2B3464}</Project>
+      <Name>semantic_declaration_tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\semantic_tableset_tests.vcxproj">
+      <Project>{F1EC4EDA-26F2-3B85-8B6B-DCE76E8009CF}</Project>
+      <Name>semantic_tableset_tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\semantic_typepool_tests.vcxproj">
+      <Project>{E4B55F63-0184-3C65-A8A0-C2070E41AA5D}</Project>
+      <Name>semantic_typepool_tests</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

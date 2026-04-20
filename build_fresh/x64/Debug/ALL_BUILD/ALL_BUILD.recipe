@@ -20,6 +20,15 @@
       <FullPath>D:\金介然\大三下\编译课设\CODE\build_fresh\Debug\pascc.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
+      <FullPath>D:\金介然\大三下\编译课设\CODE\build_fresh\Debug\semantic_declaration_tests.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\金介然\大三下\编译课设\CODE\build_fresh\Debug\semantic_tableset_tests.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\金介然\大三下\编译课设\CODE\build_fresh\Debug\semantic_typepool_tests.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
       <FullPath>D:\金介然\大三下\编译课设\CODE\build_fresh\x64\Debug\ALL_BUILD</FullPath>
     </ProjectOutput>
   </ProjectOutputs>

@@ -1,10 +1,10 @@
-Start testing: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+Start testing: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
 ----------------------------------------------------------
-1/4 Testing: lexer_smoke_tests
-1/4 Test: lexer_smoke_tests
+1/7 Testing: lexer_smoke_tests
+1/7 Test: lexer_smoke_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/lexer_smoke_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"lexer_smoke_tests" start time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_smoke_tests" start time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] keyword_and_identifier_no_error
@@ -25,18 +25,18 @@ Output:
 [PASS] char_literal_detected
 [PASS] invalid_char_literal_error
 <end of output>
-Test time =   0.72 sec
+Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"lexer_smoke_tests" end time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_smoke_tests" end time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
 "lexer_smoke_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/4 Testing: lexer_tests
-2/4 Test: lexer_tests
+2/7 Testing: lexer_tests
+2/7 Test: lexer_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/lexer_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"lexer_tests" start time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_tests" start time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] valid_program_no_lex_errors
@@ -53,18 +53,18 @@ Output:
 [PASS] invalid_char_literal_error
 [PASS] unknown_character_error
 <end of output>
-Test time =   0.56 sec
+Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"lexer_tests" end time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_tests" end time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
 "lexer_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/4 Testing: parser_tests
-3/4 Test: parser_tests
+3/7 Testing: parser_tests
+3/7 Test: parser_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/parser_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"parser_tests" start time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+"parser_tests" start time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] parser_valid_program_lex_ok
@@ -82,18 +82,18 @@ Output:
 [PASS] parser_expanded_grammar_no_syntax_error
 [PASS] parser_expanded_grammar_has_ast_root
 <end of output>
-Test time =   0.51 sec
+Test time =   0.85 sec
 ----------------------------------------------------------
 Test Passed.
-"parser_tests" end time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+"parser_tests" end time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
 "parser_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-4/4 Testing: bison_parser_tests
-4/4 Test: bison_parser_tests
+4/7 Testing: bison_parser_tests
+4/7 Test: bison_parser_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/bison_parser_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"bison_parser_tests" start time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+"bison_parser_tests" start time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] bison_valid_program_lex_ok
@@ -117,11 +117,109 @@ Output:
 [PASS] bison_recovery_metric_has_error
 [PASS] bison_recovery_metric_at_least_two_e201
 <end of output>
-Test time =   0.60 sec
+Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"bison_parser_tests" end time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+"bison_parser_tests" end time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
 "bison_parser_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+5/7 Testing: semantic_tableset_tests
+5/7 Test: semantic_tableset_tests
+Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/semantic_tableset_tests.exe"
+Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
+"semantic_tableset_tests" start time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] scope_stack_starts_empty
+[PASS] push_global_scope
+[PASS] scope_stack_size_after_global_push
+[PASS] insert_builtin_integer_type
+[PASS] insert_builtin_real_type
+[PASS] reject_duplicate_type_in_same_scope
+[PASS] insert_global_variable
+[PASS] reject_duplicate_symbol_in_same_scope
+[PASS] push_local_scope
+[PASS] scope_stack_size_after_local_push
+[PASS] search_parent_symbol_from_local_scope
+[PASS] parent_symbol_marked_non_local
+[PASS] insert_local_variable
+[PASS] search_local_symbol
+[PASS] local_symbol_marked_local
+[PASS] search_parent_type_from_local_scope
+[PASS] parent_type_marked_non_local
+[PASS] parent_type_kind_correct
+[PASS] pop_local_scope
+[PASS] scope_stack_size_after_local_pop
+[PASS] local_symbol_unreachable_after_scope_pop
+[PASS] pop_global_scope
+[PASS] scope_stack_empty_after_all_pops
+[PASS] pop_on_empty_scope_stack_returns_false
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"semantic_tableset_tests" end time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_tableset_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/7 Testing: semantic_typepool_tests
+6/7 Test: semantic_typepool_tests
+Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/semantic_typepool_tests.exe"
+Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
+"semantic_typepool_tests" start time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] builtin_integer_exists
+[PASS] builtin_real_exists
+[PASS] builtin_boolean_exists
+[PASS] builtin_char_exists
+[PASS] builtin_integer_kind
+[PASS] builtin_real_kind
+[PASS] builtin_boolean_kind
+[PASS] builtin_char_kind
+[PASS] install_builtin_types_into_table_set
+[PASS] search_integer_from_table_set
+[PASS] builtin_type_marked_local_in_owner_scope
+[PASS] integer_pointer_identity_matches_pool
+[PASS] real_pointer_identity_matches_pool
+[PASS] boolean_pointer_identity_matches_pool
+[PASS] char_pointer_identity_matches_pool
+[PASS] pool_find_by_name_integer
+[PASS] pool_find_by_name_missing
+[PASS] install_into_null_table_set_fails
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"semantic_typepool_tests" end time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_typepool_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/7 Testing: semantic_declaration_tests
+7/7 Test: semantic_declaration_tests
+Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/semantic_declaration_tests.exe"
+Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
+"semantic_declaration_tests" start time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] decl_dup_same_scope_lex_ok
+[PASS] decl_dup_same_scope_parse_ok
+[PASS] decl_dup_same_scope_has_s101
+[PASS] decl_dup_same_scope_line_recorded
+[PASS] decl_shadowing_lex_ok
+[PASS] decl_shadowing_parse_ok
+[PASS] decl_shadowing_no_s101
+[PASS] decl_undefined_type_lex_ok
+[PASS] decl_undefined_type_parse_ok
+[PASS] decl_undefined_type_has_s102
+[PASS] decl_undefined_type_line_recorded
+<end of output>
+Test time =   0.54 sec
+----------------------------------------------------------
+Test Passed.
+"semantic_declaration_tests" end time: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_declaration_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 21 02:25 ÖÐ¹ú±ê×¼Ê±¼ä

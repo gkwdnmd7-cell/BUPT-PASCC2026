@@ -4,6 +4,9 @@ D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/lexer_smoke_test
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/lexer_tests.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/parser_tests.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/bison_parser_tests.dir
+D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/semantic_tableset_tests.dir
+D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/semantic_typepool_tests.dir
+D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/semantic_declaration_tests.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/RUN_TESTS.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/ALL_BUILD.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/ZERO_CHECK.dir

@@ -94,9 +94,9 @@
 | T-015 | 语法分析 | 语法结构节点设计与输出 | 何俊辉 | 已完成 | T-014 | D+22 | AST 最小骨架可测（Program/Statement/Expression 节点 + ParserResult 可携带根节点） | include/ast.h, include/parser.h, src/parser_bison_bridge.cpp, tests/parser_tests.cpp, tests/bison_parser_tests.cpp |
 | T-016 | 语法分析 | 语法错误恢复策略实现 | 何俊辉 | 已完成 | T-015 | D+24 | 一次运行可报告多处错误 | src/parser_bison.y, src/parser.cpp |
 | T-017 | 语法分析 | 语法层测试用例编写 | 何俊辉 | 已完成 | T-016 | D+25 | 覆盖控制流、函数、数组等 | tests/parser_tests.cpp, tests/bison_parser_tests.cpp, CMakeLists.txt |
-| T-018 | 语义分析 | M4-1 作用域栈与 TableSet 骨架 | 何俊辉 | 未开始 | T-015 | D+28 | TableSet 支持父链、入栈/出栈、统一搜索接口；最小单测可测 | |
-| T-019 | 语义分析 | M4-2 类型表与基础类型常量池 | 何俊辉 | 未开始 | T-018 | D+29 | int/real/bool/char 类型常量池建立，类型表可查可插 | |
-| T-020 | 语义分析 | M4-3 声明插入与重定义检查 | 何俊辉 | 未开始 | T-018,T-019 | D+30 | 基于 AST+TableSet 可检测同层重定义并定位行列 | |
+| T-018 | 语义分析 | M4-1 作用域栈与 TableSet 骨架 | 何俊辉 | 已完成 | T-015 | D+28 | TableSet 支持父链、入栈/出栈、统一搜索接口；最小单测可测 | include/semantic_tables.h, tests/semantic_tableset_tests.cpp, CMakeLists.txt |
+| T-019 | 语义分析 | M4-2 类型表与基础类型常量池 | 何俊辉 | 已完成 | T-018 | D+29 | int/real/bool/char 类型常量池建立，类型表可查可插 | include/semantic_tables.h, tests/semantic_typepool_tests.cpp, CMakeLists.txt |
+| T-020 | 语义分析 | M4-3 声明插入与重定义检查 | 何俊辉 | 已完成 | T-018,T-019 | D+30 | 基于 AST+TableSet 可检测同层重定义并定位行列 | include/semantic_declaration.h, src/semantic_declaration.cpp, tests/semantic_declaration_tests.cpp, CMakeLists.txt |
 | T-021 | 语义分析 | M4-4 使用点未定义检查 | 何俊辉 | 未开始 | T-020 | D+31 | 变量/函数使用点未定义可报错并给出定位 | |
 | T-022 | 语义分析 | M4-5 表达式类型推导 | 何俊辉 | 未开始 | T-019,T-021 | D+32 | 表达式类型推导可测（算术/关系/逻辑），并产生类型不匹配错误 | |
 | T-046 | 语义分析 | M4-6 赋值与参数匹配检查 | 何俊辉 | 未开始 | T-022 | D+34 | 赋值相容、值参/引用参匹配规则可测，错误信息可定位 | |
@@ -197,6 +197,9 @@
 | v1.19 | 2026-04-21 | 计划重构：M4 拆分为 6 个可交付子阶段，重写 T-015/T-018/T-020 验收标准，新增 Bison 主线、错误恢复指标化、语义失败门控、参数化端到端批测任务 | 对齐满分报告工程化思路并消除“任务口径与代码事实”偏差 | 任务规划、语法语义路线、测试策略、决策记录 | GitHub Copilot |
 | v1.20 | 2026-04-21 | 落地 T-047：移除 Parser 手工回退路径，解析入口收敛为 Bison 主线并完成 4/4 回归通过 | 避免双解析实现漂移，统一主流程维护成本 | 语法分析、测试、驱动链路 | GitHub Copilot |
 | v1.21 | 2026-04-21 | 完成 M3 收口增强：接入 AST 最小骨架（ParserResult 携带根节点）并落地错误恢复指标化回归（连续语法错误输出可测） | 使 M3 验收从“能跑通”提升为“可观测、可量化、可回归” | 语法分析、测试、文档一致性 | GitHub Copilot |
+| v1.22 | 2026-04-21 | 正式启动 M4 并完成 T-018：落地作用域栈与 TableSet 骨架，新增 semantic_tableset_tests 并回归 5/5 通过 | 将语义阶段从规划推进到“可测基础设施”阶段 | 语义分析、测试、构建脚本 | GitHub Copilot |
+| v1.23 | 2026-04-21 | 完成 M4-2（T-019）：落地基础类型常量池与类型表安装能力，新增 semantic_typepool_tests 并回归 6/6 通过 | 为后续表达式类型推导与类型检查提供稳定类型基座 | 语义分析、测试、构建脚本 | GitHub Copilot |
+| v1.24 | 2026-04-21 | 完成 M4-3（T-020）：新增声明语义分析器，完成声明插入、同层重定义与未定义类型检查，并新增 semantic_declaration_tests 回归 7/7 通过 | 将语义阶段推进到“可执行声明检查”层，形成后续未定义使用点检查的基础 | 语义分析、测试、构建脚本 | GitHub Copilot |
 
 ## 10. 每周复盘模板（建议直接复制填写）
 
