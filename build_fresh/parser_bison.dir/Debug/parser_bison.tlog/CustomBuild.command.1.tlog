@@ -1,0 +1,20 @@
+^D:\金介然\大三下\编译课设\CODE\BUILD_FRESH\CMAKEFILES\58167CDFE7AEEB8EC59EE8E92FF32D69\PARSER_BISON.TAB.C.RULE
+setlocal
+C:\Users\jjrgz\AppData\Local\Microsoft\WinGet\Packages\WinFlexBison.win_flex_bison_Microsoft.Winget.Source_8wekyb3d8bbwe\win_bison.exe -d -o D:/金介然/大三下/编译课设/CODE/build_fresh/parser_bison.tab.c D:/金介然/大三下/编译课设/CODE/src/parser_bison.y
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
+^D:\金介然\大三下\编译课设\CODE\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/金介然/大三下/编译课设/CODE -BD:/金介然/大三下/编译课设/CODE/build_fresh --check-stamp-file D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

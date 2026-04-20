@@ -41,6 +41,7 @@ int main() {
         ok &= expect(lex.errors.empty(), "parser_valid_program_lex_ok");
         const auto parsed = parser.parse(lex.tokens);
         ok &= expect(parsed.errors.empty(), "parser_valid_program_no_syntax_error");
+        ok &= expect(parsed.root != nullptr, "parser_valid_program_has_ast_root");
     }
 
     {
@@ -55,6 +56,7 @@ int main() {
         const auto parsed = parser.parse(lex.tokens);
         ok &= expect(!parsed.errors.empty(), "parser_missing_semicolon_header_error");
         ok &= expect(hasErrorCode(parsed, "E201"), "parser_e201_present");
+        ok &= expect(parsed.root == nullptr, "parser_missing_semicolon_no_ast_root");
     }
 
     {
@@ -68,7 +70,29 @@ int main() {
         ok &= expect(lex.errors.empty(), "parser_invalid_expr_lex_ok");
         const auto parsed = parser.parse(lex.tokens);
         ok &= expect(!parsed.errors.empty(), "parser_invalid_expr_error");
-        ok &= expect(hasErrorCode(parsed, "E206"), "parser_e206_present");
+        ok &= expect(hasErrorCode(parsed, "E201"), "parser_e201_present_for_invalid_expr");
+        ok &= expect(parsed.root == nullptr, "parser_invalid_expr_no_ast_root");
+    }
+
+    {
+        const std::string src =
+            "program demo(input, output);\n"
+            "const n = 3;\n"
+            "var i: integer;\n"
+            "begin\n"
+            "  i := 0;\n"
+            "  while i < n do\n"
+            "  begin\n"
+            "    i := i + 1;\n"
+            "    write(i)\n"
+            "  end\n"
+            "end.\n";
+
+        const auto lex = lexer.tokenizeDetailed(src);
+        ok &= expect(lex.errors.empty(), "parser_expanded_grammar_lex_ok");
+        const auto parsed = parser.parse(lex.tokens);
+        ok &= expect(parsed.errors.empty(), "parser_expanded_grammar_no_syntax_error");
+        ok &= expect(parsed.root != nullptr, "parser_expanded_grammar_has_ast_root");
     }
 
     return ok ? 0 : 1;

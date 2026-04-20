@@ -1,10 +1,10 @@
-Start testing: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
+Start testing: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
 ----------------------------------------------------------
-1/3 Testing: lexer_smoke_tests
-1/3 Test: lexer_smoke_tests
+1/4 Testing: lexer_smoke_tests
+1/4 Test: lexer_smoke_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/lexer_smoke_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"lexer_smoke_tests" start time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_smoke_tests" start time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] keyword_and_identifier_no_error
@@ -25,23 +25,27 @@ Output:
 [PASS] char_literal_detected
 [PASS] invalid_char_literal_error
 <end of output>
-Test time =   0.65 sec
+Test time =   0.72 sec
 ----------------------------------------------------------
 Test Passed.
-"lexer_smoke_tests" end time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_smoke_tests" end time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
 "lexer_smoke_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/3 Testing: lexer_tests
-2/3 Test: lexer_tests
+2/4 Testing: lexer_tests
+2/4 Test: lexer_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/lexer_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"lexer_tests" start time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_tests" start time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] valid_program_no_lex_errors
 [PASS] program_keyword_detected
+[PASS] type_keyword_detected
 [PASS] identifier_detected
+[PASS] readln_keyword_detected
+[PASS] downto_keyword_detected
+[PASS] writeln_keyword_detected
 [PASS] real_literal_detected
 [PASS] identifier_length_limit_8
 [PASS] nested_comment_error
@@ -49,34 +53,75 @@ Output:
 [PASS] invalid_char_literal_error
 [PASS] unknown_character_error
 <end of output>
-Test time =   0.63 sec
+Test time =   0.56 sec
 ----------------------------------------------------------
 Test Passed.
-"lexer_tests" end time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_tests" end time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
 "lexer_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/3 Testing: parser_tests
-3/3 Test: parser_tests
+3/4 Testing: parser_tests
+3/4 Test: parser_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/parser_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"parser_tests" start time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
+"parser_tests" start time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] parser_valid_program_lex_ok
 [PASS] parser_valid_program_no_syntax_error
+[PASS] parser_valid_program_has_ast_root
 [PASS] parser_missing_semicolon_header_lex_ok
 [PASS] parser_missing_semicolon_header_error
 [PASS] parser_e201_present
+[PASS] parser_missing_semicolon_no_ast_root
 [PASS] parser_invalid_expr_lex_ok
 [PASS] parser_invalid_expr_error
-[PASS] parser_e206_present
+[PASS] parser_e201_present_for_invalid_expr
+[PASS] parser_invalid_expr_no_ast_root
+[PASS] parser_expanded_grammar_lex_ok
+[PASS] parser_expanded_grammar_no_syntax_error
+[PASS] parser_expanded_grammar_has_ast_root
 <end of output>
-Test time =   0.52 sec
+Test time =   0.51 sec
 ----------------------------------------------------------
 Test Passed.
-"parser_tests" end time: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
+"parser_tests" end time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
 "parser_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Apr 21 01:11 ÖÐ¹ú±ê×¼Ê±¼ä
+4/4 Testing: bison_parser_tests
+4/4 Test: bison_parser_tests
+Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/bison_parser_tests.exe"
+Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
+"bison_parser_tests" start time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] bison_valid_program_lex_ok
+[PASS] bison_valid_program_no_error
+[PASS] bison_valid_program_has_ast_root
+[PASS] bison_var_section_lex_ok
+[PASS] bison_var_section_no_error
+[PASS] bison_var_section_has_ast_root
+[PASS] bison_trailing_semicolon_lex_ok
+[PASS] bison_trailing_semicolon_error
+[PASS] bison_trailing_semicolon_e201
+[PASS] bison_error_program_no_ast_root
+[PASS] bison_program_head_const_for_if_lex_ok
+[PASS] bison_program_head_const_for_if_no_error
+[PASS] bison_program_head_const_for_if_has_ast_root
+[PASS] bison_missing_semicolon_header_lex_ok
+[PASS] bison_missing_semicolon_header_error
+[PASS] bison_e201_present
+[PASS] bison_missing_semicolon_no_ast_root
+[PASS] bison_recovery_metric_lex_ok
+[PASS] bison_recovery_metric_has_error
+[PASS] bison_recovery_metric_at_least_two_e201
+<end of output>
+Test time =   0.60 sec
+----------------------------------------------------------
+Test Passed.
+"bison_parser_tests" end time: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä
+"bison_parser_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 21 02:13 ÖÐ¹ú±ê×¼Ê±¼ä

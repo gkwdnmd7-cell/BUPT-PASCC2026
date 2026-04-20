@@ -40,16 +40,24 @@ int main() {
     {
         const std::string src =
             "PROGRAM demo\n"
+            "TYPE idx = integer;\n"
             "var a1, b2 : integer;\n"
             "begin\n"
+            "  readln(a1);\n"
             "  a1 := 12;\n"
             "  b2 := 12.34;\n"
+            "  for a1 := 10 downto 1 do\n"
+            "    writeln(a1);\n"
             "  write(a1);\n"
             "end.\n";
         const auto result = lexer.tokenizeDetailed(src);
         ok &= expect(result.errors.empty(), "valid_program_no_lex_errors");
         ok &= expect(hasToken(result.tokens, TokenType::KwProgram, "program"), "program_keyword_detected");
+        ok &= expect(hasToken(result.tokens, TokenType::KwType, "type"), "type_keyword_detected");
         ok &= expect(hasToken(result.tokens, TokenType::Identifier, "a1"), "identifier_detected");
+        ok &= expect(hasToken(result.tokens, TokenType::KwReadLn, "readln"), "readln_keyword_detected");
+        ok &= expect(hasToken(result.tokens, TokenType::KwDownTo, "downto"), "downto_keyword_detected");
+        ok &= expect(hasToken(result.tokens, TokenType::KwWriteLn, "writeln"), "writeln_keyword_detected");
         ok &= expect(hasToken(result.tokens, TokenType::RealLiteral, "12.34"), "real_literal_detected");
     }
 

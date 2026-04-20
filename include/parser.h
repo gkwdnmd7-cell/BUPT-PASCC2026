@@ -1,9 +1,11 @@
 #ifndef PARSER_H
 #define PARSER_H
 
+#include <memory>
 #include <string>
 #include <vector>
 
+#include "ast.h"
 #include "token.h"
 
 struct ParseError {
@@ -14,6 +16,7 @@ struct ParseError {
 
 struct ParserResult {
     std::vector<ParseError> errors;
+    std::shared_ptr<ProgramNode> root;
 };
 
 class Parser {
