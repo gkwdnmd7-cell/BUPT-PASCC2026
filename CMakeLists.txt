@@ -113,3 +113,39 @@ target_include_directories(semantic_declaration_tests PRIVATE include)
 target_link_libraries(semantic_declaration_tests PRIVATE parser_bison)
 
 add_test(NAME semantic_declaration_tests COMMAND semantic_declaration_tests)
+
+add_executable(semantic_usage_tests
+    tests/semantic_usage_tests.cpp
+    src/lexer.cpp
+    src/parser.cpp
+    src/semantic_declaration.cpp
+)
+
+target_include_directories(semantic_usage_tests PRIVATE include)
+target_link_libraries(semantic_usage_tests PRIVATE parser_bison)
+
+add_test(NAME semantic_usage_tests COMMAND semantic_usage_tests)
+
+add_executable(semantic_expression_tests
+    tests/semantic_expression_tests.cpp
+    src/lexer.cpp
+    src/parser.cpp
+    src/semantic_declaration.cpp
+)
+
+target_include_directories(semantic_expression_tests PRIVATE include)
+target_link_libraries(semantic_expression_tests PRIVATE parser_bison)
+
+add_test(NAME semantic_expression_tests COMMAND semantic_expression_tests)
+
+add_executable(semantic_param_tests
+    tests/semantic_param_tests.cpp
+    src/lexer.cpp
+    src/parser.cpp
+    src/semantic_declaration.cpp
+)
+
+target_include_directories(semantic_param_tests PRIVATE include)
+target_link_libraries(semantic_param_tests PRIVATE parser_bison)
+
+add_test(NAME semantic_param_tests COMMAND semantic_param_tests)

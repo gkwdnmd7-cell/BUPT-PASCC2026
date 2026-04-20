@@ -202,6 +202,14 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{915CDB1D-4CAF-3660-AC34-EDD78D2B3464}</Project>
       <Name>semantic_declaration_tests</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\semantic_expression_tests.vcxproj">
+      <Project>{9125B719-ACD7-3366-92A0-9D5FAF4A2051}</Project>
+      <Name>semantic_expression_tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\semantic_param_tests.vcxproj">
+      <Project>{092DE1BE-E742-3BE3-B4E1-58D14DA47AA1}</Project>
+      <Name>semantic_param_tests</Name>
+    </ProjectReference>
     <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\semantic_tableset_tests.vcxproj">
       <Project>{F1EC4EDA-26F2-3B85-8B6B-DCE76E8009CF}</Project>
       <Name>semantic_tableset_tests</Name>
@@ -209,6 +217,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\semantic_typepool_tests.vcxproj">
       <Project>{E4B55F63-0184-3C65-A8A0-C2070E41AA5D}</Project>
       <Name>semantic_typepool_tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\semantic_usage_tests.vcxproj">
+      <Project>{AE98AA48-08D2-3C39-86D8-DFADCFEBB899}</Project>
+      <Name>semantic_usage_tests</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

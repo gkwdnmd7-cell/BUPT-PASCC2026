@@ -64,6 +64,33 @@ private:
     std::shared_ptr<TypeTemplate> type_;
 };
 
+struct RoutineParameter {
+    bool byRef = false;
+    std::shared_ptr<BasicType> type;
+};
+
+class RoutineSymbol : public ObjectSymbol {
+public:
+    enum class RoutineKind {
+        Procedure,
+        Function,
+    };
+
+    RoutineSymbol(std::string name, RoutineKind routineKind) : ObjectSymbol(std::move(name)), routineKind_(routineKind) {}
+
+    RoutineKind routineKind() const { return routineKind_; }
+
+    void setParameters(std::vector<RoutineParameter> parameters) {
+        parameters_ = std::move(parameters);
+    }
+
+    const std::vector<RoutineParameter>& parameters() const { return parameters_; }
+
+private:
+    RoutineKind routineKind_;
+    std::vector<RoutineParameter> parameters_;
+};
+
 template <typename T>
 class SymbolTableTemplate {
 public:
