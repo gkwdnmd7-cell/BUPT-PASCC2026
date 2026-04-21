@@ -37,6 +37,7 @@ add_executable(pascc
     src/compiler_driver.cpp
     src/lexer.cpp
     src/parser.cpp
+    src/semantic_declaration.cpp
 )
 
 target_include_directories(pascc PRIVATE include)
@@ -149,3 +150,16 @@ target_include_directories(semantic_param_tests PRIVATE include)
 target_link_libraries(semantic_param_tests PRIVATE parser_bison)
 
 add_test(NAME semantic_param_tests COMMAND semantic_param_tests)
+
+add_executable(semantic_gate_tests
+    tests/semantic_gate_tests.cpp
+    src/compiler_driver.cpp
+    src/lexer.cpp
+    src/parser.cpp
+    src/semantic_declaration.cpp
+)
+
+target_include_directories(semantic_gate_tests PRIVATE include)
+target_link_libraries(semantic_gate_tests PRIVATE parser_bison)
+
+add_test(NAME semantic_gate_tests COMMAND semantic_gate_tests)

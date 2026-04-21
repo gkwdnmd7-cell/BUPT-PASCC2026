@@ -10,6 +10,8 @@ enum class ErrorCode {
     OutputCreateFailed = 6,
     LexicalError = 7,
     SyntaxError = 8,
+    SemanticError = 9,
+    GenerationError = 10,
 };
 
 inline int toExitCode(ErrorCode code) {

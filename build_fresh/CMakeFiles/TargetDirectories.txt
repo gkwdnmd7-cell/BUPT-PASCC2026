@@ -10,6 +10,7 @@ D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/semantic_declara
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/semantic_usage_tests.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/semantic_expression_tests.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/semantic_param_tests.dir
+D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/semantic_gate_tests.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/RUN_TESTS.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/ALL_BUILD.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/ZERO_CHECK.dir

@@ -1,11 +1,12 @@
-lexer_smoke_tests 23 0.000517948
-lexer_tests 23 0.00042743
-parser_tests 20 0.000501445
-bison_parser_tests 17 0.000568488
-semantic_tableset_tests 7 0.00140184
-semantic_typepool_tests 6 0.00152078
-semantic_declaration_tests 5 0.00218516
-semantic_usage_tests 4 0.00261668
-semantic_expression_tests 3 0.00375367
-semantic_param_tests 1 0.57377
+lexer_smoke_tests 26 0.000445765
+lexer_tests 26 0.000437362
+parser_tests 23 0.000480917
+bison_parser_tests 20 0.00052241
+semantic_tableset_tests 10 0.0010026
+semantic_typepool_tests 9 0.00112667
+semantic_declaration_tests 8 0.00143071
+semantic_usage_tests 7 0.00161974
+semantic_expression_tests 6 0.00206372
+semantic_param_tests 5 0.00238686
+semantic_gate_tests 2 0.0081511
 ---

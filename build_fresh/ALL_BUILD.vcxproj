@@ -206,6 +206,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{9125B719-ACD7-3366-92A0-9D5FAF4A2051}</Project>
       <Name>semantic_expression_tests</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\semantic_gate_tests.vcxproj">
+      <Project>{2E2D2605-A795-3762-9C35-7EC5E35D292A}</Project>
+      <Name>semantic_gate_tests</Name>
+    </ProjectReference>
     <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\semantic_param_tests.vcxproj">
       <Project>{092DE1BE-E742-3BE3-B4E1-58D14DA47AA1}</Project>
       <Name>semantic_param_tests</Name>

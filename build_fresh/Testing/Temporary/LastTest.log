@@ -1,10 +1,10 @@
-Start testing: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+Start testing: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 ----------------------------------------------------------
-1/10 Testing: lexer_smoke_tests
-1/10 Test: lexer_smoke_tests
+1/11 Testing: lexer_smoke_tests
+1/11 Test: lexer_smoke_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/lexer_smoke_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"lexer_smoke_tests" start time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_smoke_tests" start time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] keyword_and_identifier_no_error
@@ -28,15 +28,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"lexer_smoke_tests" end time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_smoke_tests" end time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 "lexer_smoke_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-2/10 Testing: lexer_tests
-2/10 Test: lexer_tests
+2/11 Testing: lexer_tests
+2/11 Test: lexer_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/lexer_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"lexer_tests" start time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_tests" start time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] valid_program_no_lex_errors
@@ -56,15 +56,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"lexer_tests" end time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"lexer_tests" end time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 "lexer_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-3/10 Testing: parser_tests
-3/10 Test: parser_tests
+3/11 Testing: parser_tests
+3/11 Test: parser_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/parser_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"parser_tests" start time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"parser_tests" start time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] parser_valid_program_lex_ok
@@ -85,15 +85,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"parser_tests" end time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"parser_tests" end time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 "parser_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-4/10 Testing: bison_parser_tests
-4/10 Test: bison_parser_tests
+4/11 Testing: bison_parser_tests
+4/11 Test: bison_parser_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/bison_parser_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"bison_parser_tests" start time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"bison_parser_tests" start time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] bison_valid_program_lex_ok
@@ -120,15 +120,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"bison_parser_tests" end time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"bison_parser_tests" end time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 "bison_parser_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-5/10 Testing: semantic_tableset_tests
-5/10 Test: semantic_tableset_tests
+5/11 Testing: semantic_tableset_tests
+5/11 Test: semantic_tableset_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/semantic_tableset_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"semantic_tableset_tests" start time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_tableset_tests" start time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] scope_stack_starts_empty
@@ -159,15 +159,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"semantic_tableset_tests" end time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_tableset_tests" end time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 "semantic_tableset_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-6/10 Testing: semantic_typepool_tests
-6/10 Test: semantic_typepool_tests
+6/11 Testing: semantic_typepool_tests
+6/11 Test: semantic_typepool_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/semantic_typepool_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"semantic_typepool_tests" start time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_typepool_tests" start time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] builtin_integer_exists
@@ -192,15 +192,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"semantic_typepool_tests" end time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_typepool_tests" end time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 "semantic_typepool_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-7/10 Testing: semantic_declaration_tests
-7/10 Test: semantic_declaration_tests
+7/11 Testing: semantic_declaration_tests
+7/11 Test: semantic_declaration_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/semantic_declaration_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"semantic_declaration_tests" start time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_declaration_tests" start time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] decl_dup_same_scope_lex_ok
@@ -218,15 +218,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"semantic_declaration_tests" end time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_declaration_tests" end time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 "semantic_declaration_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-8/10 Testing: semantic_usage_tests
-8/10 Test: semantic_usage_tests
+8/11 Testing: semantic_usage_tests
+8/11 Test: semantic_usage_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/semantic_usage_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"semantic_usage_tests" start time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_usage_tests" start time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] usage_undef_var_lex_ok
@@ -247,15 +247,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"semantic_usage_tests" end time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_usage_tests" end time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 "semantic_usage_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-9/10 Testing: semantic_expression_tests
-9/10 Test: semantic_expression_tests
+9/11 Testing: semantic_expression_tests
+9/11 Test: semantic_expression_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/semantic_expression_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"semantic_expression_tests" start time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_expression_tests" start time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] expr_bool_assign_num_lex_ok
@@ -276,15 +276,15 @@ Output:
 Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"semantic_expression_tests" end time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_expression_tests" end time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 "semantic_expression_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-10/10 Testing: semantic_param_tests
-10/10 Test: semantic_param_tests
+10/11 Testing: semantic_param_tests
+10/11 Test: semantic_param_tests
 Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/semantic_param_tests.exe"
 Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
-"semantic_param_tests" start time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_param_tests" start time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 Output:
 ----------------------------------------------------------
 [PASS] param_count_mismatch_lex_ok
@@ -300,11 +300,40 @@ Output:
 [PASS] param_valid_call_parse_ok
 [PASS] param_valid_call_no_s202
 <end of output>
-Test time =   0.57 sec
+Test time =   0.01 sec
 ----------------------------------------------------------
 Test Passed.
-"semantic_param_tests" end time: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_param_tests" end time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
 "semantic_param_tests" time elapsed: 00:00:00
 ----------------------------------------------------------
 
-End testing: Apr 21 02:40 ÖÐ¹ú±ê×¼Ê±¼ä
+11/11 Testing: semantic_gate_tests
+11/11 Test: semantic_gate_tests
+Command: "D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh/Debug/semantic_gate_tests.exe"
+Directory: D:/é‡‘ä»‹ç„¶/å¤§ä¸‰ä¸‹/ç¼–è¯‘è¯¾è®¾/CODE/build_fresh
+"semantic_gate_tests" start time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
+Output:
+----------------------------------------------------------
+[PASS] gate_prepare_temp_dir
+[PASS] gate_semantic_fail_write_input
+[S202] (6:5) Value parameter type mismatch.
+[E399] Semantic analysis failed with 1 error(s).
+[PASS] gate_semantic_fail_exit_code_9
+[PASS] gate_semantic_fail_no_output_file
+[PASS] gate_semantic_pass_write_input
+[INFO] Input:  C:\Users\jjrgz\AppData\Local\Temp\pascc_semantic_gate_tests\semantic_pass_case.pas
+[INFO] Output: C:\Users\jjrgz\AppData\Local\Temp\pascc_semantic_gate_tests\semantic_pass_case.c
+[INFO] Tokenized items: 15
+[INFO] Syntax stage: passed
+[INFO] Semantic stage: passed
+[PASS] gate_semantic_pass_exit_code_0
+[PASS] gate_semantic_pass_output_generated
+<end of output>
+Test time =   0.02 sec
+----------------------------------------------------------
+Test Passed.
+"semantic_gate_tests" end time: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä
+"semantic_gate_tests" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Apr 21 13:22 ÖÐ¹ú±ê×¼Ê±¼ä

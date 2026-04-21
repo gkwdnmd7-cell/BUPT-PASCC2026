@@ -8,6 +8,7 @@
 #include "lexer.h"
 #include "log.h"
 #include "parser.h"
+#include "semantic_declaration.h"
 
 namespace fs = std::filesystem;
 
@@ -54,6 +55,16 @@ int CompilerDriver::run(const std::string& inputPath) {
         return toExitCode(ErrorCode::SyntaxError);
     }
 
+    SemanticDeclarationAnalyzer semanticAnalyzer;
+    const SemanticResult semanticResult = semanticAnalyzer.analyze(lexResult.tokens, parserResult);
+    if (!semanticResult.errors.empty()) {
+        for (const auto& err : semanticResult.errors) {
+            logutil::error(err.code, "(" + std::to_string(err.pos.line) + ":" + std::to_string(err.pos.column) + ") " + err.message);
+        }
+        logutil::error("E399", "Semantic analysis failed with " + std::to_string(semanticResult.errors.size()) + " error(s).");
+        return toExitCode(ErrorCode::SemanticError);
+    }
+
     const std::string outputPath = deriveOutputPath(inputPath);
     std::ofstream out(outputPath, std::ios::trunc);
     if (!out.good()) {
@@ -72,6 +83,7 @@ int CompilerDriver::run(const std::string& inputPath) {
     logutil::info("Output: " + outputPath);
     logutil::info("Tokenized items: " + std::to_string(lexResult.tokens.size()));
     logutil::info("Syntax stage: passed");
+    logutil::info("Semantic stage: passed");
     return toExitCode(ErrorCode::Ok);
 }
 
