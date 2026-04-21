@@ -73,6 +73,8 @@
 | DONE-14 | M3 启动：语法分析骨架与基础错误恢复接入 | 已完成 | 2026-04-21 | include/parser.h, src/parser.cpp, src/compiler_driver.cpp |
 | DONE-15 | M3 收口：Bison 生成流程接入并通过全量测试 | 已完成 | 2026-04-21 | src/parser_bison.y, src/parser_bison_bridge.cpp, tests/bison_parser_tests.cpp, CMakeLists.txt |
 | DONE-16 | M5 收口：T-025~T-029 全部完成并形成样例+回归+端到端证据闭环 | 已完成 | 2026-04-21 | tests/codegen_template_tests.cpp, samples/01_features.c, samples/03_controlflow.c, samples/04_routines.c, samples/05_realmap.c, documents/模块测试分析报告.md |
+| DONE-17 | 平台口径收口：词法阶段切换为 Flex 实现并保持 Lexer 接口兼容，完成全量回归验证 | 已完成 | 2026-04-22 | src/lexer_flex.l, src/lexer.cpp, CMakeLists.txt, build_fresh/lexer_flex.cpp, build_fresh/lexer_flex.h, ctest 12/12 |
+| DONE-18 | 客观覆盖资产落地：新增语法覆盖矩阵与端到端客观批测脚本 | 已完成 | 2026-04-22 | documents/语法覆盖矩阵.md, scripts/e2e_objective.ps1 |
 
 ## 5. 详细 Todo 清单（执行主表）
 
@@ -85,11 +87,11 @@
 | T-005 | 工程基础 | 建立公共错误码与日志格式 | 丁乐航 | 已完成 | T-004 | D+5 | 错误输出模板可复用 | include/error_codes.h, include/log.h |
 | T-006 | 工程基础 | 建立示例输入输出样例库 | 金介然 | 已完成 | T-001 | D+6 | 样例覆盖基础语法结构 | samples/00_main.pas, samples/00_main.c |
 | T-007 | 词法分析 | 完成 Token 类型全集定义 | 金介然 | 已完成 | T-001 | D+8 | 与文法需求一致 | include/token.h, include/lexer.h |
-| T-008 | 词法分析 | 实现关键字、标识符、常量识别（手工 C++） | 金介然 | 已完成 | T-007 | D+10 | 基础样例识别正确率 100% | src/lexer.cpp |
-| T-009 | 词法分析 | 实现运算符、界符、注释处理（手工 C++） | 金介然 | 已完成 | T-007 | D+12 | 注释与空白处理正确 | src/lexer.cpp |
-| T-010 | 词法分析 | 输出行列号定位信息 | 金介然 | 已完成 | T-008 | D+13 | 错误定位可复现 | src/lexer.cpp |
-| T-011 | 词法分析 | 词法错误检测与报错文本统一 | 金介然 | 已完成 | T-010 | D+14 | 报错格式统一，包含行列号 | src/lexer.cpp, src/compiler_driver.cpp |
-| T-012 | 词法测试 | 词法单元测试集编写 | 金介然 | 已完成 | T-011 | D+16 | 正常/异常/边界用例齐全 | tests/lexer_tests.cpp, tests/lexer_smoke_tests.cpp |
+| T-008 | 词法分析 | 实现关键字、标识符、常量识别（Flex + Lexer 适配层） | 金介然 | 已完成 | T-007 | D+10 | 基础样例识别正确率 100%，并保持 Lexer 接口兼容 | src/lexer_flex.l, src/lexer.cpp |
+| T-009 | 词法分析 | 实现运算符、界符、注释处理（Flex + Lexer 适配层） | 金介然 | 已完成 | T-007 | D+12 | 注释与空白处理正确 | src/lexer_flex.l, src/lexer.cpp |
+| T-010 | 词法分析 | 输出行列号定位信息 | 金介然 | 已完成 | T-008 | D+13 | 错误定位可复现 | src/lexer_flex.l, src/lexer.cpp |
+| T-011 | 词法分析 | 词法错误检测与报错文本统一 | 金介然 | 已完成 | T-010 | D+14 | 报错格式统一，包含行列号 | src/lexer_flex.l, src/lexer.cpp, src/compiler_driver.cpp |
+| T-012 | 词法测试 | 词法单元测试集编写 | 金介然 | 已完成 | T-011 | D+16 | 正常/异常/边界用例齐全，Flex 迁移后回归通过 | tests/lexer_tests.cpp, tests/lexer_smoke_tests.cpp, ctest 12/12 |
 | T-013 | 语法分析 | 文法规则落地与冲突检查 | 何俊辉 | 已完成 | T-001 | D+18 | 无关键冲突未解决项 | src/parser_bison.y |
 | T-014 | 语法分析 | 接入 YACC / Bison 生成流程 | 李璇 | 已完成 | T-013 | D+20 | 语法分析流程可运行 | CMakeLists.txt, src/parser_bison.y, src/parser_bison_bridge.cpp |
 | T-015 | 语法分析 | 语法结构节点设计与输出 | 何俊辉 | 已完成 | T-014 | D+22 | AST 最小骨架可测（Program/Statement/Expression 节点 + ParserResult 可携带根节点） | include/ast.h, include/parser.h, src/parser_bison_bridge.cpp, tests/parser_tests.cpp, tests/bison_parser_tests.cpp |
@@ -114,11 +116,12 @@
 | T-031 | CLI | 同名 .c 同目录输出逻辑 | 丁乐航 | 已完成 | T-030 | D+20 | 输出路径与命名正确 | src/compiler_driver.cpp |
 | T-032 | CLI | 运行失败状态码统一 | 丁乐航 | 已完成 | T-005 | D+21 | 失败返回码可区分词法/语法/语义/生成错误类别 | include/error_codes.h, src/compiler_driver.cpp |
 | T-049 | 集成联调 | 语义阶段开关与“语义失败禁止生成” | 丁乐航 | 已完成 | T-022,T-024 | D+41 | 开启语义阶段后，若语义报错则禁止代码生成并返回语义失败码 | src/compiler_driver.cpp, tests/semantic_gate_tests.cpp, CMakeLists.txt |
-| T-033 | 集成联调 | 词法-语法接口联调 | 金介然 | 未开始 | T-012,T-014 | D+26 | 接口无阻塞错误 | |
+| T-033 | 集成联调 | 词法-语法接口联调 | 金介然 | 已完成 | T-012,T-014 | D+26 | 接口无阻塞错误 | src/lexer.cpp, src/parser_bison_bridge.cpp, tests/bison_parser_tests.cpp, ctest 12/12 |
 | T-034 | 集成联调 | 语法-语义接口联调 | 何俊辉 | 未开始 | T-017,T-021 | D+38 | 语义标注传递正确 | |
 | T-035 | 集成联调 | 语义-生成接口联调 | 丁乐航 | 未开始 | T-022,T-027 | D+48 | 端到端可产出可编译 C | |
-| T-036 | 测试 | 建立端到端自动化脚本 | 丁乐航 | 未开始 | T-035 | D+50 | 一键批量执行并支持“输入 Pascal-S -> 生成 C -> 运行 C -> 输出比对” | |
-| T-050 | 测试 | 参数化端到端语义正确性批测 | 丁乐航 | 未开始 | T-036,T-049 | D+52 | 参数化批测覆盖正确性与错误性场景，结果可复现 | |
+| T-036 | 测试 | 建立端到端自动化脚本 | 丁乐航 | 进行中 | T-035 | D+50 | 一键批量执行并支持“输入 Pascal-S -> 生成 C -> 运行 C -> 输出比对” | scripts/run_e2e_test.ps1, scripts/e2e_objective.ps1, scripts/e2e_objective.ps1 -ProjectRoot "."（12/12回归通过；exit 0/7/9 路径通过） |
+| T-050 | 测试 | 参数化端到端语义正确性批测 | 丁乐航 | 进行中 | T-036,T-049 | D+52 | 参数化批测覆盖正确性与错误性场景，结果可复现 | scripts/e2e_objective.ps1, documents/模块测试分析报告.md（6.2） |
+| T-051 | 测试 | 建立文法覆盖矩阵并持续维护 | 金介然 | 已完成 | T-014,T-017 | D+53 | 形成基于 parser_bison.y 的覆盖矩阵模板，并可按用例持续更新 | documents/语法覆盖矩阵.md |
 | T-037 | 测试 | open_set 对齐测试 | 李璇 | 未开始 | T-036 | D+54 | open_set 通过率达预期 | |
 | T-038 | 测试 | hidden_set 风险项预估测试 | 丁乐航 | 未开始 | T-037 | D+56 | 风险样例覆盖完成 | |
 | T-039 | 平台对齐 | 检查 pascc 命名与路径部署 | 丁乐航 | 未开始 | T-036 | D+57 | 平台脚本可找到编译器 | |
@@ -139,6 +142,7 @@
 | DOC-04 | 测试报告 | 金介然 | 未开始 | 覆盖单测、集成、回归、平台对齐 |
 | DOC-05 | 答辩 PPT | 李璇 | 未开始 | 架构、实现、测试、分工可讲清 |
 | DOC-06 | 验收登记表 | 丁乐航 | 未开始 | 信息完整，内容与代码一致 |
+| DOC-07 | 语法覆盖矩阵 | 金介然 | 已完成 | 产生式覆盖项可追踪、可持续维护 |
 
 ## 7. 问题与阻塞记录（动态维护）
 
@@ -171,6 +175,8 @@
 | DEC-017 | 2026-04-21 | 解析入口主线 | 明确仅保留 Bison 解析主线，手工解析仅作隔离调试用途不进入主流程 | T-047 | 金介然 | 金介然 |
 | DEC-018 | 2026-04-21 | 错误恢复验收口径 | 错误恢复必须指标化（可持续输出错误数量、同步点覆盖、回归样例） | T-048,T-017 | 金介然 | 金介然 |
 | DEC-019 | 2026-04-21 | 语义阶段门控 | 语义阶段若失败，必须禁止代码生成并返回语义失败码 | T-049,T-032 | 金介然 | 金介然 |
+| DEC-020 | 2026-04-22 | 词法技术路线最终收口 | 为对齐平台验收口径，词法阶段统一采用 Flex 生成实现；保留 Lexer C++ 适配层以维持 Token/错误接口稳定 | T-008,T-009,T-010,T-011,T-012,T-033 | 金介然 | 金介然 |
+| DEC-021 | 2026-04-22 | 客观测试口径 | 测试证据采用“文法覆盖矩阵 + 客观端到端脚本”双轨并行，后续每次迭代同步更新清单与证据 | T-036,T-050,T-051,DOC-07 | 金介然 | 金介然 |
 
 ## 9. 变更记录（每次改动都要留痕）
 
@@ -210,6 +216,9 @@
 | v1.31 | 2026-04-21 | 完成 T-027：代码生成器新增控制流真实翻译（if/else、while、for/to、for/downto），并补齐控制流样例与强化断言；回归 12/12 通过，端到端生成 `03_controlflow.c` 验证通过 | 将 M5 从“表达式级翻译”推进到“控制流级翻译”，为 T-028 过程/函数调用生成建立可复用语句递归框架 | 代码生成、测试、样例、任务状态 | GitHub Copilot |
 | v1.32 | 2026-04-21 | 完成 T-028：新增过程/函数声明输出与调用语句生成（含函数体 `func := expr` 到 C `return expr` 映射），修复主程序 begin 定位避免误取例程体；补充调用链样例与断言后回归 12/12 通过，并完成 `04_routines.c` 编译校验 | 将 M5 从“控制流级翻译”推进到“子程序调用级翻译”，形成更完整的可执行 C 输出骨架 | 代码生成、测试、样例验证、任务状态 | GitHub Copilot |
 | v1.33 | 2026-04-21 | 完成 T-029：补充 real 类型映射核验样例与断言，验证全局 real 声明、real 形参/返回值函数签名、real 字面量与调用表达式输出；回归 12/12 通过并完成 `05_realmap.c` 端到端生成验证 | 将 M5 从“子程序调用级翻译”推进到“类型映射一致性核验”阶段，确保 Pascal real 到 C float 的输出口径稳定 | 代码生成、测试、样例验证、任务状态 | GitHub Copilot |
+| v1.34 | 2026-04-22 | 平台口径收口：落地 Flex 词法实现（`src/lexer_flex.l`）并通过 `src/lexer.cpp` 适配层保持 Lexer 接口稳定；CMake 接入 Flex 自动生成与链接；全量回归 12/12 通过 | 对齐“Flex+Bison”验收模式，同时避免对现有语法/语义/生成模块接口产生破坏性影响 | 词法分析、构建流程、测试回归、任务与决策记录 | Codex 5.3 |
+| v1.35 | 2026-04-22 | 新增语法覆盖矩阵文档与客观端到端批测脚本，补齐“可量化覆盖 + 可复现实验”测试资产；同步更新 T-036/T-050/T-051 与 DOC-07 状态 | 将“轻量回归”升级为“可客观度量”的测试体系基线，支撑 M6 联调和答辩证据 | 测试策略、测试资产、文档维护、任务状态 | Codex 5.3 |
+| v1.36 | 2026-04-22 | 将本轮 `e2e_objective.ps1` 全流程实测结果写入模块测试分析报告（M6-6.2），并回填 T-036/T-050 证据链 | 确保“执行过的测试”与“文档证据”一致，避免验收时口头结论无留痕 | 测试报告、TODO追踪、证据一致性 | Codex 5.3 |
 
 ## 10. 每周复盘模板（建议直接复制填写）
 

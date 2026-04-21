@@ -1,77 +1,84 @@
 #include "lexer.h"
 
-#include <cctype>
-#include <string>
-#include <unordered_map>
+#include "parser_bison.tab.h"
+typedef struct yy_buffer_state* YY_BUFFER_STATE;
+YY_BUFFER_STATE pascclex_scan_bytes(const char* bytes, int len);
+void pascclex_delete_buffer(YY_BUFFER_STATE buffer);
+int pascclexlex(void);
+
+void pasccLexerResetState(std::vector<LexError>* errors);
+const char* pasccLexerLastLexeme();
+int pasccLexerLastLine();
+int pasccLexerLastColumn();
+int pasccLexerCurrentLine();
+int pasccLexerCurrentColumn();
 
 namespace {
-bool isLetter(char ch) {
-    return std::isalpha(static_cast<unsigned char>(ch)) != 0;
-}
-
-bool isDigit(char ch) {
-    return std::isdigit(static_cast<unsigned char>(ch)) != 0;
-}
-
-bool isValidCharLiteralContent(char ch) {
-    return ch != '\\' && ch != '\'' && ch != '\n' && ch != '\r';
-}
-
-std::string toLowerCopy(const std::string& s) {
-    std::string out;
-    out.reserve(s.size());
-    for (char ch : s) {
-        out.push_back(static_cast<char>(std::tolower(static_cast<unsigned char>(ch))));
+TokenType mapBisonTokenToInternal(int token) {
+    switch (token) {
+        case T_UNKNOWN: return TokenType::Unknown;
+        case T_IDENTIFIER: return TokenType::Identifier;
+        case T_INTEGER: return TokenType::IntegerLiteral;
+        case T_REAL: return TokenType::RealLiteral;
+        case T_CHAR: return TokenType::CharLiteral;
+        case T_BOOLEAN: return TokenType::BooleanLiteral;
+        case T_PROGRAM: return TokenType::KwProgram;
+        case T_CONST: return TokenType::KwConst;
+        case T_TYPE: return TokenType::KwType;
+        case T_VAR: return TokenType::KwVar;
+        case T_PROCEDURE: return TokenType::KwProcedure;
+        case T_FUNCTION: return TokenType::KwFunction;
+        case T_BEGIN: return TokenType::KwBegin;
+        case T_END: return TokenType::KwEnd;
+        case T_IF: return TokenType::KwIf;
+        case T_THEN: return TokenType::KwThen;
+        case T_ELSE: return TokenType::KwElse;
+        case T_CASE: return TokenType::KwCase;
+        case T_WHILE: return TokenType::KwWhile;
+        case T_REPEAT: return TokenType::KwRepeat;
+        case T_UNTIL: return TokenType::KwUntil;
+        case T_FOR: return TokenType::KwFor;
+        case T_TO: return TokenType::KwTo;
+        case T_DOWNTO: return TokenType::KwDownTo;
+        case T_DO: return TokenType::KwDo;
+        case T_READ: return TokenType::KwRead;
+        case T_READLN: return TokenType::KwReadLn;
+        case T_WRITE: return TokenType::KwWrite;
+        case T_WRITELN: return TokenType::KwWriteLn;
+        case T_RECORD: return TokenType::KwRecord;
+        case T_ARRAY: return TokenType::KwArray;
+        case T_OF: return TokenType::KwOf;
+        case T_TYPE_INTEGER: return TokenType::KwInteger;
+        case T_TYPE_REAL: return TokenType::KwReal;
+        case T_TYPE_BOOLEAN: return TokenType::KwBoolean;
+        case T_TYPE_CHAR: return TokenType::KwChar;
+        case T_PLUS: return TokenType::Plus;
+        case T_MINUS: return TokenType::Minus;
+        case T_MULTIPLY: return TokenType::Multiply;
+        case T_DIVIDE: return TokenType::Divide;
+        case T_DIV: return TokenType::Div;
+        case T_MOD: return TokenType::Mod;
+        case T_AND: return TokenType::And;
+        case T_OR: return TokenType::Or;
+        case T_NOT: return TokenType::Not;
+        case T_ASSIGN: return TokenType::Assign;
+        case T_EQUAL: return TokenType::Equal;
+        case T_NOT_EQUAL: return TokenType::NotEqual;
+        case T_LESS: return TokenType::Less;
+        case T_LESS_EQUAL: return TokenType::LessEqual;
+        case T_GREATER: return TokenType::Greater;
+        case T_GREATER_EQUAL: return TokenType::GreaterEqual;
+        case T_LPAREN: return TokenType::LParen;
+        case T_RPAREN: return TokenType::RParen;
+        case T_LBRACKET: return TokenType::LBracket;
+        case T_RBRACKET: return TokenType::RBracket;
+        case T_COMMA: return TokenType::Comma;
+        case T_SEMICOLON: return TokenType::Semicolon;
+        case T_COLON: return TokenType::Colon;
+        case T_DOT: return TokenType::Dot;
+        case T_DOTDOT: return TokenType::DotDot;
+        default: return TokenType::Unknown;
     }
-    return out;
-}
-
-TokenType resolveWordToken(const std::string& loweredWord) {
-    static const std::unordered_map<std::string, TokenType> kWordMap = {
-        {"program", TokenType::KwProgram},
-        {"const", TokenType::KwConst},
-        {"type", TokenType::KwType},
-        {"var", TokenType::KwVar},
-        {"procedure", TokenType::KwProcedure},
-        {"function", TokenType::KwFunction},
-        {"begin", TokenType::KwBegin},
-        {"end", TokenType::KwEnd},
-        {"if", TokenType::KwIf},
-        {"then", TokenType::KwThen},
-        {"else", TokenType::KwElse},
-        {"case", TokenType::KwCase},
-        {"while", TokenType::KwWhile},
-        {"repeat", TokenType::KwRepeat},
-        {"until", TokenType::KwUntil},
-        {"for", TokenType::KwFor},
-        {"to", TokenType::KwTo},
-        {"downto", TokenType::KwDownTo},
-        {"do", TokenType::KwDo},
-        {"read", TokenType::KwRead},
-        {"readln", TokenType::KwReadLn},
-        {"write", TokenType::KwWrite},
-        {"writeln", TokenType::KwWriteLn},
-        {"record", TokenType::KwRecord},
-        {"array", TokenType::KwArray},
-        {"of", TokenType::KwOf},
-        {"integer", TokenType::KwInteger},
-        {"real", TokenType::KwReal},
-        {"boolean", TokenType::KwBoolean},
-        {"char", TokenType::KwChar},
-        {"div", TokenType::Div},
-        {"mod", TokenType::Mod},
-        {"and", TokenType::And},
-        {"or", TokenType::Or},
-        {"not", TokenType::Not},
-        {"true", TokenType::BooleanLiteral},
-        {"false", TokenType::BooleanLiteral},
-    };
-
-    auto it = kWordMap.find(loweredWord);
-    if (it != kWordMap.end()) {
-        return it->second;
-    }
-    return TokenType::Identifier;
 }
 }  // namespace
 
@@ -81,236 +88,27 @@ std::vector<Token> Lexer::tokenize(const std::string& source) {
 
 LexerResult Lexer::tokenizeDetailed(const std::string& source) {
     LexerResult result;
-    int line = 1;
-    int column = 1;
+    pasccLexerResetState(&result.errors);
 
-    auto addError = [&](const std::string& code, const std::string& message, int errLine, int errColumn) {
-        result.errors.push_back(LexError{code, message, {errLine, errColumn}});
-    };
-
-    for (size_t i = 0; i < source.size();) {
-        const char ch = source[i];
-
-        if (ch == '\r') {
-            ++i;
-            continue;
+    YY_BUFFER_STATE buffer = pascclex_scan_bytes(source.c_str(), static_cast<int>(source.size()));
+    for (;;) {
+        const int token = pascclexlex();
+        if (token == 0) {
+            break;
         }
 
-        if (ch == '\n') {
-            ++line;
-            column = 1;
-            ++i;
-            continue;
-        }
-
-        if (std::isspace(static_cast<unsigned char>(ch))) {
-            ++column;
-            ++i;
-            continue;
-        }
-
-        if (ch == '{') {
-            const int startLine = line;
-            const int startCol = column;
-            ++i;
-            ++column;
-
-            bool closed = false;
-            while (i < source.size()) {
-                if (source[i] == '\r') {
-                    ++i;
-                    continue;
-                }
-                if (source[i] == '\n') {
-                    ++line;
-                    column = 1;
-                    ++i;
-                    continue;
-                }
-                if (source[i] == '{') {
-                    addError("E106", "Nested comment is not allowed.", line, column);
-                }
-                if (source[i] == '}') {
-                    ++i;
-                    ++column;
-                    closed = true;
-                    break;
-                }
-                ++i;
-                ++column;
-            }
-
-            if (!closed) {
-                addError("E107", "Unterminated comment.", startLine, startCol);
-            }
-            continue;
-        }
-
-        if (isLetter(ch)) {
-            const int startCol = column;
-            std::string word;
-            while (i < source.size() && (isLetter(source[i]) || isDigit(source[i]))) {
-                word.push_back(source[i]);
-                ++i;
-                ++column;
-            }
-
-            const std::string lowered = toLowerCopy(word);
-            const TokenType tokenType = resolveWordToken(lowered);
-
-            if (tokenType == TokenType::Identifier && word.size() > 8) {
-                addError("E105", "Identifier length exceeds 8 characters: " + word, line, startCol);
-            }
-
-            result.tokens.push_back(Token{tokenType, lowered, {line, startCol}});
-            continue;
-        }
-
-        if (isDigit(ch)) {
-            const int startCol = column;
-            std::string number;
-            while (i < source.size() && isDigit(source[i])) {
-                number.push_back(source[i]);
-                ++i;
-                ++column;
-            }
-
-            bool isReal = false;
-            if (i + 1 < source.size() && source[i] == '.' && isDigit(source[i + 1])) {
-                isReal = true;
-                number.push_back(source[i]);
-                ++i;
-                ++column;
-                while (i < source.size() && isDigit(source[i])) {
-                    number.push_back(source[i]);
-                    ++i;
-                    ++column;
-                }
-            }
-
-            result.tokens.push_back(Token{isReal ? TokenType::RealLiteral : TokenType::IntegerLiteral, number, {line, startCol}});
-            continue;
-        }
-
-        if (ch == '\'') {
-            const int startCol = column;
-            if (i + 2 < source.size() && source[i + 2] == '\'' && isValidCharLiteralContent(source[i + 1])) {
-                result.tokens.push_back(Token{TokenType::CharLiteral, source.substr(i, 3), {line, startCol}});
-                i += 3;
-                column += 3;
-                continue;
-            }
-
-            addError("E109", "Invalid char literal. Only single non-escaped char is supported.", line, startCol);
-            ++i;
-            ++column;
-            continue;
-        }
-
-        {
-            const int startCol = column;
-            TokenType type = TokenType::Unknown;
-            std::string lexeme(1, ch);
-            bool matched = true;
-
-            switch (ch) {
-                case '+':
-                    type = TokenType::Plus;
-                    break;
-                case '-':
-                    type = TokenType::Minus;
-                    break;
-                case '*':
-                    type = TokenType::Multiply;
-                    break;
-                case '/':
-                    type = TokenType::Divide;
-                    break;
-                case '(':
-                    type = TokenType::LParen;
-                    break;
-                case ')':
-                    type = TokenType::RParen;
-                    break;
-                case '[':
-                    type = TokenType::LBracket;
-                    break;
-                case ']':
-                    type = TokenType::RBracket;
-                    break;
-                case ',':
-                    type = TokenType::Comma;
-                    break;
-                case ';':
-                    type = TokenType::Semicolon;
-                    break;
-                case ':':
-                    if (i + 1 < source.size() && source[i + 1] == '=') {
-                        type = TokenType::Assign;
-                        lexeme = ":=";
-                        ++i;
-                        ++column;
-                    } else {
-                        type = TokenType::Colon;
-                    }
-                    break;
-                case '.':
-                    if (i + 1 < source.size() && source[i + 1] == '.') {
-                        type = TokenType::DotDot;
-                        lexeme = "..";
-                        ++i;
-                        ++column;
-                    } else {
-                        type = TokenType::Dot;
-                    }
-                    break;
-                case '=':
-                    type = TokenType::Equal;
-                    break;
-                case '<':
-                    if (i + 1 < source.size() && source[i + 1] == '=') {
-                        type = TokenType::LessEqual;
-                        lexeme = "<=";
-                        ++i;
-                        ++column;
-                    } else if (i + 1 < source.size() && source[i + 1] == '>') {
-                        type = TokenType::NotEqual;
-                        lexeme = "<>";
-                        ++i;
-                        ++column;
-                    } else {
-                        type = TokenType::Less;
-                    }
-                    break;
-                case '>':
-                    if (i + 1 < source.size() && source[i + 1] == '=') {
-                        type = TokenType::GreaterEqual;
-                        lexeme = ">=";
-                        ++i;
-                        ++column;
-                    } else {
-                        type = TokenType::Greater;
-                    }
-                    break;
-                default:
-                    matched = false;
-                    break;
-            }
-
-            if (matched) {
-                result.tokens.push_back(Token{type, lexeme, {line, startCol}});
-                ++i;
-                ++column;
-                continue;
-            }
-        }
-
-        addError("E110", "Unknown character: " + std::string(1, ch), line, column);
-        result.tokens.push_back(Token{TokenType::Unknown, std::string(1, ch), {line, column}});
-        ++i;
-        ++column;
+        result.tokens.push_back(Token{
+            mapBisonTokenToInternal(token),
+            pasccLexerLastLexeme(),
+            SourcePosition{pasccLexerLastLine(), pasccLexerLastColumn()}
+        });
     }
+    pascclex_delete_buffer(buffer);
 
-    result.tokens.push_back(Token{TokenType::EndOfFile, "<EOF>", {line, column}});
+    result.tokens.push_back(Token{
+        TokenType::EndOfFile,
+        "<EOF>",
+        SourcePosition{pasccLexerCurrentLine(), pasccLexerCurrentColumn()}
+    });
     return result;
 }

@@ -7,9 +7,6 @@
     <ClCompile Include="D:\金介然\大三下\编译课设\CODE\src\code_generator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="D:\金介然\大三下\编译课设\CODE\src\lexer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <CustomBuild Include="D:\金介然\大三下\编译课设\CODE\CMakeLists.txt" />

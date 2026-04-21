@@ -1,0 +1,36 @@
+# Build artifacts
+/build/
+/build_fresh/
+
+# CMake generated files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+CTestTestfile.cmake
+Testing/
+*.dir/
+
+# Visual Studio generated files
+*.sln
+*.suo
+*.user
+*.VC.db
+*.VC.opendb
+*.vcxproj
+*.vcxproj.filters
+*.recipe
+*.ilk
+*.pdb
+*.obj
+*.tlog
+*.lastbuildstate
+*.idb
+
+# Generated executables/libraries
+*.exe
+*.dll
+*.lib
+*.exp
+
+# Local IDE settings
+/.vscode/

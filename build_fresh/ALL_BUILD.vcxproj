@@ -182,6 +182,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{AAA1A72C-84EF-3847-9279-AF8FBAC61249}</Project>
       <Name>codegen_template_tests</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\lexer_frontend.vcxproj">
+      <Project>{89571E83-8D91-35E3-82D4-20A1C8BF36B3}</Project>
+      <Name>lexer_frontend</Name>
+    </ProjectReference>
     <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\lexer_smoke_tests.vcxproj">
       <Project>{991A1982-0AE6-3EB4-B784-8F015CF306FF}</Project>
       <Name>lexer_smoke_tests</Name>

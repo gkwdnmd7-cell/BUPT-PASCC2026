@@ -1,4 +1,5 @@
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/parser_bison.dir
+D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/lexer_frontend.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/pascc.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/lexer_smoke_tests.dir
 D:/金介然/大三下/编译课设/CODE/build_fresh/CMakeFiles/lexer_tests.dir
