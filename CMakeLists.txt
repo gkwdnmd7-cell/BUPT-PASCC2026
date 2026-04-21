@@ -35,6 +35,7 @@ target_include_directories(parser_bison PUBLIC
 add_executable(pascc
     src/main.cpp
     src/compiler_driver.cpp
+    src/code_generator.cpp
     src/lexer.cpp
     src/parser.cpp
     src/semantic_declaration.cpp
@@ -154,6 +155,7 @@ add_test(NAME semantic_param_tests COMMAND semantic_param_tests)
 add_executable(semantic_gate_tests
     tests/semantic_gate_tests.cpp
     src/compiler_driver.cpp
+    src/code_generator.cpp
     src/lexer.cpp
     src/parser.cpp
     src/semantic_declaration.cpp
@@ -163,3 +165,13 @@ target_include_directories(semantic_gate_tests PRIVATE include)
 target_link_libraries(semantic_gate_tests PRIVATE parser_bison)
 
 add_test(NAME semantic_gate_tests COMMAND semantic_gate_tests)
+
+add_executable(codegen_template_tests
+    tests/codegen_template_tests.cpp
+    src/code_generator.cpp
+    src/lexer.cpp
+)
+
+target_include_directories(codegen_template_tests PRIVATE include)
+
+add_test(NAME codegen_template_tests COMMAND codegen_template_tests)

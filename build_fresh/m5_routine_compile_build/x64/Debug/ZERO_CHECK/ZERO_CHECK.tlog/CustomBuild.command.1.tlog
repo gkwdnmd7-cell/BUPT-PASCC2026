@@ -1,0 +1,10 @@
+^D:\金介然\大三下\编译课设\CODE\BUILD_FRESH\M5_ROUTINE_COMPILE_BUILD\CMAKEFILES\D93F04B47EA20D164844830C7950C784\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SD:/金介然/大三下/编译课设/CODE/build_fresh/m5_routine_compile_src -BD:/金介然/大三下/编译课设/CODE/build_fresh/m5_routine_compile_build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file D:/金介然/大三下/编译课设/CODE/build_fresh/m5_routine_compile_build/m5_routine_codegen_compile_check.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd

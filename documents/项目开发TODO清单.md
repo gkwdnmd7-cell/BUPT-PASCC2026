@@ -50,7 +50,7 @@
 2. 里程碑 M2（第 11-20 天）：词法分析可运行并通过基础测试。
 3. 里程碑 M3（第 21-32 天）：语法流程打通并具备基本错误恢复。
 4. 里程碑 M4（第 33-44 天）：语义与符号表稳定可用。
-5. 里程碑 M5（第 45-52 天）：翻译与代码生成可稳定产出 C 文件。
+5. 里程碑 M5（第 45-52 天）：翻译与代码生成可稳定产出 C 文件（已完成）。
 6. 里程碑 M6（第 53-60 天）：联调、回归、验收材料齐套。
 
 ## 4. 当前已完成事项
@@ -72,6 +72,7 @@
 | DONE-13 | 词法自动化测试资产重建 | 已完成 | 2026-04-21 | tests/lexer_tests.cpp, tests/lexer_smoke_tests.cpp, CMakeLists.txt |
 | DONE-14 | M3 启动：语法分析骨架与基础错误恢复接入 | 已完成 | 2026-04-21 | include/parser.h, src/parser.cpp, src/compiler_driver.cpp |
 | DONE-15 | M3 收口：Bison 生成流程接入并通过全量测试 | 已完成 | 2026-04-21 | src/parser_bison.y, src/parser_bison_bridge.cpp, tests/bison_parser_tests.cpp, CMakeLists.txt |
+| DONE-16 | M5 收口：T-025~T-029 全部完成并形成样例+回归+端到端证据闭环 | 已完成 | 2026-04-21 | tests/codegen_template_tests.cpp, samples/01_features.c, samples/03_controlflow.c, samples/04_routines.c, samples/05_realmap.c, documents/模块测试分析报告.md |
 
 ## 5. 详细 Todo 清单（执行主表）
 
@@ -104,11 +105,11 @@
 | T-048 | 语法分析 | 错误恢复可测指标化 | 何俊辉 | 已完成 | T-016,T-017 | D+27 | 基于 error 产生式定义恢复指标：单次编译最少连续输出 N 条语法错误，并有回归用例 | src/parser_bison.y, tests/bison_parser_tests.cpp |
 | T-023 | 翻译方案 | 语法制导翻译动作设计 | 李璇 | 未开始 | T-014 | D+36 | 关键产生式动作定义完成 | |
 | T-024 | 翻译方案 | 翻译动作实现与中间信息传递 | 李璇 | 未开始 | T-023 | D+39 | 与语义层接口打通 | |
-| T-025 | 代码生成 | C 代码模板规范制定 | 丁乐航 | 未开始 | T-023 | D+40 | 模板可覆盖核心语句 | |
-| T-026 | 代码生成 | 变量声明与表达式生成 | 丁乐航 | 未开始 | T-025 | D+43 | 生成代码可通过基础编译 | |
-| T-027 | 代码生成 | 控制流语句生成（if/for等） | 丁乐航 | 未开始 | T-026 | D+45 | 分支循环样例通过 | |
-| T-028 | 代码生成 | 过程函数调用生成 | 丁乐航 | 未开始 | T-027 | D+47 | 调用链样例通过 | |
-| T-029 | 代码生成 | Real 到 float 映射核验 | 丁乐航 | 未开始 | T-026 | D+47 | 映射规则与要求一致 | |
+| T-025 | 代码生成 | C 代码模板规范制定 | 丁乐航 | 已完成 | T-023 | D+40 | 模板可覆盖核心语句 | include/code_generator.h, src/code_generator.cpp, src/compiler_driver.cpp, tests/codegen_template_tests.cpp, CMakeLists.txt |
+| T-026 | 代码生成 | 变量声明与表达式生成 | 丁乐航 | 已完成 | T-025 | D+43 | 生成代码可通过基础编译 | src/code_generator.cpp, tests/codegen_template_tests.cpp, samples/01_features.c, build_fresh/m5_compile_build/Debug/m5_codegen_compile_check.exe |
+| T-027 | 代码生成 | 控制流语句生成（if/for等） | 丁乐航 | 已完成 | T-026 | D+45 | 分支循环样例通过 | src/code_generator.cpp, tests/codegen_template_tests.cpp, samples/03_controlflow.pas, samples/03_controlflow.c |
+| T-028 | 代码生成 | 过程函数调用生成 | 丁乐航 | 已完成 | T-027 | D+47 | 调用链样例通过 | src/code_generator.cpp, tests/codegen_template_tests.cpp, samples/04_routines.pas, samples/04_routines.c, build_fresh/m5_routine_compile_build/Debug/m5_routine_codegen_compile_check.exe |
+| T-029 | 代码生成 | Real 到 float 映射核验 | 丁乐航 | 已完成 | T-026 | D+47 | 映射规则与要求一致 | tests/codegen_template_tests.cpp, samples/05_realmap.pas, samples/05_realmap.c |
 | T-030 | CLI | 实现 -i 参数解析 | 丁乐航 | 已完成 | T-004 | D+18 | pascc -i file.pas 可执行 | src/main.cpp |
 | T-031 | CLI | 同名 .c 同目录输出逻辑 | 丁乐航 | 已完成 | T-030 | D+20 | 输出路径与命名正确 | src/compiler_driver.cpp |
 | T-032 | CLI | 运行失败状态码统一 | 丁乐航 | 已完成 | T-005 | D+21 | 失败返回码可区分词法/语法/语义/生成错误类别 | include/error_codes.h, src/compiler_driver.cpp |
@@ -204,6 +205,11 @@
 | v1.26 | 2026-04-21 | 完成 M4-5（T-022）：实现表达式类型推导与赋值相容检查（S201），覆盖算术/关系/逻辑表达式与类型不匹配场景，新增 semantic_expression_tests 回归 9/9 通过 | 形成语义阶段核心类型系统闭环，支持后续参数匹配与语义门控 | 语义分析、测试、构建脚本 | GitHub Copilot |
 | v1.27 | 2026-04-21 | 完成 M4-6（T-046）：实现过程/函数调用参数匹配检查（S202），覆盖参数个数、值参类型、引用参左值约束，并新增 semantic_param_tests 回归 10/10 通过 | 补齐语义阶段“调用约束”闭环，为语义失败门控和端到端批测提供可测依据 | 语义分析、测试、构建脚本、任务状态 | GitHub Copilot |
 | v1.28 | 2026-04-21 | 完成语义门控与状态码统一（T-049/T-032）：驱动接入语义分析，语义失败返回码 9 且禁止生成输出文件；新增 semantic_gate_tests，回归 11/11 通过 | 将语义阶段从“可分析”升级为“可门控”，为后续生成链路联调提供稳定失败语义边界 | 集成联调、CLI、测试、构建脚本 | GitHub Copilot |
+| v1.29 | 2026-04-21 | 启动 M5 并完成 T-025：新增独立代码生成模板模块，定义全局/子程序/主语句区模板与核心语句映射占位，驱动改为调用模板生成；新增 codegen_template_tests，回归 12/12 通过 | 将代码生成从“单文件硬编码骨架”升级为“可扩展模板基座”，为 T-026/T-027 逐步填充真实翻译逻辑做好接口与结构准备 | 代码生成、CLI、测试、构建脚本、任务状态 | GitHub Copilot |
+| v1.30 | 2026-04-21 | 完成 T-026：代码生成器接入最小真实翻译（全局变量声明 + 主程序赋值表达式生成），修复 codegen 测试路径与输入构造后回归 12/12 通过；新增临时编译校验工程验证生成 C 可编译 | 将 M5 从“模板占位”推进到“已产出可编译基础翻译代码”，为 T-027 控制流生成提供稳定起点 | 代码生成、测试、样例验证、任务状态 | GitHub Copilot |
+| v1.31 | 2026-04-21 | 完成 T-027：代码生成器新增控制流真实翻译（if/else、while、for/to、for/downto），并补齐控制流样例与强化断言；回归 12/12 通过，端到端生成 `03_controlflow.c` 验证通过 | 将 M5 从“表达式级翻译”推进到“控制流级翻译”，为 T-028 过程/函数调用生成建立可复用语句递归框架 | 代码生成、测试、样例、任务状态 | GitHub Copilot |
+| v1.32 | 2026-04-21 | 完成 T-028：新增过程/函数声明输出与调用语句生成（含函数体 `func := expr` 到 C `return expr` 映射），修复主程序 begin 定位避免误取例程体；补充调用链样例与断言后回归 12/12 通过，并完成 `04_routines.c` 编译校验 | 将 M5 从“控制流级翻译”推进到“子程序调用级翻译”，形成更完整的可执行 C 输出骨架 | 代码生成、测试、样例验证、任务状态 | GitHub Copilot |
+| v1.33 | 2026-04-21 | 完成 T-029：补充 real 类型映射核验样例与断言，验证全局 real 声明、real 形参/返回值函数签名、real 字面量与调用表达式输出；回归 12/12 通过并完成 `05_realmap.c` 端到端生成验证 | 将 M5 从“子程序调用级翻译”推进到“类型映射一致性核验”阶段，确保 Pascal real 到 C float 的输出口径稳定 | 代码生成、测试、样例验证、任务状态 | GitHub Copilot |
 
 ## 10. 每周复盘模板（建议直接复制填写）
 

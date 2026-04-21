@@ -178,6 +178,10 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
       <Project>{11319A6B-6173-389C-B864-65B82980624C}</Project>
       <Name>bison_parser_tests</Name>
     </ProjectReference>
+    <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\codegen_template_tests.vcxproj">
+      <Project>{AAA1A72C-84EF-3847-9279-AF8FBAC61249}</Project>
+      <Name>codegen_template_tests</Name>
+    </ProjectReference>
     <ProjectReference Include="D:\金介然\大三下\编译课设\CODE\build_fresh\lexer_smoke_tests.vcxproj">
       <Project>{991A1982-0AE6-3EB4-B784-8F015CF306FF}</Project>
       <Name>lexer_smoke_tests</Name>

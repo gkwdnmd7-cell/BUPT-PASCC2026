@@ -8,6 +8,9 @@
       <FullPath>D:\金介然\大三下\编译课设\CODE\build_fresh\Debug\bison_parser_tests.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
+      <FullPath>D:\金介然\大三下\编译课设\CODE\build_fresh\Debug\codegen_template_tests.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
       <FullPath>D:\金介然\大三下\编译课设\CODE\build_fresh\Debug\lexer_smoke_tests.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
@@ -24,6 +27,9 @@
     </ProjectOutput>
     <ProjectOutput>
       <FullPath>D:\金介然\大三下\编译课设\CODE\build_fresh\Debug\semantic_expression_tests.exe</FullPath>
+    </ProjectOutput>
+    <ProjectOutput>
+      <FullPath>D:\金介然\大三下\编译课设\CODE\build_fresh\Debug\semantic_gate_tests.exe</FullPath>
     </ProjectOutput>
     <ProjectOutput>
       <FullPath>D:\金介然\大三下\编译课设\CODE\build_fresh\Debug\semantic_param_tests.exe</FullPath>
