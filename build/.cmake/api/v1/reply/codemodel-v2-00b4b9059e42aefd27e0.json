@@ -1,0 +1,736 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f040eec181a89de70dbe.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "pascc",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Debug-0d5b5ef3cca1fb32eeb2.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Debug-1df825b5739c45d7ae44.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bison_parser_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bison_parser_tests-Debug-9c4c111b6d26429314d4.json",
+					"name" : "bison_parser_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "codegen_template_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-codegen_template_tests-Debug-461bbe378d6f24696d66.json",
+					"name" : "codegen_template_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lexer_smoke_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lexer_smoke_tests-Debug-fb412c708801c7441d2d.json",
+					"name" : "lexer_smoke_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lexer_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lexer_tests-Debug-a99884c9296a63797c5e.json",
+					"name" : "lexer_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "parser_bison::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-parser_bison-Debug-9063f2fdc77c33244eec.json",
+					"name" : "parser_bison",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "parser_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-parser_tests-Debug-d1c60193e11f0b87bb09.json",
+					"name" : "parser_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pascc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pascc-Debug-cdc9797893b68e73cc78.json",
+					"name" : "pascc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_declaration_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_declaration_tests-Debug-f26b9d3a61382b03c492.json",
+					"name" : "semantic_declaration_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_expression_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_expression_tests-Debug-594bab772a2affa57f86.json",
+					"name" : "semantic_expression_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_gate_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_gate_tests-Debug-7f2f04a184b9aec4701c.json",
+					"name" : "semantic_gate_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_param_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_param_tests-Debug-cb46f2ce31544ef3e3b6.json",
+					"name" : "semantic_param_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_tableset_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_tableset_tests-Debug-e9ff811e38f648a5174b.json",
+					"name" : "semantic_tableset_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_typepool_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_typepool_tests-Debug-ae47e3540df4f30f1a2b.json",
+					"name" : "semantic_typepool_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_usage_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_usage_tests-Debug-d6a3b793f532deca858f.json",
+					"name" : "semantic_usage_tests",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Release-f040eec181a89de70dbe.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"name" : "Release",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "pascc",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-Release-0d5b5ef3cca1fb32eeb2.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-Release-1df825b5739c45d7ae44.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bison_parser_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bison_parser_tests-Release-ec40b115029ff91565f3.json",
+					"name" : "bison_parser_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "codegen_template_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-codegen_template_tests-Release-ff35b24b69ef4dd1a930.json",
+					"name" : "codegen_template_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lexer_smoke_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lexer_smoke_tests-Release-e52c10c7d353ca7cc377.json",
+					"name" : "lexer_smoke_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lexer_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lexer_tests-Release-8d25cb6564cfbbd2b2da.json",
+					"name" : "lexer_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "parser_bison::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-parser_bison-Release-1c853a9fade0cd9e0295.json",
+					"name" : "parser_bison",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "parser_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-parser_tests-Release-62aa536b0f3dc6b805f1.json",
+					"name" : "parser_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pascc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pascc-Release-c85765d3bef86e3fc6c0.json",
+					"name" : "pascc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_declaration_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_declaration_tests-Release-a765855a3895b52ea3df.json",
+					"name" : "semantic_declaration_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_expression_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_expression_tests-Release-06416a40db908388ae49.json",
+					"name" : "semantic_expression_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_gate_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_gate_tests-Release-fada2389dfb8ee71d08d.json",
+					"name" : "semantic_gate_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_param_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_param_tests-Release-dea81c562c9bf3f50297.json",
+					"name" : "semantic_param_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_tableset_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_tableset_tests-Release-6a2219de433d57e5ffd5.json",
+					"name" : "semantic_tableset_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_typepool_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_typepool_tests-Release-6a5a7fd7af7dc05bb8bc.json",
+					"name" : "semantic_typepool_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_usage_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_usage_tests-Release-d0b9ac881303b56e98cf.json",
+					"name" : "semantic_usage_tests",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-MinSizeRel-f040eec181a89de70dbe.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"name" : "MinSizeRel",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "pascc",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-MinSizeRel-0d5b5ef3cca1fb32eeb2.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-MinSizeRel-1df825b5739c45d7ae44.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bison_parser_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bison_parser_tests-MinSizeRel-60765f611f6e00228fba.json",
+					"name" : "bison_parser_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "codegen_template_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-codegen_template_tests-MinSizeRel-aa9d3b8a746f0645753c.json",
+					"name" : "codegen_template_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lexer_smoke_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lexer_smoke_tests-MinSizeRel-1eaa19f1720fb7c04d5b.json",
+					"name" : "lexer_smoke_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lexer_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lexer_tests-MinSizeRel-2afb1de112acee74fd4e.json",
+					"name" : "lexer_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "parser_bison::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-parser_bison-MinSizeRel-9d35cb501a8f680d0c0e.json",
+					"name" : "parser_bison",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "parser_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-parser_tests-MinSizeRel-80028fb38c34bd3c7b18.json",
+					"name" : "parser_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pascc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pascc-MinSizeRel-5129f67a8427a956bd7e.json",
+					"name" : "pascc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_declaration_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_declaration_tests-MinSizeRel-e3702bc245f09c8e503e.json",
+					"name" : "semantic_declaration_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_expression_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_expression_tests-MinSizeRel-0a0779602fb8af1988b7.json",
+					"name" : "semantic_expression_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_gate_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_gate_tests-MinSizeRel-304a7661c035bb22ad2a.json",
+					"name" : "semantic_gate_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_param_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_param_tests-MinSizeRel-2ef424113188e9a50851.json",
+					"name" : "semantic_param_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_tableset_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_tableset_tests-MinSizeRel-8ab3f714d440975a9f81.json",
+					"name" : "semantic_tableset_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_typepool_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_typepool_tests-MinSizeRel-0603157800508fdb1859.json",
+					"name" : "semantic_typepool_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_usage_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_usage_tests-MinSizeRel-68d67e09afbb014d4147.json",
+					"name" : "semantic_usage_tests",
+					"projectIndex" : 0
+				}
+			]
+		},
+		{
+			"abstractTargets" : [],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-RelWithDebInfo-f040eec181a89de70dbe.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"name" : "RelWithDebInfo",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "pascc",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "ALL_BUILD::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ALL_BUILD-RelWithDebInfo-0d5b5ef3cca1fb32eeb2.json",
+					"name" : "ALL_BUILD",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "ZERO_CHECK::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-ZERO_CHECK-RelWithDebInfo-1df825b5739c45d7ae44.json",
+					"name" : "ZERO_CHECK",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "bison_parser_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-bison_parser_tests-RelWithDebInfo-324ad393feb60c51fcf9.json",
+					"name" : "bison_parser_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "codegen_template_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-codegen_template_tests-RelWithDebInfo-c25f1fab8a9de9422f31.json",
+					"name" : "codegen_template_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lexer_smoke_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lexer_smoke_tests-RelWithDebInfo-c31e73d3a9a926f506df.json",
+					"name" : "lexer_smoke_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "lexer_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-lexer_tests-RelWithDebInfo-d37a5b2a41e45209feba.json",
+					"name" : "lexer_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "parser_bison::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-parser_bison-RelWithDebInfo-1bed6e607b071fe381da.json",
+					"name" : "parser_bison",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "parser_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-parser_tests-RelWithDebInfo-da794b784d27a0ed8a5b.json",
+					"name" : "parser_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "pascc::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-pascc-RelWithDebInfo-565f2a839bdd597a6129.json",
+					"name" : "pascc",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_declaration_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_declaration_tests-RelWithDebInfo-184f525dd7cb954e73a0.json",
+					"name" : "semantic_declaration_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_expression_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_expression_tests-RelWithDebInfo-6e9d8c5840b8a3be9191.json",
+					"name" : "semantic_expression_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_gate_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_gate_tests-RelWithDebInfo-aaa7a717aebcc663e079.json",
+					"name" : "semantic_gate_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_param_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_param_tests-RelWithDebInfo-c706d6f46be5e0d32cb8.json",
+					"name" : "semantic_param_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_tableset_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_tableset_tests-RelWithDebInfo-db5e08a3bd93a0c56cec.json",
+					"name" : "semantic_tableset_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_typepool_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_typepool_tests-RelWithDebInfo-ca9be8db68366e8502df.json",
+					"name" : "semantic_typepool_tests",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "semantic_usage_tests::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-semantic_usage_tests-RelWithDebInfo-8b4b2f9ae8dd90b3522b.json",
+					"name" : "semantic_usage_tests",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/\u91d1\u4ecb\u7136/\u5927\u4e09\u4e0b/\u7f16\u8bd1\u8bfe\u8bbe/CODE/build",
+		"source" : "D:/\u91d1\u4ecb\u7136/\u5927\u4e09\u4e0b/\u7f16\u8bd1\u8bfe\u8bbe/CODE"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 10
+	}
+}
