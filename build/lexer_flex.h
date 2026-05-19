@@ -1,10 +1,10 @@
-#ifndef pascc_HEADER_H
-#define pascc_HEADER_H 1
-#define pascc_IN_HEADER 1
+#ifndef pascclexHEADER_H
+#define pascclexHEADER_H 1
+#define pascclexIN_HEADER 1
 
-#line 5 "lexer_flex.h"
+#line 6 "/mnt/hgfs/BUPT-PASCC2026/build/lexer_flex.h"
 
-#line 7 "lexer_flex.h"
+#line 8 "/mnt/hgfs/BUPT-PASCC2026/build/lexer_flex.h"
 
 #define  YY_INT_ALIGNED short int
 
@@ -19,225 +19,237 @@
 #endif
 
 #ifdef yy_create_buffer
-#define pascc__create_buffer_ALREADY_DEFINED
+#define pascclex_create_buffer_ALREADY_DEFINED
 #else
-#define yy_create_buffer pascc__create_buffer
+#define yy_create_buffer pascclex_create_buffer
 #endif
 
 #ifdef yy_delete_buffer
-#define pascc__delete_buffer_ALREADY_DEFINED
+#define pascclex_delete_buffer_ALREADY_DEFINED
 #else
-#define yy_delete_buffer pascc__delete_buffer
+#define yy_delete_buffer pascclex_delete_buffer
 #endif
 
 #ifdef yy_scan_buffer
-#define pascc__scan_buffer_ALREADY_DEFINED
+#define pascclex_scan_buffer_ALREADY_DEFINED
 #else
-#define yy_scan_buffer pascc__scan_buffer
+#define yy_scan_buffer pascclex_scan_buffer
 #endif
 
 #ifdef yy_scan_string
-#define pascc__scan_string_ALREADY_DEFINED
+#define pascclex_scan_string_ALREADY_DEFINED
 #else
-#define yy_scan_string pascc__scan_string
+#define yy_scan_string pascclex_scan_string
 #endif
 
 #ifdef yy_scan_bytes
-#define pascc__scan_bytes_ALREADY_DEFINED
+#define pascclex_scan_bytes_ALREADY_DEFINED
 #else
-#define yy_scan_bytes pascc__scan_bytes
+#define yy_scan_bytes pascclex_scan_bytes
 #endif
 
 #ifdef yy_init_buffer
-#define pascc__init_buffer_ALREADY_DEFINED
+#define pascclex_init_buffer_ALREADY_DEFINED
 #else
-#define yy_init_buffer pascc__init_buffer
+#define yy_init_buffer pascclex_init_buffer
 #endif
 
 #ifdef yy_flush_buffer
-#define pascc__flush_buffer_ALREADY_DEFINED
+#define pascclex_flush_buffer_ALREADY_DEFINED
 #else
-#define yy_flush_buffer pascc__flush_buffer
+#define yy_flush_buffer pascclex_flush_buffer
 #endif
 
 #ifdef yy_load_buffer_state
-#define pascc__load_buffer_state_ALREADY_DEFINED
+#define pascclex_load_buffer_state_ALREADY_DEFINED
 #else
-#define yy_load_buffer_state pascc__load_buffer_state
+#define yy_load_buffer_state pascclex_load_buffer_state
 #endif
 
 #ifdef yy_switch_to_buffer
-#define pascc__switch_to_buffer_ALREADY_DEFINED
+#define pascclex_switch_to_buffer_ALREADY_DEFINED
 #else
-#define yy_switch_to_buffer pascc__switch_to_buffer
+#define yy_switch_to_buffer pascclex_switch_to_buffer
 #endif
 
 #ifdef yypush_buffer_state
-#define pascc_push_buffer_state_ALREADY_DEFINED
+#define pascclexpush_buffer_state_ALREADY_DEFINED
 #else
-#define yypush_buffer_state pascc_push_buffer_state
+#define yypush_buffer_state pascclexpush_buffer_state
 #endif
 
 #ifdef yypop_buffer_state
-#define pascc_pop_buffer_state_ALREADY_DEFINED
+#define pascclexpop_buffer_state_ALREADY_DEFINED
 #else
-#define yypop_buffer_state pascc_pop_buffer_state
+#define yypop_buffer_state pascclexpop_buffer_state
 #endif
 
 #ifdef yyensure_buffer_stack
-#define pascc_ensure_buffer_stack_ALREADY_DEFINED
+#define pascclexensure_buffer_stack_ALREADY_DEFINED
 #else
-#define yyensure_buffer_stack pascc_ensure_buffer_stack
+#define yyensure_buffer_stack pascclexensure_buffer_stack
 #endif
 
 #ifdef yylex
-#define pascc_lex_ALREADY_DEFINED
+#define pascclexlex_ALREADY_DEFINED
 #else
-#define yylex pascc_lex
+#define yylex pascclexlex
 #endif
 
 #ifdef yyrestart
-#define pascc_restart_ALREADY_DEFINED
+#define pascclexrestart_ALREADY_DEFINED
 #else
-#define yyrestart pascc_restart
+#define yyrestart pascclexrestart
 #endif
 
 #ifdef yylex_init
-#define pascc_lex_init_ALREADY_DEFINED
+#define pascclexlex_init_ALREADY_DEFINED
 #else
-#define yylex_init pascc_lex_init
+#define yylex_init pascclexlex_init
 #endif
 
 #ifdef yylex_init_extra
-#define pascc_lex_init_extra_ALREADY_DEFINED
+#define pascclexlex_init_extra_ALREADY_DEFINED
 #else
-#define yylex_init_extra pascc_lex_init_extra
+#define yylex_init_extra pascclexlex_init_extra
 #endif
 
 #ifdef yylex_destroy
-#define pascc_lex_destroy_ALREADY_DEFINED
+#define pascclexlex_destroy_ALREADY_DEFINED
 #else
-#define yylex_destroy pascc_lex_destroy
+#define yylex_destroy pascclexlex_destroy
 #endif
 
 #ifdef yyget_debug
-#define pascc_get_debug_ALREADY_DEFINED
+#define pascclexget_debug_ALREADY_DEFINED
 #else
-#define yyget_debug pascc_get_debug
+#define yyget_debug pascclexget_debug
 #endif
 
 #ifdef yyset_debug
-#define pascc_set_debug_ALREADY_DEFINED
+#define pascclexset_debug_ALREADY_DEFINED
 #else
-#define yyset_debug pascc_set_debug
+#define yyset_debug pascclexset_debug
 #endif
 
 #ifdef yyget_extra
-#define pascc_get_extra_ALREADY_DEFINED
+#define pascclexget_extra_ALREADY_DEFINED
 #else
-#define yyget_extra pascc_get_extra
+#define yyget_extra pascclexget_extra
 #endif
 
 #ifdef yyset_extra
-#define pascc_set_extra_ALREADY_DEFINED
+#define pascclexset_extra_ALREADY_DEFINED
 #else
-#define yyset_extra pascc_set_extra
+#define yyset_extra pascclexset_extra
 #endif
 
 #ifdef yyget_in
-#define pascc_get_in_ALREADY_DEFINED
+#define pascclexget_in_ALREADY_DEFINED
 #else
-#define yyget_in pascc_get_in
+#define yyget_in pascclexget_in
 #endif
 
 #ifdef yyset_in
-#define pascc_set_in_ALREADY_DEFINED
+#define pascclexset_in_ALREADY_DEFINED
 #else
-#define yyset_in pascc_set_in
+#define yyset_in pascclexset_in
 #endif
 
 #ifdef yyget_out
-#define pascc_get_out_ALREADY_DEFINED
+#define pascclexget_out_ALREADY_DEFINED
 #else
-#define yyget_out pascc_get_out
+#define yyget_out pascclexget_out
 #endif
 
 #ifdef yyset_out
-#define pascc_set_out_ALREADY_DEFINED
+#define pascclexset_out_ALREADY_DEFINED
 #else
-#define yyset_out pascc_set_out
+#define yyset_out pascclexset_out
 #endif
 
 #ifdef yyget_leng
-#define pascc_get_leng_ALREADY_DEFINED
+#define pascclexget_leng_ALREADY_DEFINED
 #else
-#define yyget_leng pascc_get_leng
+#define yyget_leng pascclexget_leng
 #endif
 
 #ifdef yyget_text
-#define pascc_get_text_ALREADY_DEFINED
+#define pascclexget_text_ALREADY_DEFINED
 #else
-#define yyget_text pascc_get_text
+#define yyget_text pascclexget_text
 #endif
 
 #ifdef yyget_lineno
-#define pascc_get_lineno_ALREADY_DEFINED
+#define pascclexget_lineno_ALREADY_DEFINED
 #else
-#define yyget_lineno pascc_get_lineno
+#define yyget_lineno pascclexget_lineno
 #endif
 
 #ifdef yyset_lineno
-#define pascc_set_lineno_ALREADY_DEFINED
+#define pascclexset_lineno_ALREADY_DEFINED
 #else
-#define yyset_lineno pascc_set_lineno
-#endif
-
-#ifdef yyget_column
-#define pascc_get_column_ALREADY_DEFINED
-#else
-#define yyget_column pascc_get_column
-#endif
-
-#ifdef yyset_column
-#define pascc_set_column_ALREADY_DEFINED
-#else
-#define yyset_column pascc_set_column
+#define yyset_lineno pascclexset_lineno
 #endif
 
 #ifdef yywrap
-#define pascc_wrap_ALREADY_DEFINED
+#define pascclexwrap_ALREADY_DEFINED
 #else
-#define yywrap pascc_wrap
-#endif
-
-#ifdef yyget_lval
-#define pascc_get_lval_ALREADY_DEFINED
-#else
-#define yyget_lval pascc_get_lval
-#endif
-
-#ifdef yyset_lval
-#define pascc_set_lval_ALREADY_DEFINED
-#else
-#define yyset_lval pascc_set_lval
+#define yywrap pascclexwrap
 #endif
 
 #ifdef yyalloc
-#define pascc_alloc_ALREADY_DEFINED
+#define pascclexalloc_ALREADY_DEFINED
 #else
-#define yyalloc pascc_alloc
+#define yyalloc pascclexalloc
 #endif
 
 #ifdef yyrealloc
-#define pascc_realloc_ALREADY_DEFINED
+#define pascclexrealloc_ALREADY_DEFINED
 #else
-#define yyrealloc pascc_realloc
+#define yyrealloc pascclexrealloc
 #endif
 
 #ifdef yyfree
-#define pascc_free_ALREADY_DEFINED
+#define pascclexfree_ALREADY_DEFINED
 #else
-#define yyfree pascc_free
+#define yyfree pascclexfree
+#endif
+
+#ifdef yytext
+#define pascclextext_ALREADY_DEFINED
+#else
+#define yytext pascclextext
+#endif
+
+#ifdef yyleng
+#define pascclexleng_ALREADY_DEFINED
+#else
+#define yyleng pascclexleng
+#endif
+
+#ifdef yyin
+#define pascclexin_ALREADY_DEFINED
+#else
+#define yyin pascclexin
+#endif
+
+#ifdef yyout
+#define pascclexout_ALREADY_DEFINED
+#else
+#define yyout pascclexout
+#endif
+
+#ifdef yy_flex_debug
+#define pascclex_flex_debug_ALREADY_DEFINED
+#else
+#define yy_flex_debug pascclex_flex_debug
+#endif
+
+#ifdef yylineno
+#define pascclexlineno_ALREADY_DEFINED
+#else
+#define yylineno pascclexlineno
 #endif
 
 /* First, we deal with  platform-specific or compiler-specific issues. */
@@ -329,23 +341,6 @@ typedef unsigned int flex_uint32_t;
 #define yynoreturn
 #endif
 
-/* An opaque pointer. */
-#ifndef YY_TYPEDEF_YY_SCANNER_T
-#define YY_TYPEDEF_YY_SCANNER_T
-typedef void* yyscan_t;
-#endif
-
-/* For convenience, these vars (plus the bison vars far below)
-   are macros in the reentrant scanner. */
-#define yyin yyg->yyin_r
-#define yyout yyg->yyout_r
-#define yyextra yyg->yyextra_r
-#define yyleng yyg->yyleng_r
-#define yytext yyg->yytext_r
-#define yylineno (YY_CURRENT_BUFFER_LVALUE->yy_bs_lineno)
-#define yycolumn (YY_CURRENT_BUFFER_LVALUE->yy_bs_column)
-#define yy_flex_debug yyg->yy_flex_debug_r
-
 /* Size of default input buffer. */
 #ifndef YY_BUF_SIZE
 #ifdef __ia64__
@@ -368,6 +363,10 @@ typedef struct yy_buffer_state *YY_BUFFER_STATE;
 #define YY_TYPEDEF_YY_SIZE_T
 typedef size_t yy_size_t;
 #endif
+
+extern int yyleng;
+
+extern FILE *yyin, *yyout;
 
 #ifndef YY_STRUCT_YY_BUFFER_STATE
 #define YY_STRUCT_YY_BUFFER_STATE
@@ -420,24 +419,294 @@ struct yy_buffer_state
 	};
 #endif /* !YY_STRUCT_YY_BUFFER_STATE */
 
-void yyrestart ( FILE *input_file , yyscan_t yyscanner );
-void yy_switch_to_buffer ( YY_BUFFER_STATE new_buffer , yyscan_t yyscanner );
-YY_BUFFER_STATE yy_create_buffer ( FILE *file, int size , yyscan_t yyscanner );
-void yy_delete_buffer ( YY_BUFFER_STATE b , yyscan_t yyscanner );
-void yy_flush_buffer ( YY_BUFFER_STATE b , yyscan_t yyscanner );
-void yypush_buffer_state ( YY_BUFFER_STATE new_buffer , yyscan_t yyscanner );
-void yypop_buffer_state ( yyscan_t yyscanner );
+void yyrestart ( FILE *input_file  );
+void yy_switch_to_buffer ( YY_BUFFER_STATE new_buffer  );
+YY_BUFFER_STATE yy_create_buffer ( FILE *file, int size  );
+void yy_delete_buffer ( YY_BUFFER_STATE b  );
+void yy_flush_buffer ( YY_BUFFER_STATE b  );
+void yypush_buffer_state ( YY_BUFFER_STATE new_buffer  );
+void yypop_buffer_state ( void );
 
-YY_BUFFER_STATE yy_scan_buffer ( char *base, yy_size_t size , yyscan_t yyscanner );
-YY_BUFFER_STATE yy_scan_string ( const char *yy_str , yyscan_t yyscanner );
-YY_BUFFER_STATE yy_scan_bytes ( const char *bytes, int len , yyscan_t yyscanner );
+YY_BUFFER_STATE yy_scan_buffer ( char *base, yy_size_t size  );
+YY_BUFFER_STATE yy_scan_string ( const char *yy_str  );
+YY_BUFFER_STATE yy_scan_bytes ( const char *bytes, int len  );
 
-void *yyalloc ( yy_size_t , yyscan_t yyscanner );
-void *yyrealloc ( void *, yy_size_t , yyscan_t yyscanner );
-void yyfree ( void * , yyscan_t yyscanner );
+void *yyalloc ( yy_size_t  );
+void *yyrealloc ( void *, yy_size_t  );
+void yyfree ( void *  );
 
 /* Begin user sect3 */
 
-#line 441 "lexer_flex.h"
-#undef pascc_IN_HEADER
-#endif /* pascc_HEADER_H */
+#define pascclexwrap() (/*CONSTCOND*/1)
+#define YY_SKIP_YYWRAP
+
+extern int yylineno;
+
+extern char *yytext;
+#ifdef yytext_ptr
+#undef yytext_ptr
+#endif
+#define yytext_ptr yytext
+
+#ifdef YY_HEADER_EXPORT_START_CONDITIONS
+#define INITIAL 0
+#define COMMENT 1
+
+#endif
+
+#ifndef YY_NO_UNISTD_H
+/* Special case for "unistd.h", since it is non-ANSI. We include it way
+ * down here because we want the user's section 1 to have been scanned first.
+ * The user has a chance to override it with an option.
+ */
+#include <unistd.h>
+#endif
+
+#ifndef YY_EXTRA_TYPE
+#define YY_EXTRA_TYPE void *
+#endif
+
+/* Accessor methods to globals.
+   These are made visible to non-reentrant scanners for convenience. */
+
+int yylex_destroy ( void );
+
+int yyget_debug ( void );
+
+void yyset_debug ( int debug_flag  );
+
+YY_EXTRA_TYPE yyget_extra ( void );
+
+void yyset_extra ( YY_EXTRA_TYPE user_defined  );
+
+FILE *yyget_in ( void );
+
+void yyset_in  ( FILE * _in_str  );
+
+FILE *yyget_out ( void );
+
+void yyset_out  ( FILE * _out_str  );
+
+			int yyget_leng ( void );
+
+char *yyget_text ( void );
+
+int yyget_lineno ( void );
+
+void yyset_lineno ( int _line_number  );
+
+/* Macros after this point can all be overridden by user definitions in
+ * section 1.
+ */
+
+#ifndef YY_SKIP_YYWRAP
+#ifdef __cplusplus
+extern "C" int yywrap ( void );
+#else
+extern int yywrap ( void );
+#endif
+#endif
+
+#ifndef yytext_ptr
+static void yy_flex_strncpy ( char *, const char *, int );
+#endif
+
+#ifdef YY_NEED_STRLEN
+static int yy_flex_strlen ( const char * );
+#endif
+
+#ifndef YY_NO_INPUT
+
+#endif
+
+/* Amount of stuff to slurp up with each read. */
+#ifndef YY_READ_BUF_SIZE
+#ifdef __ia64__
+/* On IA-64, the buffer size is 16k, not 8k */
+#define YY_READ_BUF_SIZE 16384
+#else
+#define YY_READ_BUF_SIZE 8192
+#endif /* __ia64__ */
+#endif
+
+/* Number of entries by which start-condition stack grows. */
+#ifndef YY_START_STACK_INCR
+#define YY_START_STACK_INCR 25
+#endif
+
+/* Default declaration of generated scanner - a define so the user can
+ * easily add parameters.
+ */
+#ifndef YY_DECL
+#define YY_DECL_IS_OURS 1
+
+extern int yylex (void);
+
+#define YY_DECL int yylex (void)
+#endif /* !YY_DECL */
+
+/* yy_get_previous_state - get the state just before the EOB char was reached */
+
+#undef YY_NEW_FILE
+#undef YY_FLUSH_BUFFER
+#undef yy_set_bol
+#undef yy_new_buffer
+#undef yy_set_interactive
+#undef YY_DO_BEFORE_ACTION
+
+#ifdef YY_DECL_IS_OURS
+#undef YY_DECL_IS_OURS
+#undef YY_DECL
+#endif
+
+#ifndef pascclex_create_buffer_ALREADY_DEFINED
+#undef yy_create_buffer
+#endif
+#ifndef pascclex_delete_buffer_ALREADY_DEFINED
+#undef yy_delete_buffer
+#endif
+#ifndef pascclex_scan_buffer_ALREADY_DEFINED
+#undef yy_scan_buffer
+#endif
+#ifndef pascclex_scan_string_ALREADY_DEFINED
+#undef yy_scan_string
+#endif
+#ifndef pascclex_scan_bytes_ALREADY_DEFINED
+#undef yy_scan_bytes
+#endif
+#ifndef pascclex_init_buffer_ALREADY_DEFINED
+#undef yy_init_buffer
+#endif
+#ifndef pascclex_flush_buffer_ALREADY_DEFINED
+#undef yy_flush_buffer
+#endif
+#ifndef pascclex_load_buffer_state_ALREADY_DEFINED
+#undef yy_load_buffer_state
+#endif
+#ifndef pascclex_switch_to_buffer_ALREADY_DEFINED
+#undef yy_switch_to_buffer
+#endif
+#ifndef pascclexpush_buffer_state_ALREADY_DEFINED
+#undef yypush_buffer_state
+#endif
+#ifndef pascclexpop_buffer_state_ALREADY_DEFINED
+#undef yypop_buffer_state
+#endif
+#ifndef pascclexensure_buffer_stack_ALREADY_DEFINED
+#undef yyensure_buffer_stack
+#endif
+#ifndef pascclexlex_ALREADY_DEFINED
+#undef yylex
+#endif
+#ifndef pascclexrestart_ALREADY_DEFINED
+#undef yyrestart
+#endif
+#ifndef pascclexlex_init_ALREADY_DEFINED
+#undef yylex_init
+#endif
+#ifndef pascclexlex_init_extra_ALREADY_DEFINED
+#undef yylex_init_extra
+#endif
+#ifndef pascclexlex_destroy_ALREADY_DEFINED
+#undef yylex_destroy
+#endif
+#ifndef pascclexget_debug_ALREADY_DEFINED
+#undef yyget_debug
+#endif
+#ifndef pascclexset_debug_ALREADY_DEFINED
+#undef yyset_debug
+#endif
+#ifndef pascclexget_extra_ALREADY_DEFINED
+#undef yyget_extra
+#endif
+#ifndef pascclexset_extra_ALREADY_DEFINED
+#undef yyset_extra
+#endif
+#ifndef pascclexget_in_ALREADY_DEFINED
+#undef yyget_in
+#endif
+#ifndef pascclexset_in_ALREADY_DEFINED
+#undef yyset_in
+#endif
+#ifndef pascclexget_out_ALREADY_DEFINED
+#undef yyget_out
+#endif
+#ifndef pascclexset_out_ALREADY_DEFINED
+#undef yyset_out
+#endif
+#ifndef pascclexget_leng_ALREADY_DEFINED
+#undef yyget_leng
+#endif
+#ifndef pascclexget_text_ALREADY_DEFINED
+#undef yyget_text
+#endif
+#ifndef pascclexget_lineno_ALREADY_DEFINED
+#undef yyget_lineno
+#endif
+#ifndef pascclexset_lineno_ALREADY_DEFINED
+#undef yyset_lineno
+#endif
+#ifndef pascclexget_column_ALREADY_DEFINED
+#undef yyget_column
+#endif
+#ifndef pascclexset_column_ALREADY_DEFINED
+#undef yyset_column
+#endif
+#ifndef pascclexwrap_ALREADY_DEFINED
+#undef yywrap
+#endif
+#ifndef pascclexget_lval_ALREADY_DEFINED
+#undef yyget_lval
+#endif
+#ifndef pascclexset_lval_ALREADY_DEFINED
+#undef yyset_lval
+#endif
+#ifndef pascclexget_lloc_ALREADY_DEFINED
+#undef yyget_lloc
+#endif
+#ifndef pascclexset_lloc_ALREADY_DEFINED
+#undef yyset_lloc
+#endif
+#ifndef pascclexalloc_ALREADY_DEFINED
+#undef yyalloc
+#endif
+#ifndef pascclexrealloc_ALREADY_DEFINED
+#undef yyrealloc
+#endif
+#ifndef pascclexfree_ALREADY_DEFINED
+#undef yyfree
+#endif
+#ifndef pascclextext_ALREADY_DEFINED
+#undef yytext
+#endif
+#ifndef pascclexleng_ALREADY_DEFINED
+#undef yyleng
+#endif
+#ifndef pascclexin_ALREADY_DEFINED
+#undef yyin
+#endif
+#ifndef pascclexout_ALREADY_DEFINED
+#undef yyout
+#endif
+#ifndef pascclex_flex_debug_ALREADY_DEFINED
+#undef yy_flex_debug
+#endif
+#ifndef pascclexlineno_ALREADY_DEFINED
+#undef yylineno
+#endif
+#ifndef pascclextables_fload_ALREADY_DEFINED
+#undef yytables_fload
+#endif
+#ifndef pascclextables_destroy_ALREADY_DEFINED
+#undef yytables_destroy
+#endif
+#ifndef pascclexTABLES_NAME_ALREADY_DEFINED
+#undef yyTABLES_NAME
+#endif
+
+#line 192 "/mnt/hgfs/BUPT-PASCC2026/src/lexer_flex.l"
+
+
+#line 711 "/mnt/hgfs/BUPT-PASCC2026/build/lexer_flex.h"
+#undef pascclexIN_HEADER
+#endif /* pascclexHEADER_H */
