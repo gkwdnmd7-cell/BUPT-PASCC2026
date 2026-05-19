@@ -475,7 +475,11 @@ std::vector<VarDecl> parseGlobalVarDecls(const std::vector<Token>& tokens) {
                 decls.push_back(VarDecl{nm, elemType, true, low, high, sz, suffix});
             }
         } else {
-            const std::string cType = (i < tokens.size()) ? mapTypeTokenToC(tokens[i].type) : "";
+            std::string cType = (i < tokens.size()) ? mapTypeTokenToC(tokens[i].type) : "";
+            // If the type is a type-alias identifier (not a known complex keyword), default to int.
+            if (cType.empty() && i < tokens.size() && tokens[i].type == TokenType::Identifier) {
+                cType = "int";
+            }
             if (i < tokens.size()) ++i;
             for (const auto& nm : names) {
                 if (!cType.empty()) {
@@ -545,7 +549,10 @@ std::vector<VarDecl> parseVarDeclsInRange(const std::vector<Token>& tokens,
                     decls.push_back(VarDecl{nm, elemType, true, low, high, sz, suffix});
                 }
             } else {
-                const std::string cType = (i < endExclusive) ? mapTypeTokenToC(tokens[i].type) : "";
+                std::string cType = (i < endExclusive) ? mapTypeTokenToC(tokens[i].type) : "";
+                if (cType.empty() && i < endExclusive && tokens[i].type == TokenType::Identifier) {
+                    cType = "int";
+                }
                 if (i < endExclusive) ++i;
                 for (const auto& nm : names) {
                     if (!cType.empty()) {
@@ -823,10 +830,39 @@ std::string inferWriteType(const std::string& expr,
     return "int";
 }
 
+// Parse write/writeln arguments, stripping Pascal format specifiers (ne:6:2).
+std::vector<std::string> parseWriteArgList(const std::vector<Token>& tokens, std::size_t& i,
+                                            const std::unordered_set<std::string>* funcNames,
+                                            const std::unordered_set<std::string>* varParams,
+                                            const std::unordered_map<std::string, std::vector<bool>>* routineByRef) {
+    std::vector<std::string> exprs;
+    if (i >= tokens.size() || tokens[i].type != TokenType::LParen) return exprs;
+    ++i;
+
+    while (i < tokens.size() && tokens[i].type != TokenType::RParen && tokens[i].type != TokenType::EndOfFile) {
+        // Parse the value expression (stop at , ) :)
+        const std::string expr = parseExpressionUntil(tokens, i,
+            {TokenType::Comma, TokenType::RParen, TokenType::Colon},
+            funcNames, varParams, routineByRef);
+        // Skip Pascal format specifier(s): :width[:decimals]
+        while (i < tokens.size() && tokens[i].type == TokenType::Colon) {
+            ++i;  // skip ':'
+            // skip the width/decimal expression
+            parseExpressionUntil(tokens, i,
+                {TokenType::Comma, TokenType::RParen, TokenType::Colon},
+                funcNames, varParams, routineByRef);
+        }
+        if (!expr.empty()) exprs.push_back(expr);
+        if (i < tokens.size() && tokens[i].type == TokenType::Comma) ++i;
+    }
+    if (i < tokens.size() && tokens[i].type == TokenType::RParen) ++i;
+    return exprs;
+}
+
 void parseWriteStatement(const std::vector<Token>& tokens, std::size_t& i, CStatements& out, int indentLevel,
                          bool withNewline, const StatementContext& ctx) {
     ++i;  // consume write/writeln
-    const auto args = parseExprList(tokens, i, ctx.funcNames, ctx.varParams, ctx.routineByRef);
+    const auto args = parseWriteArgList(tokens, i, ctx.funcNames, ctx.varParams, ctx.routineByRef);
 
     for (const auto& arg : args) {
         const std::string wtype = inferWriteType(arg, ctx.typeMap);
@@ -1118,7 +1154,11 @@ std::vector<RoutineParam> parseRoutineParams(const std::vector<Token>& tokens, s
         }
         ++i;  // consume ':'
 
-        const std::string cType = (i < tokens.size()) ? mapTypeTokenToC(tokens[i].type) : "";
+        std::string cType = (i < tokens.size()) ? mapTypeTokenToC(tokens[i].type) : "";
+        // Type alias (Identifier token): default to int so the parameter is always emitted.
+        if (cType.empty() && i < tokens.size() && tokens[i].type == TokenType::Identifier) {
+            cType = "int";
+        }
         if (i < tokens.size()) ++i;
 
         for (const auto& nm : names) {
@@ -1160,7 +1200,8 @@ bool parseRoutineAt(const std::vector<Token>& tokens, std::size_t start, Routine
     if (routine.isFunction && i < tokens.size() && tokens[i].type == TokenType::Colon) {
         ++i;
         if (i < tokens.size()) {
-            const std::string mapped = mapTypeTokenToC(tokens[i].type);
+            std::string mapped = mapTypeTokenToC(tokens[i].type);
+            if (mapped.empty() && tokens[i].type == TokenType::Identifier) mapped = "int";
             if (!mapped.empty()) {
                 routine.returnType = mapped;
             }
