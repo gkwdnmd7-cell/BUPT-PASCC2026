@@ -66,7 +66,7 @@ int CompilerDriver::run(const std::string& inputPath) {
     }
 
     CodeGenerator codeGenerator;
-    const CodegenResult codegenResult = codeGenerator.generateTemplate(inputPath);
+    const CodegenResult codegenResult = codeGenerator.generate(parserResult);
     if (!codegenResult.ok) {
         logutil::error("E499", "Code generation failed: " + codegenResult.message);
         return toExitCode(ErrorCode::GenerationError);
