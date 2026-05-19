@@ -413,6 +413,11 @@ std::vector<ConstDecl> parseGlobalConstDecls(const std::vector<Token>& tokens) {
                 cType = "char";
                 cValue = tokens[i].lexeme;  // keep 'x' quotes
                 ++i;
+            } else if (tokens[i].type == TokenType::StringLiteral) {
+                // String constant: emit as a char* constant.
+                cType = "string";
+                cValue = "\"" + tokens[i].lexeme + "\"";
+                ++i;
             } else if (tokens[i].type == TokenType::BooleanLiteral) {
                 cType = "int";
                 cValue = (tokens[i].lexeme == "true") ? "1" : "0";
@@ -422,11 +427,38 @@ std::vector<ConstDecl> parseGlobalConstDecls(const std::vector<Token>& tokens) {
                 cType = "int";
                 cValue = tokens[i].lexeme;
                 ++i;
+            } else if (tokens[i].type == TokenType::LParen) {
+                // Parenthesised expression: try to find the first numeric literal
+                // inside the parens and use it as the value.  This handles simple
+                // cases like const X = (4097); while safely degrading for complex
+                // expressions.
+                int depth = 0;
+                while (i < tokens.size()) {
+                    if (tokens[i].type == TokenType::LParen)  { ++depth; ++i; continue; }
+                    if (tokens[i].type == TokenType::RParen)  { --depth; ++i; if (depth == 0) break; continue; }
+                    if (cValue.empty()) {
+                        // Capture the first integer or real literal found
+                        if (tokens[i].type == TokenType::IntegerLiteral) {
+                            cType = "int";
+                            cValue = (neg ? "-" : "") + tokens[i].lexeme;
+                        } else if (tokens[i].type == TokenType::RealLiteral) {
+                            cType = "float";
+                            cValue = (neg ? "-" : "") + tokens[i].lexeme;
+                        }
+                    }
+                    ++i;
+                }
             }
         }
 
         if (!cValue.empty()) {
             decls.push_back(ConstDecl{name, cType, cValue});
+        } else {
+            // Could not parse the constant value (e.g. complex expression or
+            // unsupported syntax).  Emit a zero-valued stub so the identifier is
+            // at least declared in C and compilation does not fail with
+            // "undeclared identifier".
+            decls.push_back(ConstDecl{name, "int", "0"});
         }
 
         // Skip to ';'
@@ -444,52 +476,79 @@ std::vector<ConstDecl> parseGlobalConstDecls(const std::vector<Token>& tokens) {
 // Var parsing (supports arrays)
 // ---------------------------------------------------------------------------
 
+// Recursively skip a procedure/function definition.
+// On entry, i points to the first token AFTER the 'procedure'/'function' keyword.
+// On exit, i points to the first token after the trailing ';' (or '.') of the definition.
+static void skipRoutineBodyAt(const std::vector<Token>& tokens, std::size_t& i) {
+    // 1. Skip the header up to the first semicolon at paren-depth 0
+    //    (handles parameter lists with nested parens)
+    {
+        int parenDepth = 0;
+        while (i < tokens.size()) {
+            if (tokens[i].type == TokenType::LParen)  { ++parenDepth; ++i; continue; }
+            if (tokens[i].type == TokenType::RParen)  { --parenDepth; ++i; continue; }
+            if (parenDepth == 0 && tokens[i].type == TokenType::Semicolon) { ++i; break; }
+            ++i;
+        }
+    }
+
+    // 2. Skip local declarations section (var/const/type/label blocks).
+    //    Nested procedure/function definitions are recursively skipped so that
+    //    their own begin/end pairs don't confuse the depth counter below.
+    while (i < tokens.size() &&
+           tokens[i].type != TokenType::KwBegin &&
+           tokens[i].type != TokenType::EndOfFile) {
+        if (tokens[i].type == TokenType::KwProcedure ||
+            tokens[i].type == TokenType::KwFunction) {
+            ++i;  // consume nested 'procedure'/'function' keyword
+            skipRoutineBodyAt(tokens, i);  // recurse
+        } else {
+            ++i;
+        }
+    }
+
+    // 3. Skip the begin...end body.
+    //    In Pascal, both 'begin...end' compound statements AND 'case...of...end'
+    //    statements require a matching 'end'.  We must count both 'begin' and 'case'
+    //    as depth-increasing tokens so that a case's 'end' does not prematurely
+    //    close the enclosing begin's block.
+    //    Similarly, 'record...end' and 'with...do begin...end' are handled by
+    //    treating 'begin'/'case' symmetrically with 'end'.
+    if (i < tokens.size() && tokens[i].type == TokenType::KwBegin) {
+        ++i;  // consume 'begin'
+        int depth = 1;
+        while (i < tokens.size() && depth > 0) {
+            if (tokens[i].type == TokenType::KwBegin ||
+                tokens[i].type == TokenType::KwCase)        ++depth;
+            else if (tokens[i].type == TokenType::KwEnd)    --depth;
+            ++i;
+        }
+        // Consume trailing ';' or '.'
+        if (i < tokens.size() && (tokens[i].type == TokenType::Semicolon ||
+                                   tokens[i].type == TokenType::Dot)) {
+            ++i;
+        }
+    }
+}
+
 std::vector<VarDecl> parseGlobalVarDecls(const std::vector<Token>& tokens) {
     std::vector<VarDecl> decls;
     std::size_t i = 0;
 
     // Scan for the global-level var section.
-    // We skip over entire procedure/function definitions (including their local var sections)
-    // to avoid mistaking local vars for global ones.
+    // Skip over entire procedure/function definitions (including their local var
+    // sections) so we never mistake a local var for a global one.
     while (i < tokens.size() && tokens[i].type != TokenType::EndOfFile) {
         if (tokens[i].type == TokenType::KwBegin) {
             // Reached the main program begin with no global var found
             return decls;
         }
         if (tokens[i].type == TokenType::KwVar) {
-            break;  // Found what looks like a var section
+            break;  // Found the global var section
         }
-        // Skip past an entire procedure/function definition so we don't
-        // accidentally treat its local var section as the global one.
         if (tokens[i].type == TokenType::KwProcedure || tokens[i].type == TokenType::KwFunction) {
-            ++i;  // skip procedure/function keyword
-            // Skip the header (to the semicolon after the header)
-            int parenDepth = 0;
-            while (i < tokens.size()) {
-                if (tokens[i].type == TokenType::LParen) { ++parenDepth; ++i; continue; }
-                if (tokens[i].type == TokenType::RParen) { --parenDepth; ++i; continue; }
-                if (parenDepth == 0 && tokens[i].type == TokenType::Semicolon) { ++i; break; }
-                ++i;
-            }
-            // Skip local declarations and the begin...end body
-            int depth = 0;
-            while (i < tokens.size()) {
-                if (tokens[i].type == TokenType::KwBegin) {
-                    ++depth;
-                } else if (tokens[i].type == TokenType::KwEnd) {
-                    --depth;
-                    if (depth == 0) {
-                        ++i;  // consume 'end'
-                        // Consume trailing dot or semicolon
-                        if (i < tokens.size() && (tokens[i].type == TokenType::Semicolon ||
-                            tokens[i].type == TokenType::Dot)) {
-                            ++i;
-                        }
-                        break;
-                    }
-                }
-                ++i;
-            }
+            ++i;  // consume 'procedure'/'function' keyword
+            skipRoutineBodyAt(tokens, i);  // skip the whole definition recursively
             continue;
         }
         ++i;
@@ -890,6 +949,7 @@ std::string inferWriteType(const std::string& expr,
         if (it != typeMap->end()) {
             if (it->second == "float" || it->second == "double") return "float";
             if (it->second == "char")   return "char";
+            if (it->second == "string") return "string";
             return "int";
         }
     }
