@@ -1,0 +1,17 @@
+1. 构建编译器
+
+# 配置 CMake在项目根目录 CODE下
+cmake -S . -B build_demo -G "Visual Studio 18 2026" -A x64
+
+# 编译
+cmake --build build_demo --config Debug --target pascc
+
+# 可执行文件位置
+build_demo\Debug\pascc.exe
+
+2.pascc -i <input.pas>
+只有一个参数形式：-i 后跟 .pas 文件路径。输出文件是同目录下的同基名 .c 文件。
+
+3.输入Pascal 文件 samples/demo_test.pas
+
+.\pascc.exe -i demo_test.pas

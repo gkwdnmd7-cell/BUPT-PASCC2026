@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Solution>
+	<Configurations>
+		<BuildType Name="Debug"/>
+		<BuildType Name="Release"/>
+		<BuildType Name="MinSizeRel"/>
+		<BuildType Name="RelWithDebInfo"/>
+		<Platform Name="x64"/>
+	</Configurations>
+	<Project Path="ALL_BUILD.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="edecbe72-0207-329e-bf8c-9e3c0504677b" DefaultStartup="true">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="bison_parser_tests.vcxproj"/>
+		<BuildDependency Project="codegen_template_tests.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="lexer_smoke_tests.vcxproj"/>
+		<BuildDependency Project="lexer_tests.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+		<BuildDependency Project="parser_tests.vcxproj"/>
+		<BuildDependency Project="pascc.vcxproj"/>
+		<BuildDependency Project="semantic_declaration_tests.vcxproj"/>
+		<BuildDependency Project="semantic_expression_tests.vcxproj"/>
+		<BuildDependency Project="semantic_gate_tests.vcxproj"/>
+		<BuildDependency Project="semantic_param_tests.vcxproj"/>
+		<BuildDependency Project="semantic_tableset_tests.vcxproj"/>
+		<BuildDependency Project="semantic_typepool_tests.vcxproj"/>
+		<BuildDependency Project="semantic_usage_tests.vcxproj"/>
+		<Build Solution="Debug|*" Project="false"/>
+		<Build Solution="Release|*" Project="false"/>
+		<Build Solution="MinSizeRel|*" Project="false"/>
+		<Build Solution="RelWithDebInfo|*" Project="false"/>
+	</Project>
+	<Project Path="RUN_TESTS.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="369e6fc9-826c-3d2a-b857-e53b8d0127dc">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<Build Solution="Debug|*" Project="false"/>
+		<Build Solution="Release|*" Project="false"/>
+		<Build Solution="MinSizeRel|*" Project="false"/>
+		<Build Solution="RelWithDebInfo|*" Project="false"/>
+	</Project>
+	<Project Path="ZERO_CHECK.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="1758b9ec-e27b-3a0a-ae61-b25c205fc91e"/>
+	<Project Path="bison_parser_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="49764c28-c377-39ca-ae9a-8a96c77df3ec">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+	</Project>
+	<Project Path="codegen_template_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="48edaffd-6b25-33ed-a959-792538fcb27a">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+	</Project>
+	<Project Path="lexer_frontend.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="0f32f9ef-ff98-3fad-a8dd-9cb5a64153a2">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="lexer_smoke_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="87b022b0-8e7c-3f78-8bb8-04d184906312">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+	</Project>
+	<Project Path="lexer_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="93e72dc9-7a3c-3920-af0a-dfc7e3fae6b4">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+	</Project>
+	<Project Path="parser_bison.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="e3542c66-1946-3b5f-a219-ba3bdc5f2992">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="parser_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="ec687416-210e-3b30-83cd-71f5c91d0a44">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+	</Project>
+	<Project Path="pascc.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="ef12ff72-03cd-3815-b1dc-3b076f224d7b">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+	</Project>
+	<Project Path="semantic_declaration_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="a398e9da-5c2e-3d48-aba1-c833f90602ba">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+	</Project>
+	<Project Path="semantic_expression_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="7ceb1881-f952-3ea8-9c6b-497201e25d6a">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+	</Project>
+	<Project Path="semantic_gate_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="2a33e701-1331-311e-91ba-44463d8761da">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+	</Project>
+	<Project Path="semantic_param_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="98fd5e9b-1b09-33da-b16e-6d0c565065a2">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+	</Project>
+	<Project Path="semantic_tableset_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="accadf56-6114-33f1-afb5-e8fdee454248">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="semantic_typepool_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="cc9532dc-9b95-3d92-a7ec-a79958499282">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+	</Project>
+	<Project Path="semantic_usage_tests.vcxproj" Type="8bc9ceb8-8b4a-11d0-8d11-00a0c91bc942" Id="09c9990a-186a-3b94-8fab-751f6d51dbe6">
+		<BuildDependency Project="ZERO_CHECK.vcxproj"/>
+		<BuildDependency Project="lexer_frontend.vcxproj"/>
+		<BuildDependency Project="parser_bison.vcxproj"/>
+	</Project>
+</Solution>
