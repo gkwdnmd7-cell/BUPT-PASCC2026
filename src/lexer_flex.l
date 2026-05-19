@@ -3,6 +3,7 @@
 %option noinput
 %option prefix="pascclex"
 %x COMMENT
+%x COMMENT2
 
 %{
 #include <cctype>
@@ -143,6 +144,11 @@ int pasccLexerCurrentColumn() {
 <COMMENT>\n                { ++g_line; g_col = 1; }
 <COMMENT>.                 { g_col += yyleng; }
 <COMMENT><<EOF>>           { addError("E107", "Unterminated comment.", g_comment_start_line, g_comment_start_col); BEGIN(INITIAL); return 0; }
+"(*"                       { g_comment_start_line = g_line; g_comment_start_col = g_col; g_col += yyleng; BEGIN(COMMENT2); }
+<COMMENT2>"*)"             { g_col += yyleng; BEGIN(INITIAL); }
+<COMMENT2>\n               { ++g_line; g_col = 1; }
+<COMMENT2>.                { g_col += yyleng; }
+<COMMENT2><<EOF>>          { addError("E107", "Unterminated comment.", g_comment_start_line, g_comment_start_col); BEGIN(INITIAL); return 0; }
 
 ":="                       { EMIT_TOKEN(T_ASSIGN, ":="); }
 "<="                       { EMIT_TOKEN(T_LESS_EQUAL, "<="); }
