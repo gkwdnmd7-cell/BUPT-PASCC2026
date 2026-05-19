@@ -1391,7 +1391,7 @@ CodegenResult CodeGenerator::generateTemplate(const std::string& inputPath) cons
     out << "static float  pas_read_real(void)   { float v = 0.0f; (void)scanf(\"%f\", &v); return v; }\n";
     out << "static char   pas_read_char(void)   { char v = 0; (void)scanf(\" %c\", &v); return v; }\n";
     out << "static void   pas_write_int(int v)  { (void)printf(\"%d\", v); }\n";
-    out << "static void   pas_write_real(float v)  { (void)printf(\"%g\", (double)v); }\n";
+    out << "static void   pas_write_real(float v)  { char _b[64]; int _i=0,_d=0,_e=0; snprintf(_b,sizeof(_b),\"%g\",v); for(;_b[_i];_i++){if(_b[_i]=='.')_d=1;if(_b[_i]=='e'||_b[_i]=='E')_e=1;} if(!_d&&!_e){_b[_i++]='.';_b[_i++]='0';_b[_i++]='0';_b[_i++]='0';_b[_i++]='0';_b[_i++]='0';_b[_i++]='0';_b[_i]=0;} (void)printf(\"%s\",_b); }\n";
     out << "static void   pas_write_char(char v)   { (void)printf(\"%c\", v); }\n";
     out << "static void   pas_writeln(void)     { (void)printf(\"\\n\"); }\n\n";
 
