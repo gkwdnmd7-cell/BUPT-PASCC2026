@@ -135,6 +135,7 @@ subprogram_head
 formal_parameter
     : /* empty */
     | T_LPAREN parameter_lists T_RPAREN
+    | T_LPAREN T_RPAREN
     ;
 
 parameter_lists
@@ -185,6 +186,7 @@ stmt
     | read_stmt
     | write_stmt
     | error { yyerrok; }
+    | /* empty */
     ;
 
 identifier_stmt
@@ -234,7 +236,7 @@ while_stmt
     ;
 
 repeat_stmt
-    : T_REPEAT statement_list T_UNTIL expression
+    : T_REPEAT statement_list_opt T_UNTIL expression
     ;
 
 for_stmt
@@ -303,8 +305,6 @@ relop
 
 simple_expression
     : term
-    | T_PLUS term
-    | T_MINUS term
     | simple_expression addop term
     ;
 
@@ -333,6 +333,8 @@ factor
     | T_IDENTIFIER T_LPAREN expression_list_opt T_RPAREN
     | T_LPAREN expression T_RPAREN
     | T_NOT factor
+    | T_MINUS factor
+    | T_PLUS factor
     | T_CHAR
     | T_BOOLEAN
     ;

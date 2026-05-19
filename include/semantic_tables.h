@@ -86,9 +86,14 @@ public:
 
     const std::vector<RoutineParameter>& parameters() const { return parameters_; }
 
+    void setReturnType(std::shared_ptr<BasicType> t) { returnType_ = std::move(t); }
+
+    const std::shared_ptr<BasicType>& returnType() const { return returnType_; }
+
 private:
     RoutineKind routineKind_;
     std::vector<RoutineParameter> parameters_;
+    std::shared_ptr<BasicType> returnType_;
 };
 
 template <typename T>

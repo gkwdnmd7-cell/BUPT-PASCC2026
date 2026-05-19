@@ -1,6 +1,6 @@
 #include "compiler_driver.h"
 
-#include <filesystem>
+#include <cctype>
 #include <fstream>
 #include <sstream>
 
@@ -11,24 +11,16 @@
 #include "code_generator.h"
 #include "semantic_declaration.h"
 
-namespace fs = std::filesystem;
-
 int CompilerDriver::run(const std::string& inputPath) {
     if (!hasPasExtension(inputPath)) {
         logutil::error("E001", "Input file must have .pas extension: " + inputPath);
         return toExitCode(ErrorCode::InvalidExtension);
     }
 
-    fs::path source(inputPath);
-    if (!fs::exists(source)) {
-        logutil::error("E002", "Input file does not exist: " + inputPath);
-        return toExitCode(ErrorCode::InputNotFound);
-    }
-
-    std::ifstream in(source);
+    std::ifstream in(inputPath);
     if (!in.good()) {
-        logutil::error("E003", "Input file is not readable: " + inputPath);
-        return toExitCode(ErrorCode::InputUnreadable);
+        logutil::error("E002", "Input file does not exist or is not readable: " + inputPath);
+        return toExitCode(ErrorCode::InputNotFound);
     }
 
     std::ostringstream buffer;
@@ -82,7 +74,7 @@ int CompilerDriver::run(const std::string& inputPath) {
 
     out << codegenResult.cSource;
 
-    logutil::info("Input:  " + source.string());
+    logutil::info("Input:  " + inputPath);
     logutil::info("Output: " + outputPath);
     logutil::info("Tokenized items: " + std::to_string(lexResult.tokens.size()));
     logutil::info("Syntax stage: passed");
@@ -92,12 +84,22 @@ int CompilerDriver::run(const std::string& inputPath) {
 }
 
 std::string CompilerDriver::deriveOutputPath(const std::string& inputPath) {
-    fs::path source(inputPath);
-    source.replace_extension(".c");
-    return source.string();
+    // Replace .pas (case-insensitive) with .c
+    std::string result = inputPath;
+    const std::string ext = ".pas";
+    if (result.size() >= ext.size()) {
+        std::string tail = result.substr(result.size() - ext.size());
+        for (auto& c : tail) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+        if (tail == ext) {
+            result.replace(result.size() - ext.size(), ext.size(), ".c");
+        }
+    }
+    return result;
 }
 
 bool CompilerDriver::hasPasExtension(const std::string& path) {
-    fs::path p(path);
-    return p.has_extension() && p.extension() == ".pas";
+    if (path.size() < 4) return false;
+    std::string tail = path.substr(path.size() - 4);
+    for (auto& c : tail) c = static_cast<char>(std::tolower(static_cast<unsigned char>(c)));
+    return tail == ".pas";
 }

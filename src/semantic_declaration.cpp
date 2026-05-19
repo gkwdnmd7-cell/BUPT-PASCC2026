@@ -109,7 +109,60 @@ private:
                 current().type == TokenType::KwFunction || current().type == TokenType::KwBegin) {
                 return;
             }
+
+            if (current().type != TokenType::Identifier) {
+                advance();
+                continue;
+            }
+
+            const Token nameTok = current();
             advance();
+
+            if (!match(TokenType::Equal)) {
+                while (!isAtEnd() && current().type != TokenType::Semicolon &&
+                       current().type != TokenType::KwVar && current().type != TokenType::KwBegin) {
+                    advance();
+                }
+                match(TokenType::Semicolon);
+                continue;
+            }
+
+            // Determine type from const value
+            std::shared_ptr<BasicType> constType = builtins_.integer();
+            if (current().type == TokenType::RealLiteral) {
+                constType = builtins_.real();
+            } else if (current().type == TokenType::CharLiteral) {
+                constType = builtins_.character();
+            } else if (current().type == TokenType::BooleanLiteral) {
+                constType = builtins_.boolean();
+            } else if (current().type == TokenType::Plus || current().type == TokenType::Minus) {
+                advance();
+                if (current().type == TokenType::RealLiteral) {
+                    constType = builtins_.real();
+                }
+            } else if (current().type == TokenType::Identifier) {
+                // Const defined as another identifier — inherit type if known
+                auto sym = scopes_.current()->searchEntry<VariableSymbol>(current().lexeme, nullptr);
+                if (sym != nullptr) {
+                    auto bt = std::dynamic_pointer_cast<BasicType>(sym->type());
+                    if (bt != nullptr) {
+                        constType = bt;
+                    }
+                }
+            }
+
+            // Register the constant as a read-only variable in the current scope
+            auto variable = std::make_shared<VariableSymbol>(nameTok.lexeme, constType);
+            auto* mutableScope = const_cast<TableSet*>(scopes_.current());
+            mutableScope->insert(nameTok.lexeme, std::move(variable));
+
+            // Advance to the next semicolon
+            while (!isAtEnd() && current().type != TokenType::Semicolon &&
+                   current().type != TokenType::KwVar && current().type != TokenType::KwBegin &&
+                   current().type != TokenType::KwProcedure && current().type != TokenType::KwFunction) {
+                advance();
+            }
+            match(TokenType::Semicolon);
         }
     }
 
@@ -191,7 +244,15 @@ private:
         }
 
         if (isFunction && match(TokenType::Colon)) {
-            parseTypeNameAndAdvance();
+            const std::string retTypeName = parseTypeNameAndAdvance();
+            if (routine != nullptr && !retTypeName.empty()) {
+                bool local = false;
+                const TableSet* scope = scopes_.current();
+                if (scope != nullptr) {
+                    auto rt = std::dynamic_pointer_cast<BasicType>(scope->searchEntry<TypeTemplate>(retTypeName, &local));
+                    routine->setReturnType(rt);
+                }
+            }
         }
 
         match(TokenType::Semicolon);
@@ -316,6 +377,18 @@ private:
     }
 
     std::string parseTypeNameAndAdvance() {
+        if (current().type == TokenType::KwArray) {
+            advance();  // consume 'array'
+            if (match(TokenType::LBracket)) {
+                while (!isAtEnd() && current().type != TokenType::RBracket) {
+                    advance();
+                }
+                match(TokenType::RBracket);
+            }
+            match(TokenType::KwOf);
+            return parseTypeNameAndAdvance();  // element type
+        }
+
         std::string typeName;
         if (current().type == TokenType::KwInteger) {
             typeName = "integer";
@@ -443,12 +516,19 @@ private:
             advance();
             return builtins_.boolean();
         }
-        if (current().type == TokenType::Not) {
-            const SourcePosition pos = current().pos;
+        if (current().type == TokenType::Minus || current().type == TokenType::Plus) {
             advance();
             auto t = parseFactorType();
-            if (!isBooleanType(t)) {
-                result_.errors.push_back(SemanticError{"S201", "Operator 'not' requires boolean operand.", pos});
+            if (t != nullptr && !isNumericType(t)) {
+                // non-numeric unary — just pass through type
+            }
+            return t ? t : builtins_.integer();
+        }
+        if (current().type == TokenType::Not) {
+            advance();
+            auto t = parseFactorType();
+            if (isIntegerType(t)) {
+                return builtins_.integer();
             }
             return builtins_.boolean();
         }
@@ -833,10 +913,15 @@ private:
             return nullptr;
         }
         auto variable = std::dynamic_pointer_cast<VariableSymbol>(symbol);
-        if (variable == nullptr) {
-            return nullptr;
+        if (variable != nullptr) {
+            return std::dynamic_pointer_cast<BasicType>(variable->type());
         }
-        return std::dynamic_pointer_cast<BasicType>(variable->type());
+        auto routine = std::dynamic_pointer_cast<RoutineSymbol>(symbol);
+        if (routine != nullptr && routine->routineKind() == RoutineSymbol::RoutineKind::Function) {
+            auto rt = routine->returnType();
+            return rt ? rt : builtins_.integer();
+        }
+        return nullptr;
     }
 
     std::shared_ptr<BasicType> resolveBasicTypeByName(const std::string& typeName, const SourcePosition& pos) {

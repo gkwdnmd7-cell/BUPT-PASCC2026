@@ -136,6 +136,7 @@ int pasccLexerCurrentColumn() {
 [ \t\r]+                   { g_col += yyleng; }
 \n                         { ++g_line; g_col = 1; }
 
+"//"[^\n]*                 { g_col += yyleng; }
 "{"                        { g_comment_start_line = g_line; g_comment_start_col = g_col; g_col += yyleng; BEGIN(COMMENT); }
 <COMMENT>"{"               { addError("E106", "Nested comment is not allowed.", g_line, g_col); g_col += yyleng; }
 <COMMENT>"}"               { g_col += yyleng; BEGIN(INITIAL); }
@@ -178,12 +179,9 @@ int pasccLexerCurrentColumn() {
                              g_col += yyleng;
                            }
 
-[A-Za-z][A-Za-z0-9]*       {
+[A-Za-z_][A-Za-z0-9_]*     {
                              const std::string lowered = toLower(yytext, yyleng);
                              const int token = keywordOrIdentifier(lowered);
-                             if (token == T_IDENTIFIER && yyleng > 8) {
-                                 addError("E105", "Identifier length exceeds 8 characters: " + std::string(yytext, static_cast<std::size_t>(yyleng)), g_line, g_col);
-                             }
                              EMIT_TOKEN(token, lowered);
                            }
 

@@ -55,7 +55,9 @@ target_include_directories(lexer_frontend PUBLIC
     include
     ${CMAKE_CURRENT_BINARY_DIR}
 )
-target_compile_definitions(lexer_frontend PRIVATE YY_NO_UNISTD_H=1)
+if(WIN32)
+    target_compile_definitions(lexer_frontend PRIVATE YY_NO_UNISTD_H=1)
+endif()
 
 add_executable(pascc
     src/main.cpp
@@ -67,6 +69,11 @@ add_executable(pascc
 
 target_include_directories(pascc PRIVATE include)
 target_link_libraries(pascc PRIVATE parser_bison lexer_frontend)
+
+# Fully static link so the binary runs on systems with older glibc/libstdc++
+if(NOT WIN32)
+    target_link_options(pascc PRIVATE -static -static-libstdc++ -static-libgcc)
+endif()
 
 add_executable(lexer_smoke_tests
     tests/lexer_smoke_tests.cpp
