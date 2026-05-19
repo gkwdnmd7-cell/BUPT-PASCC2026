@@ -10,6 +10,7 @@ void yyerror(const char* msg);
 %token T_PROGRAM T_CONST T_TYPE T_VAR T_PROCEDURE T_FUNCTION T_BEGIN T_END T_IF T_THEN T_ELSE
 %token T_CASE T_WHILE T_REPEAT T_UNTIL T_FOR T_TO T_DOWNTO T_DO
 %token T_READ T_READLN T_WRITE T_WRITELN
+%token T_BREAK T_CONTINUE T_EXIT
 %token T_RECORD T_ARRAY T_OF T_TYPE_INTEGER T_TYPE_REAL T_TYPE_BOOLEAN T_TYPE_CHAR
 %token T_PLUS T_MINUS T_MULTIPLY T_DIVIDE T_DIV T_MOD T_AND T_OR T_NOT
 %token T_ASSIGN T_EQUAL T_NOT_EQUAL T_LESS T_LESS_EQUAL T_GREATER T_GREATER_EQUAL
@@ -186,8 +187,24 @@ stmt
     | for_stmt
     | read_stmt
     | write_stmt
+    | break_stmt
+    | continue_stmt
+    | exit_stmt
     | error { yyerrok; }
     | /* empty */
+    ;
+
+break_stmt
+    : T_BREAK
+    ;
+
+continue_stmt
+    : T_CONTINUE
+    ;
+
+exit_stmt
+    : T_EXIT
+    | T_EXIT T_LPAREN expression T_RPAREN
     ;
 
 identifier_stmt

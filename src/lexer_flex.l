@@ -84,6 +84,9 @@ static int keywordOrIdentifier(const std::string& lowered) {
         {"not", T_NOT},
         {"true", T_BOOLEAN},
         {"false", T_BOOLEAN},
+        {"break", T_BREAK},
+        {"continue", T_CONTINUE},
+        {"exit", T_EXIT},
     };
     auto it = kKeywords.find(lowered);
     if (it != kKeywords.end()) {

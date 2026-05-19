@@ -78,6 +78,9 @@ TokenType mapBisonTokenToInternal(int token) {
         case T_COLON: return TokenType::Colon;
         case T_DOT: return TokenType::Dot;
         case T_DOTDOT: return TokenType::DotDot;
+        case T_BREAK: return TokenType::KwBreak;
+        case T_CONTINUE: return TokenType::KwContinue;
+        case T_EXIT: return TokenType::KwExit;
         default: return TokenType::Unknown;
     }
 }

@@ -1021,6 +1021,32 @@ void parseSingleStatement(const std::vector<Token>& tokens, std::size_t& i, CSta
         return;
     }
 
+    if (tokens[i].type == TokenType::KwBreak) {
+        emitStatementLine(out, indentLevel, "break;");
+        ++i;
+        return;
+    }
+
+    if (tokens[i].type == TokenType::KwContinue) {
+        emitStatementLine(out, indentLevel, "continue;");
+        ++i;
+        return;
+    }
+
+    if (tokens[i].type == TokenType::KwExit) {
+        ++i;
+        if (i < tokens.size() && tokens[i].type == TokenType::LParen) {
+            ++i; // skip '('
+            std::string expr = parseExpressionUntil(tokens, i, {TokenType::RParen},
+                                                    ctx.funcNames, ctx.varParams, ctx.routineByRef);
+            if (i < tokens.size() && tokens[i].type == TokenType::RParen) ++i;
+            emitStatementLine(out, indentLevel, "return " + expr + ";");
+        } else {
+            emitStatementLine(out, indentLevel, "return;");
+        }
+        return;
+    }
+
     if (tokens[i].type == TokenType::Identifier) {
         // Determine if this is an assignment (possibly with subscripts) or a call
         const std::size_t assignIdx = findAssignIndex(tokens, i);

@@ -71,6 +71,9 @@ enum class TokenType {
     Colon,
     Dot,
     DotDot,
+    KwBreak,
+    KwContinue,
+    KwExit,
 };
 
 struct SourcePosition {
