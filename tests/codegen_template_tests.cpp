@@ -60,7 +60,7 @@ int main() {
         ok &= expect(result.ok, "codegen_routines_basic_ok");
         ok &= expect(contains(result.cSource, "void inc1(int a) {"), "codegen_routines_procedure_decl");
         ok &= expect(contains(result.cSource, "int add1(int v) {"), "codegen_routines_function_decl");
-        ok &= expect(contains(result.cSource, "return v + 1;"), "codegen_routines_function_return");
+        ok &= expect(contains(result.cSource, "__ret_add1 = v + 1;"), "codegen_routines_function_return");
         ok &= expect(contains(result.cSource, "inc1(2);"), "codegen_routines_procedure_call");
         ok &= expect(contains(result.cSource, "x = add1 ( x );"), "codegen_routines_function_call_expr");
     }
@@ -70,7 +70,7 @@ int main() {
         ok &= expect(result.ok, "codegen_realmap_basic_ok");
         ok &= expect(contains(result.cSource, "float x = 0;"), "codegen_realmap_global_real_decl");
         ok &= expect(contains(result.cSource, "float addh(float v) {"), "codegen_realmap_function_real_signature");
-        ok &= expect(contains(result.cSource, "return v + 0.5;"), "codegen_realmap_function_real_return");
+        ok &= expect(contains(result.cSource, "__ret_addh = v + 0.5;"), "codegen_realmap_function_real_return");
         ok &= expect(contains(result.cSource, "x = 1.25;"), "codegen_realmap_real_literal_assign");
         ok &= expect(contains(result.cSource, "x = addh ( x );"), "codegen_realmap_call_expr");
     }

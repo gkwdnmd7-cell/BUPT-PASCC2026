@@ -46,10 +46,12 @@ struct RoutineDecl {
     std::vector<RoutineParam> params;
     std::vector<VarDecl> localDecls;
     std::vector<std::string> body;
+    std::string retVarName;  // "__ret_funcname" for functions; empty for procedures
 };
 
 struct StatementContext {
     std::string currentFunctionName;
+    std::string currentFunctionRetVar;  // "__ret_funcname"; empty for procedures
     const std::unordered_set<std::string>* funcNames = nullptr;
     const std::unordered_map<std::string, std::string>* typeMap = nullptr;
     const std::unordered_set<std::string>* varParams = nullptr;
@@ -221,7 +223,8 @@ std::string parseExpressionUntil(const std::vector<Token>& tokens, std::size_t& 
                                   const std::vector<TokenType>& stopTokens,
                                   const std::unordered_set<std::string>* funcNames = nullptr,
                                   const std::unordered_set<std::string>* varParams = nullptr,
-                                  const std::unordered_map<std::string, std::vector<bool>>* routineByRef = nullptr) {
+                                  const std::unordered_map<std::string, std::vector<bool>>* routineByRef = nullptr,
+                                  const std::string& currentFuncRetVar = "") {
     std::vector<std::string> pieces;
     int parenDepth = 0;
     int bracketDepth = 0;
@@ -291,7 +294,7 @@ std::string parseExpressionUntil(const std::vector<Token>& tokens, std::size_t& 
                                tokens[i].type != TokenType::EndOfFile) {
                             std::string arg = parseExpressionUntil(tokens, i,
                                 {TokenType::Comma, TokenType::RParen},
-                                funcNames, varParams, routineByRef);
+                                funcNames, varParams, routineByRef, currentFuncRetVar);
                             const bool isVarPos = argIdx < byRef.size() && byRef[argIdx];
                             callArgs.push_back(isVarPos && !arg.empty() ? "& " + arg : arg);
                             ++argIdx;
@@ -311,10 +314,16 @@ std::string parseExpressionUntil(const std::vector<Token>& tokens, std::size_t& 
                 }
             }
 
-            // No-arg function called without parens
-            // (e.g. Pascal "write(ififElse)" should become "write(ififElse())" in C).
+            // No-arg function called without parens.
+            // Special case: if nm is the current function's name used without parens
+            // inside its own body, it refers to the return value variable, not a recursive call.
             if (!nextIsLParen && funcNames != nullptr && funcNames->count(nm) > 0) {
-                pieces.push_back(nm + "()");
+                if (!currentFuncRetVar.empty() && currentFuncRetVar.size() > 6 &&
+                    nm == currentFuncRetVar.substr(6)) {
+                    pieces.push_back(currentFuncRetVar);
+                } else {
+                    pieces.push_back(nm + "()");
+                }
                 ++i;
                 continue;
             }
@@ -439,9 +448,13 @@ std::vector<VarDecl> parseGlobalVarDecls(const std::vector<Token>& tokens) {
     std::vector<VarDecl> decls;
     std::size_t i = 0;
 
+    // Only look for the global-level var section, which must appear before
+    // any procedure/function definitions in a well-structured Pascal program.
     while (i < tokens.size() &&
            tokens[i].type != TokenType::KwVar &&
            tokens[i].type != TokenType::KwBegin &&
+           tokens[i].type != TokenType::KwProcedure &&
+           tokens[i].type != TokenType::KwFunction &&
            tokens[i].type != TokenType::EndOfFile) {
         ++i;
     }
@@ -615,7 +628,8 @@ void parseIfStatement(const std::vector<Token>& tokens, std::size_t& i, CStateme
                       const StatementContext& ctx) {
     ++i;  // consume 'if'
     const std::string cond = parseExpressionUntil(tokens, i, {TokenType::KwThen},
-                                                   ctx.funcNames, ctx.varParams, ctx.routineByRef);
+                                                   ctx.funcNames, ctx.varParams, ctx.routineByRef,
+                                                   ctx.currentFunctionRetVar);
     if (i < tokens.size() && tokens[i].type == TokenType::KwThen) ++i;
 
     emitStatementLine(out, indentLevel, "if (" + (cond.empty() ? "0" : cond) + ") {");
@@ -634,7 +648,8 @@ void parseWhileStatement(const std::vector<Token>& tokens, std::size_t& i, CStat
                          const StatementContext& ctx) {
     ++i;  // consume 'while'
     const std::string cond = parseExpressionUntil(tokens, i, {TokenType::KwDo},
-                                                   ctx.funcNames, ctx.varParams, ctx.routineByRef);
+                                                   ctx.funcNames, ctx.varParams, ctx.routineByRef,
+                                                   ctx.currentFunctionRetVar);
     if (i < tokens.size() && tokens[i].type == TokenType::KwDo) ++i;
 
     emitStatementLine(out, indentLevel, "while (" + (cond.empty() ? "0" : cond) + ") {");
@@ -654,7 +669,7 @@ void parseForStatement(const std::vector<Token>& tokens, std::size_t& i, CStatem
 
     const std::string beginExpr = parseExpressionUntil(tokens, i,
         {TokenType::KwTo, TokenType::KwDownTo, TokenType::KwDo},
-        ctx.funcNames, ctx.varParams, ctx.routineByRef);
+        ctx.funcNames, ctx.varParams, ctx.routineByRef, ctx.currentFunctionRetVar);
 
     bool isDownTo = false;
     if (i < tokens.size() && (tokens[i].type == TokenType::KwTo || tokens[i].type == TokenType::KwDownTo)) {
@@ -662,7 +677,8 @@ void parseForStatement(const std::vector<Token>& tokens, std::size_t& i, CStatem
         ++i;
     }
     const std::string endExpr = parseExpressionUntil(tokens, i, {TokenType::KwDo},
-                                                      ctx.funcNames, ctx.varParams, ctx.routineByRef);
+                                                      ctx.funcNames, ctx.varParams, ctx.routineByRef,
+                                                      ctx.currentFunctionRetVar);
     if (i < tokens.size() && tokens[i].type == TokenType::KwDo) ++i;
 
     const std::string var   = loopVar.empty() ? "i" : loopVar;
@@ -689,7 +705,7 @@ void parseRepeatStatement(const std::vector<Token>& tokens, std::size_t& i, CSta
     if (i < tokens.size() && tokens[i].type == TokenType::KwUntil) ++i;
     const std::string cond = parseExpressionUntil(tokens, i,
         {TokenType::Semicolon, TokenType::KwEnd, TokenType::KwElse},
-        ctx.funcNames, ctx.varParams, ctx.routineByRef);
+        ctx.funcNames, ctx.varParams, ctx.routineByRef, ctx.currentFunctionRetVar);
 
     emitStatementLine(out, indentLevel, "} while (!(" + (cond.empty() ? "0" : cond) + "));");
 }
@@ -702,7 +718,8 @@ void parseCaseStatement(const std::vector<Token>& tokens, std::size_t& i, CState
                         int indentLevel, const StatementContext& ctx) {
     ++i;  // consume 'case'
     const std::string expr = parseExpressionUntil(tokens, i, {TokenType::KwOf},
-                                                   ctx.funcNames, ctx.varParams, ctx.routineByRef);
+                                                   ctx.funcNames, ctx.varParams, ctx.routineByRef,
+                                                   ctx.currentFunctionRetVar);
     if (i < tokens.size() && tokens[i].type == TokenType::KwOf) ++i;
 
     emitStatementLine(out, indentLevel, "switch (" + (expr.empty() ? "0" : expr) + ") {");
@@ -759,7 +776,8 @@ void parseCaseStatement(const std::vector<Token>& tokens, std::size_t& i, CState
 std::vector<std::string> parseExprList(const std::vector<Token>& tokens, std::size_t& i,
                                         const std::unordered_set<std::string>* funcNames = nullptr,
                                         const std::unordered_set<std::string>* varParams = nullptr,
-                                        const std::unordered_map<std::string, std::vector<bool>>* routineByRef = nullptr) {
+                                        const std::unordered_map<std::string, std::vector<bool>>* routineByRef = nullptr,
+                                        const std::string& currentFuncRetVar = "") {
     std::vector<std::string> exprs;
     if (i >= tokens.size() || tokens[i].type != TokenType::LParen) {
         return exprs;
@@ -768,7 +786,7 @@ std::vector<std::string> parseExprList(const std::vector<Token>& tokens, std::si
 
     while (i < tokens.size() && tokens[i].type != TokenType::RParen && tokens[i].type != TokenType::EndOfFile) {
         const std::string expr = parseExpressionUntil(tokens, i, {TokenType::Comma, TokenType::RParen},
-                                                       funcNames, varParams, routineByRef);
+                                                       funcNames, varParams, routineByRef, currentFuncRetVar);
         if (!expr.empty()) {
             exprs.push_back(expr);
         }
@@ -782,25 +800,33 @@ std::vector<std::string> parseExprList(const std::vector<Token>& tokens, std::si
 void parseReadStatement(const std::vector<Token>& tokens, std::size_t& i, CStatements& out,
                         int indentLevel, const StatementContext& ctx) {
     ++i;  // consume read/readln
-    const auto args = parseExprList(tokens, i, ctx.funcNames, ctx.varParams, ctx.routineByRef);
+    const auto args = parseExprList(tokens, i, ctx.funcNames, ctx.varParams, ctx.routineByRef,
+                                    ctx.currentFunctionRetVar);
     for (const auto& arg : args) {
+        // If the arg resolved to the current function's return variable, use it directly.
+        std::string effectiveArg = arg;
+        if (!ctx.currentFunctionRetVar.empty() && arg == ctx.currentFunctionRetVar) {
+            effectiveArg = ctx.currentFunctionRetVar;
+        }
         // Determine scanf format from type map
         std::string fmt = "%d";
         if (ctx.typeMap != nullptr) {
-            std::string key = arg;
+            std::string key = effectiveArg;
             // Strip array subscript for lookup: arr[i] → arr
             const auto bracket = key.find('[');
             if (bracket != std::string::npos) {
                 key = key.substr(0, bracket);
                 while (!key.empty() && key.back() == ' ') key.pop_back();
             }
+            // Strip leading * for by-ref params
+            if (!key.empty() && key.front() == '(') key = key.substr(1);
             auto it = ctx.typeMap->find(key);
             if (it != ctx.typeMap->end()) {
                 if (it->second == "float")  fmt = "%f";
                 else if (it->second == "char") fmt = " %c";
             }
         }
-        emitStatementLine(out, indentLevel, "scanf(\"" + fmt + "\", &" + arg + ");");
+        emitStatementLine(out, indentLevel, "scanf(\"" + fmt + "\", &" + effectiveArg + ");");
     }
 }
 
@@ -852,7 +878,8 @@ std::string inferWriteType(const std::string& expr,
 std::vector<std::string> parseWriteArgList(const std::vector<Token>& tokens, std::size_t& i,
                                             const std::unordered_set<std::string>* funcNames,
                                             const std::unordered_set<std::string>* varParams,
-                                            const std::unordered_map<std::string, std::vector<bool>>* routineByRef) {
+                                            const std::unordered_map<std::string, std::vector<bool>>* routineByRef,
+                                            const std::string& currentFuncRetVar = "") {
     std::vector<std::string> exprs;
     if (i >= tokens.size() || tokens[i].type != TokenType::LParen) return exprs;
     ++i;
@@ -861,14 +888,14 @@ std::vector<std::string> parseWriteArgList(const std::vector<Token>& tokens, std
         // Parse the value expression (stop at , ) :)
         const std::string expr = parseExpressionUntil(tokens, i,
             {TokenType::Comma, TokenType::RParen, TokenType::Colon},
-            funcNames, varParams, routineByRef);
+            funcNames, varParams, routineByRef, currentFuncRetVar);
         // Skip Pascal format specifier(s): :width[:decimals]
         while (i < tokens.size() && tokens[i].type == TokenType::Colon) {
             ++i;  // skip ':'
             // skip the width/decimal expression
             parseExpressionUntil(tokens, i,
                 {TokenType::Comma, TokenType::RParen, TokenType::Colon},
-                funcNames, varParams, routineByRef);
+                funcNames, varParams, routineByRef, currentFuncRetVar);
         }
         if (!expr.empty()) exprs.push_back(expr);
         if (i < tokens.size() && tokens[i].type == TokenType::Comma) ++i;
@@ -880,7 +907,8 @@ std::vector<std::string> parseWriteArgList(const std::vector<Token>& tokens, std
 void parseWriteStatement(const std::vector<Token>& tokens, std::size_t& i, CStatements& out, int indentLevel,
                          bool withNewline, const StatementContext& ctx) {
     ++i;  // consume write/writeln
-    const auto args = parseWriteArgList(tokens, i, ctx.funcNames, ctx.varParams, ctx.routineByRef);
+    const auto args = parseWriteArgList(tokens, i, ctx.funcNames, ctx.varParams, ctx.routineByRef,
+                                        ctx.currentFunctionRetVar);
 
     for (const auto& arg : args) {
         const std::string wtype = inferWriteType(arg, ctx.typeMap);
@@ -930,11 +958,17 @@ void parseAssignmentStatement(const std::vector<Token>& tokens, std::size_t& i, 
     const std::string lhs = collectLhsUntilAssign(tokens, i);
     const std::string rhs = parseExpressionUntil(tokens, i,
         {TokenType::Semicolon, TokenType::KwEnd, TokenType::KwElse},
-        ctx.funcNames, ctx.varParams, ctx.routineByRef);
+        ctx.funcNames, ctx.varParams, ctx.routineByRef, ctx.currentFunctionRetVar);
 
-    // Detect function-return assignment: funcname := expr → return expr;
+    // Detect function-return assignment: funcname := expr → __ret_funcname = expr;
+    // (We use a local return variable instead of "return expr" to allow Pascal-style
+    // intermediate assignments without exiting the function immediately.)
     if (!ctx.currentFunctionName.empty() && lhs == ctx.currentFunctionName) {
-        emitStatementLine(out, indentLevel, "return " + (rhs.empty() ? "0" : rhs) + ";");
+        if (!ctx.currentFunctionRetVar.empty()) {
+            emitStatementLine(out, indentLevel, ctx.currentFunctionRetVar + " = " + (rhs.empty() ? "0" : rhs) + ";");
+        } else {
+            emitStatementLine(out, indentLevel, "return " + (rhs.empty() ? "0" : rhs) + ";");
+        }
         return;
     }
 
@@ -971,7 +1005,7 @@ void parseCallStatement(const std::vector<Token>& tokens, std::size_t& i, CState
                    tokens[i].type != TokenType::EndOfFile) {
                 std::string arg = parseExpressionUntil(tokens, i,
                     {TokenType::Comma, TokenType::RParen},
-                    ctx.funcNames, ctx.varParams, ctx.routineByRef);
+                    ctx.funcNames, ctx.varParams, ctx.routineByRef, ctx.currentFunctionRetVar);
                 const bool isVarPos = argIdx < byRef.size() && byRef[argIdx];
                 callArgs.push_back(isVarPos && !arg.empty() ? "& " + arg : arg);
                 ++argIdx;
@@ -990,7 +1024,8 @@ void parseCallStatement(const std::vector<Token>& tokens, std::size_t& i, CState
             return;
         }
 
-        const auto args = parseExprList(tokens, i, ctx.funcNames, ctx.varParams, ctx.routineByRef);
+        const auto args = parseExprList(tokens, i, ctx.funcNames, ctx.varParams, ctx.routineByRef,
+                                        ctx.currentFunctionRetVar);
         emitStatementLine(out, indentLevel, name + "(" + [&]() {
             std::ostringstream o;
             for (std::size_t k = 0; k < args.size(); ++k) {
@@ -1009,16 +1044,20 @@ void parseCallStatement(const std::vector<Token>& tokens, std::size_t& i, CState
 std::size_t findAssignIndex(const std::vector<Token>& tokens, std::size_t start) {
     std::size_t j = start;
     int bracketDepth = 0;
+    int parenDepth = 0;
     while (j < tokens.size()) {
         if (tokens[j].type == TokenType::LBracket) { ++bracketDepth; ++j; continue; }
         if (tokens[j].type == TokenType::RBracket) { --bracketDepth; ++j; continue; }
+        if (tokens[j].type == TokenType::LParen)   { ++parenDepth;   ++j; continue; }
+        if (tokens[j].type == TokenType::RParen)   { --parenDepth;   ++j; continue; }
         if (tokens[j].type == TokenType::Dot) { j += 2; continue; }
-        if (bracketDepth == 0 && tokens[j].type == TokenType::Assign) return j;
-        if (tokens[j].type == TokenType::Semicolon || tokens[j].type == TokenType::KwEnd ||
-            tokens[j].type == TokenType::KwElse || tokens[j].type == TokenType::KwThen ||
-            tokens[j].type == TokenType::KwDo || tokens[j].type == TokenType::EndOfFile ||
-            tokens[j].type == TokenType::LParen) {
-            return tokens.size();
+        if (bracketDepth == 0 && parenDepth == 0) {
+            if (tokens[j].type == TokenType::Assign) return j;
+            if (tokens[j].type == TokenType::Semicolon || tokens[j].type == TokenType::KwEnd ||
+                tokens[j].type == TokenType::KwElse || tokens[j].type == TokenType::KwThen ||
+                tokens[j].type == TokenType::KwDo || tokens[j].type == TokenType::EndOfFile) {
+                return tokens.size();
+            }
         }
         ++j;
     }
@@ -1092,7 +1131,8 @@ void parseSingleStatement(const std::vector<Token>& tokens, std::size_t& i, CSta
         if (i < tokens.size() && tokens[i].type == TokenType::LParen) {
             ++i; // skip '('
             std::string expr = parseExpressionUntil(tokens, i, {TokenType::RParen},
-                                                    ctx.funcNames, ctx.varParams, ctx.routineByRef);
+                                                    ctx.funcNames, ctx.varParams, ctx.routineByRef,
+                                                    ctx.currentFunctionRetVar);
             if (i < tokens.size() && tokens[i].type == TokenType::RParen) ++i;
             emitStatementLine(out, indentLevel, "return " + expr + ";");
         } else {
@@ -1266,8 +1306,27 @@ bool parseRoutineAt(const std::vector<Token>& tokens, std::size_t start, Routine
         if (p.byRef) routineVarParams.insert(p.name);
     }
 
+    // For functions, create a return-value variable "__ret_funcname" so that
+    // Pascal's "funcname := expr" and "read(funcname)" patterns work correctly
+    // without immediately exiting the function.
+    const std::string retVarName = routine.isFunction ? ("__ret_" + routine.name) : std::string{};
+    if (routine.isFunction) {
+        routine.retVarName = retVarName;
+        // Add the return variable as a local declaration (declared before user locals).
+        const std::string initVal = (routine.returnType == "float") ? "0.0f" :
+                                    (routine.returnType == "char")  ? "'\\0'" : "0";
+        routine.localDecls.insert(routine.localDecls.begin(),
+            VarDecl{retVarName, routine.returnType, false, "", "", 0, ""});
+    }
+
+    // Add the return var to local type map so inferWriteType etc. can look it up.
+    if (!retVarName.empty()) {
+        localTypeMap[retVarName] = routine.returnType;
+    }
+
     StatementContext routineCtx;
     routineCtx.currentFunctionName = routine.isFunction ? routine.name : std::string{};
+    routineCtx.currentFunctionRetVar = retVarName;
     routineCtx.funcNames = baseCtx.funcNames;
     routineCtx.typeMap = &localTypeMap;
     routineCtx.varParams = routineVarParams.empty() ? nullptr : &routineVarParams;
@@ -1276,16 +1335,9 @@ bool parseRoutineAt(const std::vector<Token>& tokens, std::size_t start, Routine
     std::size_t bodyCursor = bodyBeginIndex + 1;
     parseCompoundBody(tokens, bodyCursor, routine.body, 1, routineCtx);
 
-    // Ensure functions always have a return statement
-    bool hasReturn = false;
-    for (const auto& line : routine.body) {
-        if (line.find("return ") != std::string::npos) {
-            hasReturn = true;
-            break;
-        }
-    }
-    if (routine.isFunction && !hasReturn) {
-        routine.body.push_back("    return 0;");
+    // Functions return via the __ret variable; add the return at the end.
+    if (routine.isFunction) {
+        routine.body.push_back("    return " + retVarName + ";");
     }
 
     nextIndex = bodyCursor;
