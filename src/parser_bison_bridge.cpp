@@ -27,6 +27,7 @@ int mapToken(TokenType type) {
         case TokenType::IntegerLiteral: return T_INTEGER;
         case TokenType::RealLiteral: return T_REAL;
         case TokenType::CharLiteral: return T_CHAR;
+        case TokenType::StringLiteral: return T_STRING;
         case TokenType::BooleanLiteral: return T_BOOLEAN;
         case TokenType::KwProgram: return T_PROGRAM;
         case TokenType::KwConst: return T_CONST;
@@ -83,6 +84,9 @@ int mapToken(TokenType type) {
         case TokenType::Colon: return T_COLON;
         case TokenType::Dot: return T_DOT;
         case TokenType::DotDot: return T_DOTDOT;
+        case TokenType::KwBreak: return T_BREAK;
+        case TokenType::KwContinue: return T_CONTINUE;
+        case TokenType::KwExit: return T_EXIT;
         case TokenType::EndOfFile: return 0;
         default: return T_UNKNOWN;
     }

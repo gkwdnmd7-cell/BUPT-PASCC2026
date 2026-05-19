@@ -3,6 +3,7 @@
 %option noinput
 %option prefix="pascclex"
 %x COMMENT
+%x COMMENT2
 
 %{
 #include <cctype>
@@ -83,6 +84,9 @@ static int keywordOrIdentifier(const std::string& lowered) {
         {"not", T_NOT},
         {"true", T_BOOLEAN},
         {"false", T_BOOLEAN},
+        {"break", T_BREAK},
+        {"continue", T_CONTINUE},
+        {"exit", T_EXIT},
     };
     auto it = kKeywords.find(lowered);
     if (it != kKeywords.end()) {
@@ -143,6 +147,11 @@ int pasccLexerCurrentColumn() {
 <COMMENT>\n                { ++g_line; g_col = 1; }
 <COMMENT>.                 { g_col += yyleng; }
 <COMMENT><<EOF>>           { addError("E107", "Unterminated comment.", g_comment_start_line, g_comment_start_col); BEGIN(INITIAL); return 0; }
+"(*"                       { g_comment_start_line = g_line; g_comment_start_col = g_col; g_col += yyleng; BEGIN(COMMENT2); }
+<COMMENT2>"*)"             { g_col += yyleng; BEGIN(INITIAL); }
+<COMMENT2>\n               { ++g_line; g_col = 1; }
+<COMMENT2>.                { g_col += yyleng; }
+<COMMENT2><<EOF>>          { addError("E107", "Unterminated comment.", g_comment_start_line, g_comment_start_col); BEGIN(INITIAL); return 0; }
 
 ":="                       { EMIT_TOKEN(T_ASSIGN, ":="); }
 "<="                       { EMIT_TOKEN(T_LESS_EQUAL, "<="); }
@@ -170,12 +179,13 @@ int pasccLexerCurrentColumn() {
 [0-9]+                     { EMIT_TOKEN(T_INTEGER, std::string(yytext, static_cast<std::size_t>(yyleng))); }
 
 \'([^\\\'\n\r])\'          { EMIT_TOKEN(T_CHAR, std::string(yytext, static_cast<std::size_t>(yyleng))); }
-\'([^\'\n\r]|\\.)*\'       {
-                             addError("E109", "Invalid char literal. Only single non-escaped char is supported.", g_line, g_col);
-                             g_col += yyleng;
+\'([^\'\n\r])*\'           {
+                             /* Multi-char or empty string literal → T_STRING; lexeme = content without quotes */
+                             std::string content(yytext + 1, static_cast<std::size_t>(yyleng - 2));
+                             EMIT_TOKEN(T_STRING, content);
                            }
-\'([^\'\n\r]|\\.)*         {
-                             addError("E109", "Invalid char literal. Only single non-escaped char is supported.", g_line, g_col);
+\'([^\'\n\r])*             {
+                             addError("E109", "Unterminated string literal.", g_line, g_col);
                              g_col += yyleng;
                            }
 

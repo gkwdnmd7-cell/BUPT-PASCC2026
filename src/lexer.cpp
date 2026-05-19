@@ -21,6 +21,7 @@ TokenType mapBisonTokenToInternal(int token) {
         case T_INTEGER: return TokenType::IntegerLiteral;
         case T_REAL: return TokenType::RealLiteral;
         case T_CHAR: return TokenType::CharLiteral;
+        case T_STRING: return TokenType::StringLiteral;
         case T_BOOLEAN: return TokenType::BooleanLiteral;
         case T_PROGRAM: return TokenType::KwProgram;
         case T_CONST: return TokenType::KwConst;
@@ -77,6 +78,9 @@ TokenType mapBisonTokenToInternal(int token) {
         case T_COLON: return TokenType::Colon;
         case T_DOT: return TokenType::Dot;
         case T_DOTDOT: return TokenType::DotDot;
+        case T_BREAK: return TokenType::KwBreak;
+        case T_CONTINUE: return TokenType::KwContinue;
+        case T_EXIT: return TokenType::KwExit;
         default: return TokenType::Unknown;
     }
 }

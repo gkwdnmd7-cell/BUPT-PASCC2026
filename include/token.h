@@ -11,6 +11,7 @@ enum class TokenType {
     IntegerLiteral,
     RealLiteral,
     CharLiteral,
+    StringLiteral,
     BooleanLiteral,
 
     KwProgram,
@@ -70,6 +71,9 @@ enum class TokenType {
     Colon,
     Dot,
     DotDot,
+    KwBreak,
+    KwContinue,
+    KwExit,
 };
 
 struct SourcePosition {
