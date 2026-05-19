@@ -21,6 +21,7 @@ TokenType mapBisonTokenToInternal(int token) {
         case T_INTEGER: return TokenType::IntegerLiteral;
         case T_REAL: return TokenType::RealLiteral;
         case T_CHAR: return TokenType::CharLiteral;
+        case T_STRING: return TokenType::StringLiteral;
         case T_BOOLEAN: return TokenType::BooleanLiteral;
         case T_PROGRAM: return TokenType::KwProgram;
         case T_CONST: return TokenType::KwConst;

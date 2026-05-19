@@ -6,7 +6,7 @@ void yyerror(const char* msg);
 %}
 
 %token T_UNKNOWN
-%token T_IDENTIFIER T_INTEGER T_REAL T_CHAR T_BOOLEAN
+%token T_IDENTIFIER T_INTEGER T_REAL T_CHAR T_STRING T_BOOLEAN
 %token T_PROGRAM T_CONST T_TYPE T_VAR T_PROCEDURE T_FUNCTION T_BEGIN T_END T_IF T_THEN T_ELSE
 %token T_CASE T_WHILE T_REPEAT T_UNTIL T_FOR T_TO T_DOWNTO T_DO
 %token T_READ T_READLN T_WRITE T_WRITELN
@@ -57,6 +57,7 @@ const_value
     | T_MINUS num
     | num
     | T_CHAR
+    | T_STRING
     | T_BOOLEAN
     | T_IDENTIFIER
     | T_PLUS T_IDENTIFIER
@@ -336,6 +337,7 @@ factor
     | T_MINUS factor
     | T_PLUS factor
     | T_CHAR
+    | T_STRING
     | T_BOOLEAN
     ;
 

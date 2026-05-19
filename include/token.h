@@ -11,6 +11,7 @@ enum class TokenType {
     IntegerLiteral,
     RealLiteral,
     CharLiteral,
+    StringLiteral,
     BooleanLiteral,
 
     KwProgram,

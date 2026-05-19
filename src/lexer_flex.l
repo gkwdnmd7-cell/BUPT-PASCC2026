@@ -170,12 +170,13 @@ int pasccLexerCurrentColumn() {
 [0-9]+                     { EMIT_TOKEN(T_INTEGER, std::string(yytext, static_cast<std::size_t>(yyleng))); }
 
 \'([^\\\'\n\r])\'          { EMIT_TOKEN(T_CHAR, std::string(yytext, static_cast<std::size_t>(yyleng))); }
-\'([^\'\n\r]|\\.)*\'       {
-                             addError("E109", "Invalid char literal. Only single non-escaped char is supported.", g_line, g_col);
-                             g_col += yyleng;
+\'([^\'\n\r])*\'           {
+                             /* Multi-char or empty string literal → T_STRING; lexeme = content without quotes */
+                             std::string content(yytext + 1, static_cast<std::size_t>(yyleng - 2));
+                             EMIT_TOKEN(T_STRING, content);
                            }
-\'([^\'\n\r]|\\.)*         {
-                             addError("E109", "Invalid char literal. Only single non-escaped char is supported.", g_line, g_col);
+\'([^\'\n\r])*             {
+                             addError("E109", "Unterminated string literal.", g_line, g_col);
                              g_col += yyleng;
                            }
 

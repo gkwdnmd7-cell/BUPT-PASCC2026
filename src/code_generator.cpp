@@ -147,6 +147,17 @@ std::string tokenToExprPiece(const Token& tok) {
             return tok.lexeme;
         case TokenType::CharLiteral:
             return tok.lexeme;
+        case TokenType::StringLiteral: {
+            // Convert Pascal string content to a C string literal with basic escaping
+            std::string result = "\"";
+            for (char c : tok.lexeme) {
+                if (c == '"') result += "\\\"";
+                else if (c == '\\') result += "\\\\";
+                else result += c;
+            }
+            result += "\"";
+            return result;
+        }
         case TokenType::BooleanLiteral:
             return tok.lexeme == "true" ? "1" : "0";
         case TokenType::Plus:           return "+";
@@ -805,6 +816,10 @@ std::string inferWriteType(const std::string& expr,
     if (!expr.empty() && expr.front() == '\'') {
         return "char";
     }
+    // String literal: starts with double-quote
+    if (!expr.empty() && expr.front() == '"') {
+        return "string";
+    }
     return "int";
 }
 
@@ -819,6 +834,8 @@ void parseWriteStatement(const std::vector<Token>& tokens, std::size_t& i, CStat
             emitStatementLine(out, indentLevel, "pas_write_real(" + arg + ");");
         } else if (wtype == "char") {
             emitStatementLine(out, indentLevel, "pas_write_char(" + arg + ");");
+        } else if (wtype == "string") {
+            emitStatementLine(out, indentLevel, "pas_write_str(" + arg + ");");
         } else {
             emitStatementLine(out, indentLevel, "pas_write_int(" + arg + ");");
         }
@@ -1393,6 +1410,7 @@ CodegenResult CodeGenerator::generateTemplate(const std::string& inputPath) cons
     out << "static void   pas_write_int(int v)  { (void)printf(\"%d\", v); }\n";
     out << "static void   pas_write_real(float v)  { (void)printf(\"%f\", v); }\n";
     out << "static void   pas_write_char(char v)   { (void)printf(\"%c\", v); }\n";
+    out << "static void   pas_write_str(const char* v) { (void)printf(\"%s\", v); }\n";
     out << "static void   pas_writeln(void)     { (void)printf(\"\\n\"); }\n\n";
 
     // Constants: use #define for int/char (needed for switch case labels in C),

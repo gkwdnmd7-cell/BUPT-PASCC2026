@@ -27,6 +27,7 @@ int mapToken(TokenType type) {
         case TokenType::IntegerLiteral: return T_INTEGER;
         case TokenType::RealLiteral: return T_REAL;
         case TokenType::CharLiteral: return T_CHAR;
+        case TokenType::StringLiteral: return T_STRING;
         case TokenType::BooleanLiteral: return T_BOOLEAN;
         case TokenType::KwProgram: return T_PROGRAM;
         case TokenType::KwConst: return T_CONST;
