@@ -113,12 +113,30 @@ std::string parseArrayTypeToC(const std::vector<Token>& tokens, std::size_t& i,
                 ++i;
             }
             if (firstDim) { outLow = low; outHigh = high; firstDim = false; }
-            // Compute dimension size
-            int sz = 1;
-            if (!low.empty() && !high.empty()) {
-                try { sz = std::stoi(high) - std::stoi(low) + 1; } catch (...) {}
+            // Compute dimension size.
+            // Pascal array[low..high] is accessed with indices low..high.
+            // Since we emit arr[i] in C without adjusting i, the C array must have
+            // at least (high + 1) elements (indices 0..high must be valid).
+            // If bounds are numeric literals, compute (high_val + 1).
+            // If bounds involve constant names, emit (high + 1) as a C expression.
+            {
+                bool numericOk = false;
+                if (!high.empty()) {
+                    try {
+                        const int hv = std::stoi(high);
+                        outSuffix += "[" + std::to_string(hv + 1) + "]";
+                        numericOk = true;
+                    } catch (...) {}
+                }
+                if (!numericOk) {
+                    // high is a constant name (e.g. MAXN); emit as a C expression.
+                    if (!high.empty()) {
+                        outSuffix += "[" + high + " + 1]";
+                    } else {
+                        outSuffix += "[1]";
+                    }
+                }
             }
-            outSuffix += "[" + std::to_string(sz) + "]";
             if (i < tokens.size() && tokens[i].type == TokenType::Comma) ++i;
             else break;
         }
