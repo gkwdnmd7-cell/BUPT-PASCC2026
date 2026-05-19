@@ -68,7 +68,7 @@ int main() {
     {
         const auto result = generator.generateTemplate("../samples/05_realmap.pas");
         ok &= expect(result.ok, "codegen_realmap_basic_ok");
-        ok &= expect(contains(result.cSource, "float x = 0;"), "codegen_realmap_global_real_decl");
+        ok &= expect(contains(result.cSource, "float x = 0.0f;"), "codegen_realmap_global_real_decl");
         ok &= expect(contains(result.cSource, "float addh(float v) {"), "codegen_realmap_function_real_signature");
         ok &= expect(contains(result.cSource, "__ret_addh = v + 0.5;"), "codegen_realmap_function_real_return");
         ok &= expect(contains(result.cSource, "x = 1.25;"), "codegen_realmap_real_literal_assign");

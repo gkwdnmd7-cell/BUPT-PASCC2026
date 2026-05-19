@@ -9,22 +9,22 @@ enable_testing()
 
 find_program(BISON_EXECUTABLE NAMES win_bison bison)
 if(NOT BISON_EXECUTABLE)
-    message(FATAL_ERROR "Bison executable not found. Please install WinFlexBison.")
+    message(FATAL_ERROR "Bison not found. On Windows install WinFlexBison; on Linux: sudo apt install bison")
 endif()
 
 find_program(FLEX_EXECUTABLE NAMES win_flex flex)
 if(NOT FLEX_EXECUTABLE)
-    message(FATAL_ERROR "Flex executable not found. Please install WinFlexBison.")
+    message(FATAL_ERROR "Flex not found. On Windows install WinFlexBison; on Linux: sudo apt install flex")
 endif()
 
-set(BISON_OUTPUT_C ${CMAKE_CURRENT_BINARY_DIR}/parser_bison.tab.c)
+set(BISON_OUTPUT_C ${CMAKE_CURRENT_BINARY_DIR}/parser_bison.tab.cpp)
 set(BISON_OUTPUT_H ${CMAKE_CURRENT_BINARY_DIR}/parser_bison.tab.h)
 set(FLEX_OUTPUT_C ${CMAKE_CURRENT_BINARY_DIR}/lexer_flex.cpp)
 set(FLEX_OUTPUT_H ${CMAKE_CURRENT_BINARY_DIR}/lexer_flex.h)
 
 add_custom_command(
     OUTPUT ${BISON_OUTPUT_C} ${BISON_OUTPUT_H}
-    COMMAND ${BISON_EXECUTABLE} -d -o ${BISON_OUTPUT_C} ${CMAKE_CURRENT_SOURCE_DIR}/src/parser_bison.y
+    COMMAND ${BISON_EXECUTABLE} --defines=${BISON_OUTPUT_H} -o ${BISON_OUTPUT_C} ${CMAKE_CURRENT_SOURCE_DIR}/src/parser_bison.y
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/src/parser_bison.y
     VERBATIM
 )
@@ -40,6 +40,8 @@ add_library(parser_bison
     ${BISON_OUTPUT_C}
     src/parser_bison_bridge.cpp
 )
+
+# parser_bison.tab.cpp has a .cpp extension so all compilers treat it as C++.
 
 target_include_directories(parser_bison PUBLIC
     include
@@ -70,8 +72,10 @@ add_executable(pascc
 target_include_directories(pascc PRIVATE include)
 target_link_libraries(pascc PRIVATE parser_bison lexer_frontend)
 
-# Fully static link so the binary runs on systems with older glibc/libstdc++
-if(NOT WIN32)
+# Optional fully-static link (requires libstdc++-static / musl).
+# Enable with: cmake -DPASCC_STATIC=ON ...
+option(PASCC_STATIC "Link pascc fully statically" OFF)
+if(PASCC_STATIC AND NOT WIN32)
     target_link_options(pascc PRIVATE -static -static-libstdc++ -static-libgcc)
 endif()
 
@@ -194,6 +198,6 @@ add_executable(codegen_template_tests
 )
 
 target_include_directories(codegen_template_tests PRIVATE include)
-target_link_libraries(codegen_template_tests PRIVATE lexer_frontend)
+target_link_libraries(codegen_template_tests PRIVATE lexer_frontend parser_bison)
 
 add_test(NAME codegen_template_tests COMMAND codegen_template_tests)
