@@ -448,14 +448,50 @@ std::vector<VarDecl> parseGlobalVarDecls(const std::vector<Token>& tokens) {
     std::vector<VarDecl> decls;
     std::size_t i = 0;
 
-    // Only look for the global-level var section, which must appear before
-    // any procedure/function definitions in a well-structured Pascal program.
-    while (i < tokens.size() &&
-           tokens[i].type != TokenType::KwVar &&
-           tokens[i].type != TokenType::KwBegin &&
-           tokens[i].type != TokenType::KwProcedure &&
-           tokens[i].type != TokenType::KwFunction &&
-           tokens[i].type != TokenType::EndOfFile) {
+    // Scan for the global-level var section.
+    // We skip over entire procedure/function definitions (including their local var sections)
+    // to avoid mistaking local vars for global ones.
+    while (i < tokens.size() && tokens[i].type != TokenType::EndOfFile) {
+        if (tokens[i].type == TokenType::KwBegin) {
+            // Reached the main program begin with no global var found
+            return decls;
+        }
+        if (tokens[i].type == TokenType::KwVar) {
+            break;  // Found what looks like a var section
+        }
+        // Skip past an entire procedure/function definition so we don't
+        // accidentally treat its local var section as the global one.
+        if (tokens[i].type == TokenType::KwProcedure || tokens[i].type == TokenType::KwFunction) {
+            ++i;  // skip procedure/function keyword
+            // Skip the header (to the semicolon after the header)
+            int parenDepth = 0;
+            while (i < tokens.size()) {
+                if (tokens[i].type == TokenType::LParen) { ++parenDepth; ++i; continue; }
+                if (tokens[i].type == TokenType::RParen) { --parenDepth; ++i; continue; }
+                if (parenDepth == 0 && tokens[i].type == TokenType::Semicolon) { ++i; break; }
+                ++i;
+            }
+            // Skip local declarations and the begin...end body
+            int depth = 0;
+            while (i < tokens.size()) {
+                if (tokens[i].type == TokenType::KwBegin) {
+                    ++depth;
+                } else if (tokens[i].type == TokenType::KwEnd) {
+                    --depth;
+                    if (depth == 0) {
+                        ++i;  // consume 'end'
+                        // Consume trailing dot or semicolon
+                        if (i < tokens.size() && (tokens[i].type == TokenType::Semicolon ||
+                            tokens[i].type == TokenType::Dot)) {
+                            ++i;
+                        }
+                        break;
+                    }
+                }
+                ++i;
+            }
+            continue;
+        }
         ++i;
     }
 
